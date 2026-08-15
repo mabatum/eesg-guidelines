@@ -7,9 +7,12 @@ pdf:
 
 navigation:
   logo:
-    text: EESG
     url: './'
     urlTitle: 'Клинические рекомендации EESG'
+    light:
+      icon: '_assets/brand/eesg-logo.png'
+    dark:
+      icon: '_assets/brand/eesg-logo.png'
   header:
     leftItems:
       - type: link
