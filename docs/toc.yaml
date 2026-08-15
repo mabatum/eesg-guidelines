@@ -19,6 +19,9 @@ navigation:
         text: 'Рекомендации'
         url: './gen_docs/'
       - type: link
+        text: 'Обновления'
+        url: './updates.html'
+      - type: link
         text: 'О проекте'
         url: './gen_docs/about/'
       - type: label
@@ -40,6 +43,9 @@ navigation:
         url: 'mailto:md.batov@gmail.com'
 
 items:
+  - name: 'Последние обновления'
+    href: updates.md
+    hidden: true
   - include:
       path: gen_docs/toc.yaml
       mode: merge
