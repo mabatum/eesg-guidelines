@@ -1,0 +1,164 @@
+/* EESG Guidelines — mobile layer v2 */
+
+@media (max-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 7.5vw, 2.15rem);
+    line-height: 1.16;
+    letter-spacing: -0.015em;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: clamp(1.35rem, 5.8vw, 1.65rem);
+    line-height: 1.22;
+    overflow-wrap: anywhere;
+  }
+
+  h3 {
+    font-size: clamp(1.15rem, 4.8vw, 1.35rem);
+    line-height: 1.28;
+    overflow-wrap: anywhere;
+  }
+
+  p,
+  li {
+    line-height: 1.58;
+  }
+
+  a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  img,
+  svg,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    height: auto;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  th,
+  td {
+    min-width: 7.5rem;
+    vertical-align: top;
+  }
+
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.86rem;
+  }
+
+  code {
+    overflow-wrap: anywhere;
+  }
+
+  blockquote {
+    margin-inline: 0;
+  }
+
+  button,
+  [role='button'],
+  summary {
+    min-height: 44px;
+  }
+
+  .yfm-note,
+  [class*='note'],
+  [class*='Note'] {
+    max-width: 100%;
+  }
+
+  /* Mobile table of contents.
+     Diplodoc defaults to 16px outer padding, 28px title padding,
+     40px leaf padding and 20px per nested level. These values accumulate
+     too quickly on a phone. Override the actual dc-toc classes directly. */
+  .dc-toc {
+    padding: 10px 8px 0 !important;
+  }
+
+  .dc-toc__top {
+    padding: 8px 8px 8px 8px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .dc-toc__top_with-extra-header {
+    padding: 0 !important;
+  }
+
+  .dc-toc__top_with-extra-header .dc-toc__content > .dc-toc__list {
+    padding-left: 8px !important;
+  }
+
+  .dc-toc-item__text-block {
+    padding: 9px 10px 9px 30px !important;
+  }
+
+  .dc-toc-item__icon {
+    left: 8px !important;
+  }
+
+  .dc-toc-item__arrow {
+    left: 8px !important;
+    margin-right: 10px !important;
+  }
+
+  .dc-toc-item__arrow .g-button__icon {
+    left: -8px !important;
+  }
+
+  .dc-toc__list-item:not(.dc-toc__list-item_labeled) > .dc-toc__list {
+    padding-left: 10px !important;
+  }
+
+  .dc-toc__content > .dc-toc__list {
+    padding-right: 0 !important;
+  }
+}
+
+@media (max-width: 390px) {
+  th,
+  td {
+    min-width: 6.75rem;
+  }
+
+  h1 {
+    font-size: 1.72rem;
+  }
+
+  .dc-toc {
+    padding-inline: 6px !important;
+  }
+
+  .dc-toc-item__text-block {
+    padding-left: 28px !important;
+  }
+
+  .dc-toc__list-item:not(.dc-toc__list-item_labeled) > .dc-toc__list {
+    padding-left: 8px !important;
+  }
+}
