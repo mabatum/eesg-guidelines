@@ -1,11 +1,17 @@
 lang: ru
 linkify: true
 allowHtml: false
+allowCustomResources: true
 no-index: true
 
 interface:
   favicon-src: _assets/favicon.svg
+  search: false
 
 resources:
   style:
     - _assets/style/mobile-v2.css
+    - _assets/style/search.css
+  script:
+    - _assets/script/search-index.js
+    - _assets/script/title-search.js
