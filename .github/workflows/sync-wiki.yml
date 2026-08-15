@@ -2,6 +2,11 @@ name: Sync Yandex Wiki
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - .sync-trigger
 
 permissions:
   contents: write
