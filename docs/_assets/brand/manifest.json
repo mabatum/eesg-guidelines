@@ -1,51 +1,11 @@
 {
   "source_page": "https://eesg.ru/main",
-  "page_error": null,
+  "page_error": "403 Client Error: Forbidden for url: https://eesg.ru/main",
   "assets": [
     {
-      "kind": "branding",
-      "label": "og:image",
-      "discovered_url": "https://static.tildacdn.com/tild3663-3538-4136-a437-316538386136/MAIN_PAIGE.png",
-      "source_url": "https://static.tildacdn.com/tild3663-3538-4136-a437-316538386136/MAIN_PAIGE.png",
-      "file": "eesg-main-branding.png",
-      "content_type": "image/png",
-      "bytes": 284193,
-      "sha256": "5fdd815617a4d3b87931adb578b9495e272fb35f11eee4adf756d2c495b234d9"
-    },
-    {
-      "kind": "icon",
-      "label": "icon",
-      "discovered_url": "https://static.tildacdn.com/tild3466-3937-4361-b132-333362383262/eesg_new.png",
-      "source_url": "https://static.tildacdn.com/tild3466-3937-4361-b132-333362383262/eesg_new.png",
-      "file": "eesg-icon-2.png",
-      "content_type": "image/png",
-      "bytes": 1180,
-      "sha256": "f48fcca4d148a7d301d831cb3dafcb5f9b9421821ef998939e19490d74a817bf"
-    },
-    {
-      "kind": "icon",
-      "label": "icon",
-      "discovered_url": "https://static.tildacdn.com/tild3039-6636-4466-b966-313266346261/EESG_black.png",
-      "source_url": "https://static.tildacdn.com/tild3039-6636-4466-b966-313266346261/EESG_black.png",
-      "file": "eesg-icon-3.png",
-      "content_type": "image/png",
-      "bytes": 1012,
-      "sha256": "3f3a4c984847bb8a74d0a316a9423a609eca7e45e3badf9fe44de1b31b45ef39"
-    },
-    {
-      "kind": "icon",
-      "label": "apple-touch-icon",
-      "discovered_url": "https://static.tildacdn.com/tild3963-6361-4163-b461-666536356131/180x180.png",
-      "source_url": "https://static.tildacdn.com/tild3963-6361-4163-b461-666536356131/180x180.png",
-      "file": "eesg-icon-4.png",
-      "content_type": "image/png",
-      "bytes": 12879,
-      "sha256": "5414a79fd96454733dcbde53affdb8d35fb6176fca72e782e8e2a5f7dd5323f4"
-    },
-    {
       "kind": "logo",
-      "label": "Восточно-европейская группа по изучению сарком",
-      "discovered_url": "https://static.tildacdn.com/tild6537-3538-4662-b665-633035326533/logo_.png",
+      "label": "EESG logo",
+      "discovered_url": "https://thb.tildacdn.com/tild6537-3538-4662-b665-633035326533/-/empty/logo_.png",
       "source_url": "https://static.tildacdn.com/tild6537-3538-4662-b665-633035326533/logo_.png",
       "file": "eesg-logo.png",
       "content_type": "image/png",
@@ -53,24 +13,14 @@
       "sha256": "ee9f687461924095b6d94c6799de9c1f076b4afc124131de145524fba2f39fff"
     },
     {
-      "kind": "logo",
-      "label": "Восточно-европейская группа по изучению сарком",
-      "discovered_url": "https://static.tildacdn.com/tild3231-3836-4439-a261-333531363235/logo.png",
-      "source_url": "https://static.tildacdn.com/tild3231-3836-4439-a261-333531363235/logo.png",
-      "file": "eesg-logo-6.png",
+      "kind": "branding",
+      "label": "EESG main-page branding image",
+      "discovered_url": "https://static.tildacdn.com/tild3663-3538-4136-a437-316538386136/MAIN_PAIGE.png",
+      "source_url": "https://static.tildacdn.com/tild3663-3538-4136-a437-316538386136/MAIN_PAIGE.png",
+      "file": "eesg-main-branding.png",
       "content_type": "image/png",
-      "bytes": 13528,
-      "sha256": "3472491aa38dd904100690fdf34e33c06b0274af17eb2051a38b1126265b3490"
-    },
-    {
-      "kind": "logo",
-      "label": "EESG logo",
-      "discovered_url": "https://thb.tildacdn.com/tild6537-3538-4662-b665-633035326533/-/empty/logo_.png",
-      "source_url": "https://static.tildacdn.com/tild6537-3538-4662-b665-633035326533/logo_.png",
-      "file": "eesg-logo-7.png",
-      "content_type": "image/png",
-      "bytes": 12168,
-      "sha256": "ee9f687461924095b6d94c6799de9c1f076b4afc124131de145524fba2f39fff"
+      "bytes": 284193,
+      "sha256": "5fdd815617a4d3b87931adb578b9495e272fb35f11eee4adf756d2c495b234d9"
     }
   ]
 }

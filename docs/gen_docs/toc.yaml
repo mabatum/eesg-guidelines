@@ -70,11 +70,6 @@ items:
         href: "soft-tissue-sarcomas/clear-cell-sarcoma/index.md"
       - name: "Синовиальная саркома"
         href: "soft-tissue-sarcomas/synovial-sarcoma/index.md"
-        items:
-          - name: "Распространённая синовиальная саркома"
-            href: "soft-tissue-sarcomas/synovial-sarcoma/advanced-treatment/index.md"
-          - name: "Синовиальная саркома: диагностика и локализованная болезнь"
-            href: "soft-tissue-sarcomas/synovial-sarcoma/diagnosis-localized/index.md"
       - name: "Эпителиоидная саркома"
         href: "soft-tissue-sarcomas/epithelioid-sarcoma/index.md"
   - name: "Саркомы костей"

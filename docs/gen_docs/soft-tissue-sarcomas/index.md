@@ -1,6 +1,6 @@
 # Саркомы мягких тканей
 
-**Статус:** Тестовая версия · **Обновлено:** 14.08.2026
+**Статус:** Тестовая версия · **Обновлено:** 15.08.2026
 
 
 ## Введение
@@ -27,7 +27,7 @@
 
 - [Липосаркомы](liposarcomas/index.md): [диагностика](liposarcomas/diagnosis/index.md), [локализованные опухоли конечностей и туловища](liposarcomas/localized-extremity-trunk/index.md), [забрюшинные опухоли](liposarcomas/retroperitoneal/index.md), [системная терапия](liposarcomas/advanced-systemic-therapy/index.md).
 - [Лейомиосаркома](leiomyosarcoma/index.md): [диагностика и локализованная нематочная форма](leiomyosarcoma/diagnosis-localized/index.md), [распространённая болезнь](leiomyosarcoma/advanced-systemic-therapy/index.md).
-- [Синовиальная саркома](synovial-sarcoma/index.md): [диагностика и локализованная болезнь](synovial-sarcoma/diagnosis-localized/index.md), [распространённая болезнь](synovial-sarcoma/advanced-treatment/index.md).
+- [Синовиальная саркома](synovial-sarcoma/index.md).
 - [Ангиосаркома](angiosarcoma/index.md).
 - [Недифференцированная плеоморфная саркома](undifferentiated-pleomorphic-sarcoma/index.md).
 - [Миксофибросаркома](myxofibrosarcoma/index.md).

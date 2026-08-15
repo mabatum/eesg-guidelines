@@ -42,29 +42,29 @@
 
 ## Недавно обновлено
 
-### [Эрибулин при липосаркоме](./drugs-and-regimens/eribulin/)
+### [Хондросаркома](./bone-sarcomas/chondrosarcoma-adults/)
 
-Препараты и режимы системной терапии · 14.08.2026
+Саркомы костей · 15.08.2026
 
-[Открыть](./drugs-and-regimens/eribulin/)
+[Открыть](./bone-sarcomas/chondrosarcoma-adults/)
 
-### [Эпителиоидная саркома](./soft-tissue-sarcomas/epithelioid-sarcoma/)
+### [Синовиальная саркома](./soft-tissue-sarcomas/synovial-sarcoma/)
 
-Саркомы мягких тканей · 14.08.2026
+Саркомы мягких тканей · 15.08.2026
 
-[Открыть](./soft-tissue-sarcomas/epithelioid-sarcoma/)
+[Открыть](./soft-tissue-sarcomas/synovial-sarcoma/)
 
-### [Эпителиоидная гемангиоэндотелиома](./specific-tumor-groups/epithelioid-hemangioendothelioma/)
+### [Светлоклеточная саркома мягких тканей](./soft-tissue-sarcomas/clear-cell-sarcoma/)
 
-Отдельные нозологические группы · 14.08.2026
+Саркомы мягких тканей · 15.08.2026
 
-[Открыть](./specific-tumor-groups/epithelioid-hemangioendothelioma/)
+[Открыть](./soft-tissue-sarcomas/clear-cell-sarcoma/)
 
-### [Хордома: диагностика и оценка распространённости](./specific-tumor-groups/chordoma/diagnosis/)
+### [Последующие линии системной терапии сарком мягких тканей](./general-principles/systemic-therapy-later-lines-sts/)
 
-Отдельные нозологические группы › Хордома · 14.08.2026
+Общие принципы ведения пациентов с саркомами · 15.08.2026
 
-[Открыть](./specific-tumor-groups/chordoma/diagnosis/)
+[Открыть](./general-principles/systemic-therapy-later-lines-sts/)
 
 [Все обновления](./updates.html)
 

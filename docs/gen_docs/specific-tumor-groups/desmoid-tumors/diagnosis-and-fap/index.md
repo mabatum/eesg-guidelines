@@ -1,6 +1,6 @@
 # Десмоидная опухоль: диагностика, CTNNB1 и семейный аденоматозный полипоз
 
-**Статус:** Тестовая версия · **Обновлено:** 14.08.2026
+**Статус:** Тестовая версия · **Обновлено:** 15.08.2026
 
 
 ## Введение
@@ -51,5 +51,5 @@
 
 1. Desmoid Tumor Working Group. The management of desmoid tumours: a joint global consensus-based guideline approach. *Eur J Cancer*. 2020;127:96–107. [doi:10.1016/j.ejca.2019.11.013](https://doi.org/10.1016/j.ejca.2019.11.013).
 2. Kasper B, Baldini EH, Bonvalot S, и соавт. Current Management of Desmoid Tumors. *JAMA Oncol*. 2024;10:1121–1128. [doi:10.1001/jamaoncol.2024.1805](https://doi.org/10.1001/jamaoncol.2024.1805).
-3. van Houdt WJ, Wei IH, Kuk D, и соавт. Yield of colonoscopy in identification of newly diagnosed desmoid-type fibromatosis with underlying FAP. *Ann Surg Oncol*. 2019;26:765–771. [doi:10.1245/s10434-018-07117-8](https://doi.org/10.1245/s10434-018-07117-8).
+3. van Houdt WJ, Wei IH, Kuk D, и соавт. Yield of colonoscopy in identification of newly diagnosed desmoid-type fibromatosis with underlying FAP. *Ann Surg Oncol*. 2019;26:765–771. [doi:10.1245/s10434-018-07138-1](https://doi.org/10.1245/s10434-018-07138-1).
 4. Cojocaru E, Gennatas S, Thway K, и соавт. Approach to screening for FAP in a cohort of 226 patients. *Fam Cancer*. 2022;21:69–74. [doi:10.1007/s10689-021-00230-8](https://doi.org/10.1007/s10689-021-00230-8).
