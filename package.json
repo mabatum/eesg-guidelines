@@ -1,0 +1,11 @@
+{
+  "name": "eesg-guidelines",
+  "private": true,
+  "scripts": {
+    "build:docs": "yfm -i ./docs -o ./docs-html"
+  },
+  "dependencies": {
+    "@diplodoc/cli": "5.50.6",
+    "@diplodoc/mermaid-extension": "2.2.0"
+  }
+}
