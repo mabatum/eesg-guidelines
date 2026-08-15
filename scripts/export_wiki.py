@@ -29,6 +29,24 @@ RECOMMENDATION_HEADING_RE = re.compile(
 )
 ANY_HEADING_RE = re.compile(r"^(?P<marks>#{1,6})\s+.+$")
 
+TOP_LEVEL_ORDER = {
+    f"{ROOT_SLUG}/general-principles": 10,
+    f"{ROOT_SLUG}/soft-tissue-sarcomas": 20,
+    f"{ROOT_SLUG}/bone-sarcomas": 30,
+    f"{ROOT_SLUG}/specific-tumor-groups": 40,
+    f"{ROOT_SLUG}/drugs-and-regimens": 50,
+    f"{ROOT_SLUG}/special-clinical-situations": 60,
+    f"{ROOT_SLUG}/about": 900,
+    f"{ROOT_SLUG}/editorial-standard": 910,
+    f"{ROOT_SLUG}/materials-map": 920,
+}
+
+HIDDEN_TOP_LEVEL = {
+    f"{ROOT_SLUG}/about",
+    f"{ROOT_SLUG}/editorial-standard",
+    f"{ROOT_SLUG}/materials-map",
+}
+
 
 def require_env() -> None:
     missing = [name for name, value in {"WIKI_TOKEN": WIKI_TOKEN, "ORG_ID": ORG_ID}.items() if not value]
@@ -190,8 +208,8 @@ def render_recommendation_blocks(content: str) -> tuple[str, int]:
         **Уровень доказательности:** ...
         **Сила рекомендации:** ...
 
-    The public build receives a branded YFM note. Narrative text is never inferred
-    or rewritten as a recommendation unless the explicit heading is present.
+    The public build receives a YFM recommendation callout. Narrative text is never
+    inferred or rewritten unless the explicit recommendation heading is present.
     """
     lines = content.splitlines()
     output: list[str] = []
@@ -247,7 +265,7 @@ def toc_href(slug: str) -> str:
 
 
 def write_toc(records: list[dict]) -> None:
-    """Create a Diplodoc TOC using Wiki page titles rather than directory slugs."""
+    """Create a clinical-first Diplodoc TOC using Wiki page titles."""
     by_slug = {record["slug"]: record for record in records}
     root = by_slug.get(ROOT_SLUG)
     if not root:
@@ -264,8 +282,17 @@ def write_toc(records: list[dict]) -> None:
             parent = ROOT_SLUG
         children.setdefault(parent, []).append(slug)
 
-    for siblings in children.values():
-        siblings.sort(key=lambda slug: (by_slug[slug]["title"].casefold(), slug))
+    for parent, siblings in children.items():
+        if parent == ROOT_SLUG:
+            siblings.sort(
+                key=lambda slug: (
+                    TOP_LEVEL_ORDER.get(slug, 500),
+                    by_slug[slug]["title"].casefold(),
+                    slug,
+                )
+            )
+        else:
+            siblings.sort(key=lambda slug: (by_slug[slug]["title"].casefold(), slug))
 
     lines = [
         f"title: {yaml_string(root['title'])}",
@@ -278,6 +305,10 @@ def write_toc(records: list[dict]) -> None:
         lines.append(f"{prefix}- name: {yaml_string(record['title'])}")
         lines.append(f"{prefix}  href: {yaml_string(toc_href(slug))}")
         nested = children.get(slug, [])
+        if indent == 2 and slug in HIDDEN_TOP_LEVEL:
+            lines.append(f"{prefix}  hidden: true")
+        if indent == 2 and nested:
+            lines.append(f"{prefix}  expanded: false")
         if nested:
             lines.append(f"{prefix}  items:")
             for child in nested:
@@ -355,7 +386,7 @@ def export() -> None:
         f"Exported {exported} pages from '{ROOT_SLUG}'. "
         f"Skipped drafts: {skipped_drafts}. Rewritten internal links: {rewritten_links}. "
         f"Rendered recommendation blocks: {recommendation_blocks}. "
-        "Generated navigation from Wiki page titles."
+        "Generated clinical-first navigation from Wiki page titles."
     )
 
 
