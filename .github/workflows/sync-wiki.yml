@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -33,6 +33,19 @@ jobs:
 
       - name: Export Wiki subtree
         run: python scripts/export_wiki.py
+
+      - name: Build Diplodoc static site
+        uses: diplodoc-platform/docs-build-static-action@v1
+        with:
+          src-root: './docs'
+          build-root: './docs-html'
+
+      - name: Upload site preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: eesg-site-preview
+          path: './docs-html'
+          if-no-files-found: error
 
       - name: Commit synced content
         run: |
