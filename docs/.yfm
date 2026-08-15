@@ -5,3 +5,7 @@ no-index: true
 
 interface:
   favicon-src: _assets/favicon.svg
+
+resources:
+  style:
+    - _assets/style/mobile.css
