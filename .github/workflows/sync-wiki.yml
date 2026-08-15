@@ -1,0 +1,42 @@
+name: Sync Yandex Wiki
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      ROOT_SLUG: eesg
+      ORG_ID: 8ae77002-2026-4954-b7b4-d74bd4df14c5
+      WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Export Wiki subtree
+        run: python scripts/export_wiki.py
+
+      - name: Commit synced content
+        run: |
+          git config user.name "eesg-wiki-publisher"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/gen_docs
+          if git diff --cached --quiet; then
+            echo "No Wiki changes to commit."
+          else
+            git commit -m "Sync EESG content from Yandex Wiki"
+            git push
+          fi
