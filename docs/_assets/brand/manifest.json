@@ -1,0 +1,26 @@
+{
+  "source_page": "https://eesg.ru/main",
+  "page_error": "403 Client Error: Forbidden for url: https://eesg.ru/main",
+  "assets": [
+    {
+      "kind": "logo",
+      "label": "EESG logo",
+      "discovered_url": "https://thb.tildacdn.com/tild6537-3538-4662-b665-633035326533/-/empty/logo_.png",
+      "source_url": "https://static.tildacdn.com/tild6537-3538-4662-b665-633035326533/logo_.png",
+      "file": "eesg-logo.png",
+      "content_type": "image/png",
+      "bytes": 12168,
+      "sha256": "ee9f687461924095b6d94c6799de9c1f076b4afc124131de145524fba2f39fff"
+    },
+    {
+      "kind": "branding",
+      "label": "EESG main-page branding image",
+      "discovered_url": "https://static.tildacdn.com/tild3663-3538-4136-a437-316538386136/MAIN_PAIGE.png",
+      "source_url": "https://static.tildacdn.com/tild3663-3538-4136-a437-316538386136/MAIN_PAIGE.png",
+      "file": "eesg-main-branding.png",
+      "content_type": "image/png",
+      "bytes": 284193,
+      "sha256": "5fdd815617a4d3b87931adb578b9495e272fb35f11eee4adf756d2c495b234d9"
+    }
+  ]
+}
