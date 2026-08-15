@@ -39,7 +39,6 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: '24'
-          cache: 'npm'
 
       - name: Install Python dependencies
         run: pip install -r requirements.txt
@@ -49,6 +48,9 @@ jobs:
 
       - name: Export Wiki subtree
         run: python scripts/export_wiki.py
+
+      - name: Validate exported content
+        run: python scripts/validate_export.py
 
       - name: Build Diplodoc static site
         run: npm run build:docs
