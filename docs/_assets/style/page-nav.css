@@ -1,0 +1,87 @@
+/* EESG Guidelines — previous/next navigation within a section */
+
+.eesg-page-nav {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--g-color-line-generic, #dfe6e9);
+}
+
+.eesg-page-nav__parent {
+  display: inline-flex;
+  margin-bottom: 10px;
+  color: var(--g-color-text-secondary, #66757d);
+  font-size: .82rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.eesg-page-nav__parent:hover,
+.eesg-page-nav__parent:focus-visible {
+  color: var(--g-color-text-link, #245f73);
+  text-decoration: underline;
+}
+
+.eesg-page-nav__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.eesg-page-nav__link {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 78px;
+  padding: 12px 14px;
+  border: 1px solid var(--g-color-line-generic, #dce4e7);
+  border-radius: 12px;
+  background: var(--g-color-base-background, #fff);
+  color: var(--g-color-text-primary, #203039);
+  text-decoration: none;
+}
+
+.eesg-page-nav__link:hover,
+.eesg-page-nav__link:focus-visible {
+  border-color: rgba(36, 95, 115, .35);
+  background: rgba(36, 95, 115, .055);
+  outline: none;
+}
+
+.eesg-page-nav__link_next {
+  text-align: right;
+}
+
+.eesg-page-nav__eyebrow {
+  color: var(--g-color-text-secondary, #66757d);
+  font-size: .74rem;
+  font-weight: 600;
+}
+
+.eesg-page-nav__title {
+  font-size: .9rem;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+@media (max-width: 640px) {
+  .eesg-page-nav {
+    margin-top: 2.25rem;
+  }
+
+  .eesg-page-nav__row {
+    grid-template-columns: 1fr;
+  }
+
+  .eesg-page-nav__row > span:empty {
+    display: none;
+  }
+
+  .eesg-page-nav__link {
+    min-height: 68px;
+    padding: 11px 12px;
+  }
+
+  .eesg-page-nav__link_next {
+    text-align: left;
+  }
+}
