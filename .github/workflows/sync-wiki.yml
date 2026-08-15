@@ -52,6 +52,9 @@ jobs:
       - name: Export Wiki subtree
         run: python scripts/export_wiki.py
 
+      - name: Generate recent updates
+        run: python scripts/generate_recent_updates.py
+
       - name: Generate title-only search index
         run: python scripts/generate_search_index.py
 
@@ -92,11 +95,11 @@ jobs:
         run: |
           git config user.name "eesg-wiki-publisher"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/gen_docs docs/_assets/script/search-index.js docs/_assets/brand
+          git add docs/gen_docs docs/updates.md docs/_assets/script/search-index.js docs/_assets/brand
           if git diff --cached --quiet; then
-            echo "No Wiki/search/brand changes to commit."
+            echo "No Wiki/search/updates/brand changes to commit."
           else
-            git commit -m "Sync EESG content and brand assets"
+            git commit -m "Sync EESG content and generated indexes"
             git push
           fi
 
