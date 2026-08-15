@@ -36,6 +36,3 @@ items:
   - include:
       path: gen_docs/toc.yaml
       mode: merge
-  - name: Mermaid smoke test
-    href: mermaid-smoke-test.md
-    hidden: true
