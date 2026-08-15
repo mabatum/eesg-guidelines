@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 CONTENT_ROOT = Path("docs/gen_docs")
-OUTPUT = Path("docs/_assets/script/search-index.js")
+OUTPUT = Path("docs/_assets/script/search-index-v2.js")
 H1_RE = re.compile(r"^#\s+(.+?)\s*$")
 
 
@@ -14,19 +14,13 @@ def extract_title(path: Path) -> str | None:
         match = H1_RE.match(line)
         if match:
             title = match.group(1).strip()
-            # Strip a trailing explicit YFM/GitHub anchor if present.
             title = re.sub(r"\s+\{#[^}]+\}\s*$", "", title).strip()
             return title or None
     return None
 
 
 def page_url(path: Path) -> str:
-    """Return the URL produced by Diplodoc for a page from the included gen_docs TOC.
-
-    Diplodoc merges docs/gen_docs/toc.yaml into the project TOC and publishes those
-    pages at the site root (for example soft-tissue-sarcomas/... rather than
-    gen_docs/soft-tissue-sarcomas/...).
-    """
+    """Return the URL produced by Diplodoc for a page from the included gen_docs TOC."""
     relative = path.relative_to(CONTENT_ROOT)
     return relative.as_posix().removesuffix(".md") + ".html"
 
@@ -61,16 +55,14 @@ def main() -> None:
         title = titles_by_dir.get(path.parent)
         if not title:
             continue
-        breadcrumbs = parent_titles(path, titles_by_dir)
         records.append(
             {
                 "title": title,
                 "url": page_url(path),
-                "breadcrumbs": breadcrumbs,
+                "breadcrumbs": parent_titles(path, titles_by_dir),
             }
         )
 
-    # Stable, human-friendly ordering; ranking is handled in the browser.
     records.sort(key=lambda item: (item["title"].casefold(), item["url"]))
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
