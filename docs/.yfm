@@ -3,4 +3,4 @@ linkify: true
 allowHtml: false
 
 extensions:
-  - @diplodoc/mermaid-extension
+  - '@diplodoc/mermaid-extension'
