@@ -2,6 +2,11 @@ name: Publish GitHub Pages
 
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Sync Yandex Wiki
+    types:
+      - completed
   push:
     branches:
       - main
@@ -21,10 +26,13 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout latest published content
         uses: actions/checkout@v6
+        with:
+          ref: main
 
       - name: Build Diplodoc static site
         uses: diplodoc-platform/docs-build-static-action@v1
