@@ -4,9 +4,6 @@ allowHtml: false
 allowCustomResources: true
 no-index: true
 
-extensions:
-  - '@diplodoc/page-constructor-extension'
-
 interface:
   favicon-src: _assets/favicon.svg
   search: false
@@ -19,6 +16,7 @@ resources:
     - _assets/style/updates.css
     - _assets/style/page-nav.css
     - _assets/style/algorithm.css
+    - _assets/style/homepage.css
   script:
     - _assets/script/search-index-v2.js
     - _assets/script/title-search-v2.js
@@ -26,3 +24,4 @@ resources:
     - _assets/script/updates-page.js
     - _assets/script/page-nav.js
     - _assets/script/algorithm-ui.js
+    - _assets/script/homepage.js
