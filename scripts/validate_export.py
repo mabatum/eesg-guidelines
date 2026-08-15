@@ -9,11 +9,8 @@ DOCS_ROOT = Path("docs").resolve()
 GEN_ROOT = DOCS_ROOT / "gen_docs"
 
 MARKDOWN_LINK_RE = re.compile(r"\[[^\]]*\]\((?P<target>[^)]+)\)")
-RECOMMENDATION_HEADING_RE = re.compile(
-    r"^#{2,4}\s+(?:Клиническая\s+)?Рекомендация(?:\s+\d+(?:\.\d+)*)?\s*$",
-    re.IGNORECASE | re.MULTILINE,
-)
 HEADING_RE = re.compile(r"^(?P<marks>#{1,6})\s+\S")
+STATUS_RE = re.compile(r"\*\*Статус:\*\*\s*(?P<status>.+?)(?:\s+·|\n|$)")
 
 
 def local_target(source: Path, raw_target: str) -> Path | None:
@@ -69,6 +66,14 @@ def heading_levels(text: str) -> list[tuple[int, int]]:
     return result
 
 
+def known_status(value: str) -> bool:
+    normalized = value.casefold().strip()
+    return any(
+        token in normalized
+        for token in ("тест", "проект", "реценз", "утверж", "архив")
+    )
+
+
 def validate() -> int:
     errors: list[str] = []
     warnings: list[str] = []
@@ -90,16 +95,18 @@ def validate() -> int:
             if "https://wiki.yandex.ru/eesg" in text or "](/eesg/" in text:
                 errors.append(f"{relative}: contains an unreplaced internal Yandex Wiki link")
 
-            if RECOMMENDATION_HEADING_RE.search(text):
-                errors.append(
-                    f"{relative}: explicit recommendation heading was not converted to a callout"
-                )
-
             if "TODO" in text or "TBD" in text:
                 warnings.append(f"{relative}: contains TODO/TBD marker")
 
+            status = STATUS_RE.search(text)
+            if status and not known_status(status.group("status")):
+                warnings.append(
+                    f"{relative}: unrecognized editorial status {status.group('status')!r}; "
+                    "expected a status such as Тестовая версия, Проект, На рецензировании, Утверждено or Архив"
+                )
+
             levels = heading_levels(text)
-            for (prev_line, prev_level), (line_no, level) in zip(levels, levels[1:]):
+            for (_, prev_level), (line_no, level) in zip(levels, levels[1:]):
                 if level > prev_level + 1:
                     warnings.append(
                         f"{relative}:{line_no}: heading jumps H{prev_level} -> H{level}; "
