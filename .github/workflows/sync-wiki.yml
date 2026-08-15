@@ -50,7 +50,7 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: Export Wiki subtree
-        run: python scripts/export_wiki.py
+        run: python scripts/export_wiki_neutral.py
 
       - name: Generate recent updates
         run: python scripts/generate_recent_updates.py
