@@ -17,13 +17,13 @@ navigation:
     leftItems:
       - type: link
         text: 'Рекомендации'
-        url: './gen_docs/'
+        url: './index.html#osnovnye-razdely'
       - type: link
         text: 'Обновления'
         url: './updates.html'
       - type: link
         text: 'О проекте'
-        url: './gen_docs/about/'
+        url: './about/'
       - type: label
         theme: warning
         text: 'Тестовая версия'
