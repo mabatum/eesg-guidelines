@@ -35,17 +35,23 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Set up Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
+
+      - name: Install Diplodoc dependencies
+        run: npm install --no-audit --no-fund
 
       - name: Export Wiki subtree
         run: python scripts/export_wiki.py
 
       - name: Build Diplodoc static site
-        uses: diplodoc-platform/docs-build-static-action@v1
-        with:
-          src-root: './docs'
-          build-root: './docs-html'
+        run: npm run build:docs
 
       - name: Upload site preview artifact
         uses: actions/upload-artifact@v4
