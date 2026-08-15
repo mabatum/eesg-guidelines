@@ -1,6 +1,7 @@
 lang: ru
 linkify: true
 allowHtml: false
+no-index: true
 
 interface:
   favicon-src: _assets/favicon.svg
