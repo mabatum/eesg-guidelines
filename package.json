@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@diplodoc/cli": "5.50.6",
+    "@diplodoc/page-constructor-extension": "0.13.11",
     "@diplodoc/pdf-generator": "1.5.7"
   }
 }
