@@ -23,6 +23,12 @@ MARKDOWN_LINK_RE = re.compile(
     r"(?P<close>\))"
 )
 
+RECOMMENDATION_HEADING_RE = re.compile(
+    r"^(?P<marks>#{2,4})\s+(?P<title>(?:Клиническая\s+)?Рекомендация(?:\s+\d+(?:\.\d+)*)?)\s*$",
+    re.IGNORECASE,
+)
+ANY_HEADING_RE = re.compile(r"^(?P<marks>#{1,6})\s+.+$")
+
 
 def require_env() -> None:
     missing = [name for name, value in {"WIKI_TOKEN": WIKI_TOKEN, "ORG_ID": ORG_ID}.items() if not value]
@@ -174,6 +180,62 @@ def rewrite_internal_links(content: str, current_slug: str) -> tuple[str, int]:
     return MARKDOWN_LINK_RE.sub(repl, content), rewritten
 
 
+def render_recommendation_blocks(content: str) -> tuple[str, int]:
+    """Render explicitly structured Wiki recommendation sections as Diplodoc callouts.
+
+    Wiki authors keep simple Markdown such as:
+
+        ### Рекомендация
+        ...
+        **Уровень доказательности:** ...
+        **Сила рекомендации:** ...
+
+    The public build receives a branded YFM note. Narrative text is never inferred
+    or rewritten as a recommendation unless the explicit heading is present.
+    """
+    lines = content.splitlines()
+    output: list[str] = []
+    converted = 0
+    i = 0
+
+    while i < len(lines):
+        stripped = lines[i].strip()
+        match = RECOMMENDATION_HEADING_RE.match(stripped)
+        if not match:
+            output.append(lines[i])
+            i += 1
+            continue
+
+        level = len(match.group("marks"))
+        j = i + 1
+        while j < len(lines):
+            heading = ANY_HEADING_RE.match(lines[j].strip())
+            if heading and len(heading.group("marks")) <= level:
+                break
+            j += 1
+
+        body = "\n".join(lines[i + 1 : j]).strip()
+        if not body:
+            output.append(lines[i])
+            i += 1
+            continue
+
+        title = match.group("title")
+        output.extend(
+            [
+                f'{{% note tip "{title}" %}}',
+                "",
+                body,
+                "",
+                "{% endnote %}",
+            ]
+        )
+        converted += 1
+        i = j
+
+    return "\n".join(output), converted
+
+
 def yaml_string(value: str) -> str:
     """JSON strings are valid YAML strings and keep Cyrillic readable."""
     return json.dumps(value, ensure_ascii=False)
@@ -246,6 +308,7 @@ def export() -> None:
     exported = 0
     skipped_drafts = 0
     rewritten_links = 0
+    recommendation_blocks = 0
     records: list[dict] = []
 
     try:
@@ -265,10 +328,12 @@ def export() -> None:
             content = page.get("content") or ""
             content, count = rewrite_internal_links(content, slug)
             rewritten_links += count
+            content, count = render_recommendation_blocks(content)
+            recommendation_blocks += count
             destination = destination_for(slug)
             destination.parent.mkdir(parents=True, exist_ok=True)
 
-            # Preserve Yandex Flavored Markdown; only internal Wiki links are normalized.
+            # Preserve Yandex Flavored Markdown; only publication-specific transforms are applied.
             if not content.lstrip().startswith("#"):
                 content = f"# {title}\n\n{content}"
             destination.write_text(content.rstrip() + "\n", encoding="utf-8")
@@ -289,6 +354,7 @@ def export() -> None:
     print(
         f"Exported {exported} pages from '{ROOT_SLUG}'. "
         f"Skipped drafts: {skipped_drafts}. Rewritten internal links: {rewritten_links}. "
+        f"Rendered recommendation blocks: {recommendation_blocks}. "
         "Generated navigation from Wiki page titles."
     )
 
