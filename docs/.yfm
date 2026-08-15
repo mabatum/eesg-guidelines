@@ -8,4 +8,4 @@ interface:
 
 resources:
   style:
-    - _assets/style/mobile.css
+    - _assets/style/mobile-v2.css
