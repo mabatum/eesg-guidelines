@@ -15,9 +15,11 @@ resources:
     - _assets/style/page-meta.css
     - _assets/style/updates.css
     - _assets/style/page-nav.css
+    - _assets/style/algorithm.css
   script:
     - _assets/script/search-index-v2.js
     - _assets/script/title-search-v2.js
     - _assets/script/page-meta.js
     - _assets/script/updates-page.js
     - _assets/script/page-nav.js
+    - _assets/script/algorithm-ui.js
