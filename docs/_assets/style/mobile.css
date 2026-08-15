@@ -1,0 +1,118 @@
+/* EESG Guidelines — mobile layer
+   Keep selectors semantic where possible so the stylesheet remains stable
+   across Diplodoc UI releases. */
+
+@media (max-width: 767px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Comfortable reading width and wrapping for clinical prose. */
+  h1 {
+    font-size: clamp(1.75rem, 7.5vw, 2.15rem);
+    line-height: 1.16;
+    letter-spacing: -0.015em;
+    overflow-wrap: anywhere;
+  }
+
+  h2 {
+    font-size: clamp(1.35rem, 5.8vw, 1.65rem);
+    line-height: 1.22;
+    overflow-wrap: anywhere;
+  }
+
+  h3 {
+    font-size: clamp(1.15rem, 4.8vw, 1.35rem);
+    line-height: 1.28;
+    overflow-wrap: anywhere;
+  }
+
+  p,
+  li {
+    line-height: 1.58;
+  }
+
+  /* DOI, PubMed and other long medical links must not force horizontal scroll. */
+  a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Images, SVG algorithms and embedded media stay inside the viewport. */
+  img,
+  svg,
+  video,
+  iframe {
+    max-width: 100%;
+  }
+
+  img,
+  video {
+    height: auto;
+  }
+
+  /* Clinical tables are often wider than a phone. Preserve the table and
+     allow deliberate horizontal scrolling rather than shrinking text. */
+  table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  th,
+  td {
+    min-width: 7.5rem;
+    vertical-align: top;
+  }
+
+  /* Regimens and code/diagram sources should scroll locally, not the page. */
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.86rem;
+  }
+
+  code {
+    overflow-wrap: anywhere;
+  }
+
+  blockquote {
+    margin-inline: 0;
+  }
+
+  /* Accessible tap targets for navigation, tabs and disclosure controls. */
+  button,
+  [role='button'],
+  summary {
+    min-height: 44px;
+  }
+
+  /* Recommendation callouts and other bordered content should use the full
+     mobile width without excessive nested indentation. */
+  .yfm-note,
+  [class*='note'],
+  [class*='Note'] {
+    max-width: 100%;
+  }
+}
+
+/* Very narrow phones: avoid oversized table cells and headings. */
+@media (max-width: 390px) {
+  th,
+  td {
+    min-width: 6.75rem;
+  }
+
+  h1 {
+    font-size: 1.72rem;
+  }
+}
