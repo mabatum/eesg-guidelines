@@ -20,16 +20,58 @@ def require_env() -> None:
         raise SystemExit(f"Missing required environment variables: {', '.join(missing)}")
 
 
-def session() -> requests.Session:
+def error_text(response: requests.Response) -> str:
+    text = (response.text or "").strip().replace("\n", " ")
+    return text[:1000] if text else "<empty response body>"
+
+
+def make_session(org_header: str) -> requests.Session:
     s = requests.Session()
     s.headers.update(
         {
             "Authorization": f"OAuth {WIKI_TOKEN}",
-            "X-Org-Id": ORG_ID,
+            org_header: ORG_ID,
             "Accept": "application/json",
         }
     )
     return s
+
+
+def authenticated_session() -> requests.Session:
+    """Detect whether this Wiki belongs to Yandex 360 or Identity Hub."""
+    attempts: list[str] = []
+    for org_header in ("X-Org-Id", "X-Cloud-Org-Id"):
+        s = make_session(org_header)
+        response = s.get(
+            f"{API_BASE}/pages",
+            params={"slug": ROOT_SLUG},
+            timeout=30,
+        )
+        if response.status_code == 200:
+            page = response.json()
+            print(
+                f"Wiki API access OK using {org_header}. "
+                f"Root page: {page.get('title', ROOT_SLUG)!r} (id={page.get('id')})."
+            )
+            return s
+        attempts.append(f"{org_header}: HTTP {response.status_code}: {error_text(response)}")
+
+    raise SystemExit(
+        "Unable to access the root Wiki page with either supported organization header.\n"
+        + "\n".join(attempts)
+        + "\nCheck that the OAuth token belongs to a user who can open the root page, "
+          "that wiki:read was granted, and that Wiki API access is enabled by the administrator."
+    )
+
+
+def checked_get(s: requests.Session, url: str, **kwargs) -> requests.Response:
+    response = s.get(url, **kwargs)
+    if not response.ok:
+        raise SystemExit(
+            f"Yandex Wiki API request failed: HTTP {response.status_code} "
+            f"for {response.url}\n{error_text(response)}"
+        )
+    return response
 
 
 def get_descendants(s: requests.Session) -> list[dict]:
@@ -45,8 +87,12 @@ def get_descendants(s: requests.Session) -> list[dict]:
         if cursor:
             params["cursor"] = cursor
 
-        response = s.get(f"{API_BASE}/pages/descendants", params=params, timeout=30)
-        response.raise_for_status()
+        response = checked_get(
+            s,
+            f"{API_BASE}/pages/descendants",
+            params=params,
+            timeout=30,
+        )
         payload = response.json()
         pages.extend(payload.get("results", []))
         cursor = payload.get("next_cursor")
@@ -57,12 +103,12 @@ def get_descendants(s: requests.Session) -> list[dict]:
 
 
 def get_page(s: requests.Session, slug: str) -> dict:
-    response = s.get(
+    response = checked_get(
+        s,
         f"{API_BASE}/pages",
         params={"slug": slug, "fields": "content,attributes,breadcrumbs"},
         timeout=30,
     )
-    response.raise_for_status()
     return response.json()
 
 
@@ -89,7 +135,7 @@ def destination_for(slug: str) -> Path:
 
 def export() -> None:
     require_env()
-    s = session()
+    s = authenticated_session()
     subtree = get_descendants(s)
     if not subtree:
         raise SystemExit(f"No pages returned for root slug '{ROOT_SLUG}'")
