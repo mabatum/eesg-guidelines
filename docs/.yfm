@@ -4,6 +4,9 @@ allowHtml: false
 allowCustomResources: true
 no-index: true
 
+extensions:
+  - @diplodoc/page-constructor-extension
+
 interface:
   favicon-src: _assets/favicon.svg
   search: false
