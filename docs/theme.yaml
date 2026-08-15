@@ -1,0 +1,17 @@
+base-brand: '#245F73'
+
+light:
+  base-background: '#FFFFFF'
+  text-primary: '#1F2A30'
+  text-secondary: '#66757D'
+  line-generic: '#E4EAED'
+  quote: '#245F73'
+  table-border: '#DCE4E7'
+  table-row-background: '#F7F9FA'
+  note-info-background: '#F1F7F9'
+  mini-toc-active-border: '#245F73'
+
+dark:
+  base-brand: '#67B3C8'
+  quote: '#67B3C8'
+  mini-toc-active-border: '#67B3C8'
