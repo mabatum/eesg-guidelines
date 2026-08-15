@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       ROOT_SLUG: eesg
-      ORG_ID: 8ae77002-2026-4954-b7b4-d74bd4df14c5
+      ORG_ID: bpfl6jh90pruinc9ks8c
       WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
 
     steps:
