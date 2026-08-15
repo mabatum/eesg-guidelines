@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 STATIC_ROOT = Path("docs-html").resolve()
-SEARCH_INDEX = Path("docs/_assets/script/search-index.js")
+SEARCH_INDEX = Path("docs/_assets/script/search-index-v2.js")
 UPDATES = Path("docs/updates.md")
 
 INDEX_RE = re.compile(r"window\.EESG_SEARCH_INDEX=(\[.*\]);\s*$", re.DOTALL)
@@ -37,7 +37,6 @@ def main() -> int:
     if not STATIC_ROOT.exists():
         errors.append(f"Static build directory does not exist: {STATIC_ROOT}")
 
-    # Search index: every entry must point to an actually generated HTML file.
     if not SEARCH_INDEX.exists():
         errors.append(f"Missing search index: {SEARCH_INDEX}")
     else:
@@ -61,7 +60,6 @@ def main() -> int:
                 if target is not None and not target.exists():
                     errors.append(f"Search target missing: {title} -> {url} ({target})")
 
-    # Updates page uses site-root-relative links because updates.html itself is at root.
     if UPDATES.exists():
         text = UPDATES.read_text(encoding="utf-8")
         for match in MD_LINK_RE.finditer(text):
