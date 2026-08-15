@@ -21,8 +21,14 @@ def extract_title(path: Path) -> str | None:
 
 
 def page_url(path: Path) -> str:
+    """Return the URL produced by Diplodoc for a page from the included gen_docs TOC.
+
+    Diplodoc merges docs/gen_docs/toc.yaml into the project TOC and publishes those
+    pages at the site root (for example soft-tissue-sarcomas/... rather than
+    gen_docs/soft-tissue-sarcomas/...).
+    """
     relative = path.relative_to(CONTENT_ROOT)
-    return "gen_docs/" + relative.as_posix().removesuffix(".md") + ".html"
+    return relative.as_posix().removesuffix(".md") + ".html"
 
 
 def parent_titles(path: Path, titles_by_dir: dict[Path, str]) -> list[str]:
