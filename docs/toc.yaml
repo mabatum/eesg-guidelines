@@ -1,5 +1,37 @@
 title: Клинические рекомендации EESG
 href: index.md
+
+navigation:
+  logo:
+    text: EESG
+    url: './'
+    urlTitle: 'Клинические рекомендации EESG'
+  header:
+    leftItems:
+      - type: link
+        text: 'Рекомендации'
+        url: './gen_docs/'
+      - type: link
+        text: 'О проекте'
+        url: './gen_docs/about/'
+      - type: label
+        theme: warning
+        text: 'Тестовая версия'
+    rightItems:
+      - type: link
+        text: 'EESG.ru'
+        url: 'https://eesg.ru/'
+        target: _blank
+      - type: controls
+  footer:
+    copyright: 'EESG — Восточно-Европейская группа по изучению сарком'
+    withDivider: true
+    menuItems:
+      - text: 'О EESG'
+        url: 'https://eesg.ru/about'
+      - text: 'Обратная связь'
+        url: 'mailto:md.batov@gmail.com'
+
 items:
   - name: Рекомендации
     include:
