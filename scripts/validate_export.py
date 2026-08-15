@@ -13,6 +13,7 @@ RECOMMENDATION_HEADING_RE = re.compile(
     r"^#{2,4}\s+(?:Клиническая\s+)?Рекомендация(?:\s+\d+(?:\.\d+)*)?\s*$",
     re.IGNORECASE | re.MULTILINE,
 )
+HEADING_RE = re.compile(r"^(?P<marks>#{1,6})\s+\S")
 
 
 def local_target(source: Path, raw_target: str) -> Path | None:
@@ -20,7 +21,6 @@ def local_target(source: Path, raw_target: str) -> Path | None:
     if not target or target.startswith("#"):
         return None
 
-    # Drop an optional Markdown title after a whitespace only for simple destinations.
     if " \"" in target:
         target = target.split(" \"", 1)[0]
 
@@ -41,6 +41,32 @@ def local_target(source: Path, raw_target: str) -> Path | None:
     if path.endswith("/"):
         candidate = candidate / "index.md"
     return candidate
+
+
+def heading_levels(text: str) -> list[tuple[int, int]]:
+    """Return (line_number, heading_level), ignoring fenced code blocks."""
+    result: list[tuple[int, int]] = []
+    in_fence = False
+    fence_marker = ""
+
+    for number, line in enumerate(text.splitlines(), 1):
+        stripped = line.lstrip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            marker = stripped[:3]
+            if not in_fence:
+                in_fence = True
+                fence_marker = marker
+            elif marker == fence_marker:
+                in_fence = False
+                fence_marker = ""
+            continue
+        if in_fence:
+            continue
+
+        match = HEADING_RE.match(line)
+        if match:
+            result.append((number, len(match.group("marks"))))
+    return result
 
 
 def validate() -> int:
@@ -71,6 +97,14 @@ def validate() -> int:
 
             if "TODO" in text or "TBD" in text:
                 warnings.append(f"{relative}: contains TODO/TBD marker")
+
+            levels = heading_levels(text)
+            for (prev_line, prev_level), (line_no, level) in zip(levels, levels[1:]):
+                if level > prev_level + 1:
+                    warnings.append(
+                        f"{relative}:{line_no}: heading jumps H{prev_level} -> H{level}; "
+                        "this may weaken the in-page navigation"
+                    )
 
             for match in MARKDOWN_LINK_RE.finditer(text):
                 candidate = local_target(page, match.group("target"))
