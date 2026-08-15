@@ -55,6 +55,9 @@ jobs:
       - name: Generate recent updates
         run: python scripts/generate_recent_updates.py
 
+      - name: Generate dynamic homepage
+        run: python scripts/generate_homepage.py
+
       - name: Generate title-only search index
         run: python scripts/generate_search_index.py
 
