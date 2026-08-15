@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import os
+import posixpath
+import re
 import shutil
 from pathlib import Path
-from urllib.parse import unquote
+from urllib.parse import unquote, urlsplit
 
 import requests
 
@@ -12,6 +14,13 @@ ROOT_SLUG = os.environ.get("ROOT_SLUG", "eesg").strip("/")
 WIKI_TOKEN = os.environ.get("WIKI_TOKEN")
 ORG_ID = os.environ.get("ORG_ID")
 OUTPUT_DIR = Path(os.environ.get("OUTPUT_DIR", "docs/gen_docs"))
+
+MARKDOWN_LINK_RE = re.compile(
+    r"(?P<prefix>\]\()"
+    r"(?P<url>(?:https://wiki\.yandex\.ru)?/eesg(?:/[^\s)#?]*)?)"
+    r"(?P<suffix>[?#][^\s)]*)?"
+    r"(?P<close>\))"
+)
 
 
 def require_env() -> None:
@@ -133,6 +142,37 @@ def destination_for(slug: str) -> Path:
     return OUTPUT_DIR.joinpath(*parts, "index.md") if parts else OUTPUT_DIR / "index.md"
 
 
+def relative_internal_link(current_slug: str, raw_url: str, suffix: str = "") -> str:
+    path = urlsplit(raw_url).path if raw_url.startswith("http") else raw_url
+    target_slug = unquote(path.strip("/"))
+    target_parts = safe_relative_parts(target_slug)
+    current_parts = safe_relative_parts(current_slug)
+
+    target = posixpath.join(*target_parts, "index.md") if target_parts else "index.md"
+    start = posixpath.join(*current_parts) if current_parts else "."
+    relative = posixpath.relpath(target, start=start)
+    return relative + suffix
+
+
+def rewrite_internal_links(content: str, current_slug: str) -> tuple[str, int]:
+    rewritten = 0
+
+    def repl(match: re.Match[str]) -> str:
+        nonlocal rewritten
+        try:
+            target = relative_internal_link(
+                current_slug,
+                match.group("url"),
+                match.group("suffix") or "",
+            )
+        except ValueError:
+            return match.group(0)
+        rewritten += 1
+        return f"{match.group('prefix')}{target}{match.group('close')}"
+
+    return MARKDOWN_LINK_RE.sub(repl, content), rewritten
+
+
 def export() -> None:
     require_env()
     s = authenticated_session()
@@ -148,6 +188,7 @@ def export() -> None:
     original_output = OUTPUT_DIR
     exported = 0
     skipped_drafts = 0
+    rewritten_links = 0
 
     try:
         globals()["OUTPUT_DIR"] = tmp_dir
@@ -164,10 +205,12 @@ def export() -> None:
 
             title = page.get("title") or slug
             content = page.get("content") or ""
+            content, count = rewrite_internal_links(content, slug)
+            rewritten_links += count
             destination = destination_for(slug)
             destination.parent.mkdir(parents=True, exist_ok=True)
 
-            # Preserve Yandex Flavored Markdown as-is; Diplodoc understands YFM.
+            # Preserve Yandex Flavored Markdown; only internal Wiki links are normalized.
             if not content.lstrip().startswith("#"):
                 content = f"# {title}\n\n{content}"
             destination.write_text(content.rstrip() + "\n", encoding="utf-8")
@@ -182,7 +225,10 @@ def export() -> None:
         if tmp_dir.exists():
             shutil.rmtree(tmp_dir)
 
-    print(f"Exported {exported} pages from '{ROOT_SLUG}'. Skipped drafts: {skipped_drafts}.")
+    print(
+        f"Exported {exported} pages from '{ROOT_SLUG}'. "
+        f"Skipped drafts: {skipped_drafts}. Rewritten internal links: {rewritten_links}."
+    )
 
 
 if __name__ == "__main__":
