@@ -39,9 +39,10 @@
     const normalized = value.toLocaleLowerCase('ru-RU');
     if (normalized.includes('утверж')) return 'is-approved';
     if (normalized.includes('реценз')) return 'is-review';
+    if (normalized.includes('архив')) return 'is-archive';
     if (normalized.includes('проект')) return 'is-draft';
     if (normalized.includes('тест')) return 'is-test';
-    return '';
+    return 'is-other';
   }
 
   function enhanceMetadata() {
