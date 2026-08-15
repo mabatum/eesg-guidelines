@@ -2,6 +2,133 @@
 
 **Статус:** Тестовая версия · **Обновлено:** 15.08.2026
 
+::: page-constructor
+blocks:
+  - type: 'card-layout-block'
+    title: 'Основные разделы'
+    colSizes:
+      all: 12
+      md: 4
+      sm: 6
+    indent:
+      top: 's'
+    children:
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Саркомы мягких тканей"
+          text: "Диагностика и лечение основных гистологических вариантов сарком мягких тканей."
+          links:
+            - text: 'Открыть раздел'
+              url: "./soft-tissue-sarcomas/"
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Саркомы костей"
+          text: "Остеосаркома, саркома Юинга, хондросаркома и другие первичные опухоли кости."
+          links:
+            - text: 'Открыть раздел'
+              url: "./bone-sarcomas/"
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Отдельные нозологические группы"
+          text: "ГИСО, десмоидные опухоли, хордома, сосудистые и другие редкие опухоли."
+          links:
+            - text: 'Открыть раздел'
+              url: "./specific-tumor-groups/"
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Общие принципы"
+          text: "Биопсия, патоморфология, стадирование, локальное и системное лечение, наблюдение."
+          links:
+            - text: 'Открыть раздел'
+              url: "./general-principles/"
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Препараты и режимы"
+          text: "Практические разделы по лекарственным препаратам и режимам системной терапии."
+          links:
+            - text: 'Открыть раздел'
+              url: "./drugs-and-regimens/"
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Особые клинические ситуации"
+          text: "Беременность, наследственная предрасположенность, пожилой возраст и другие ситуации."
+          links:
+            - text: 'Открыть раздел'
+              url: "./special-clinical-situations/"
+              theme: 'normal'
+              arrow: true
+  - type: 'card-layout-block'
+    title: 'Недавно обновлено'
+    colSizes:
+      all: 12
+      md: 6
+    indent:
+      top: 'l'
+    children:
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Эрибулин при липосаркоме"
+          text: "Препараты и режимы системной терапии · 14.08.2026"
+          links:
+            - text: 'Открыть'
+              url: "./drugs-and-regimens/eribulin/"
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Эпителиоидная саркома"
+          text: "Саркомы мягких тканей · 14.08.2026"
+          links:
+            - text: 'Открыть'
+              url: "./soft-tissue-sarcomas/epithelioid-sarcoma/"
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Эпителиоидная гемангиоэндотелиома"
+          text: "Отдельные нозологические группы · 14.08.2026"
+          links:
+            - text: 'Открыть'
+              url: "./specific-tumor-groups/epithelioid-hemangioendothelioma/"
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: "Хордома: диагностика и оценка распространённости"
+          text: "Отдельные нозологические группы › Хордома · 14.08.2026"
+          links:
+            - text: 'Открыть'
+              url: "./specific-tumor-groups/chordoma/diagnosis/"
+              theme: 'normal'
+              arrow: true
+  - type: 'button-block'
+    centered: false
+    buttons:
+      - text: 'Все обновления'
+        theme: 'outlined'
+        size: 'l'
+        url: './updates.html'
+:::
 
 ## Введение
 
