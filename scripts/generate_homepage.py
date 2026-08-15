@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import re
 from datetime import datetime
 from pathlib import Path
@@ -18,11 +17,7 @@ META_RE = re.compile(
     r"(?:\n|$)"
 )
 
-HIDDEN_PREFIXES = {
-    "about",
-    "editorial-standard",
-    "materials-map",
-}
+HIDDEN_PREFIXES = {"about", "editorial-standard", "materials-map"}
 
 SECTIONS = [
     (
@@ -56,10 +51,6 @@ SECTIONS = [
         "./special-clinical-situations/",
     ),
 ]
-
-
-def q(value: str) -> str:
-    return json.dumps(value, ensure_ascii=False)
 
 
 def parse_date(value: str | None) -> datetime:
@@ -111,12 +102,8 @@ def recent_pages(limit: int = 4) -> list[dict[str, str]]:
         if not relative_parts or relative_parts[0] in HIDDEN_PREFIXES:
             continue
 
-        # Keep the homepage feed focused on content pages rather than section landing pages.
         page_dir = page.parent
-        has_children = any(
-            other != page_dir and page_dir in other.parents
-            for other in page_dirs
-        )
+        has_children = any(other != page_dir and page_dir in other.parents for other in page_dirs)
         if has_children:
             continue
 
@@ -147,81 +134,38 @@ def recent_pages(limit: int = 4) -> list[dict[str, str]]:
     ]
 
 
-def portal_block(recent: list[dict[str, str]]) -> str:
-    lines = [
-        "::: page-constructor",
-        "blocks:",
-        "  - type: 'card-layout-block'",
-        "    title: 'Основные разделы'",
-        "    colSizes:",
-        "      all: 12",
-        "      md: 4",
-        "      sm: 6",
-        "    indent:",
-        "      top: 's'",
-        "    children:",
-    ]
-
+def portal_markdown(recent: list[dict[str, str]]) -> str:
+    lines = ["## Основные разделы", ""]
     for title, text, url in SECTIONS:
         lines.extend(
             [
-                "      - type: 'layout-item'",
-                "        border: true",
-                "        content:",
-                f"          title: {q(title)}",
-                f"          text: {q(text)}",
-                "          links:",
-                "            - text: 'Открыть раздел'",
-                f"              url: {q(url)}",
-                "              theme: 'normal'",
-                "              arrow: true",
+                f"### [{title}]({url})",
+                "",
+                text,
+                "",
+                f"[Открыть раздел]({url})",
+                "",
             ]
         )
 
     if recent:
-        lines.extend(
-            [
-                "  - type: 'card-layout-block'",
-                "    title: 'Недавно обновлено'",
-                "    colSizes:",
-                "      all: 12",
-                "      md: 6",
-                "    indent:",
-                "      top: 'l'",
-                "    children:",
-            ]
-        )
+        lines.extend(["## Недавно обновлено", ""])
         for item in recent:
             details = [part for part in (item.get("section"), item.get("updated")) if part]
-            text = " · ".join(details) or "Обновлённый раздел рекомендаций"
+            detail_text = " · ".join(details) or "Обновлённый раздел рекомендаций"
             lines.extend(
                 [
-                    "      - type: 'layout-item'",
-                    "        border: true",
-                    "        content:",
-                    f"          title: {q(item['title'])}",
-                    f"          text: {q(text)}",
-                    "          links:",
-                    "            - text: 'Открыть'",
-                    f"              url: {q(item['url'])}",
-                    "              theme: 'normal'",
-                    "              arrow: true",
+                    f"### [{item['title']}]({item['url']})",
+                    "",
+                    detail_text,
+                    "",
+                    f"[Открыть]({item['url']})",
+                    "",
                 ]
             )
-        lines.extend(
-            [
-                "  - type: 'button-block'",
-                "    centered: false",
-                "    buttons:",
-                "      - text: 'Все обновления'",
-                "        theme: 'outlined'",
-                "        size: 'l'",
-                "        url: './updates.html'",
-            ]
-        )
+        lines.extend(["[Все обновления](./updates.html)", ""])
 
-    lines.append(":::")
-    return "\n".join(lines)
+    return "\n".join(lines).rstrip()
 
 
 def main() -> None:
@@ -235,13 +179,13 @@ def main() -> None:
 
     insertion = meta.end()
     recent = recent_pages()
-    block = portal_block(recent)
+    block = portal_markdown(recent)
     enhanced = text[:insertion].rstrip() + "\n\n" + block + "\n\n" + text[insertion:].lstrip()
     ROOT_PAGE.write_text(enhanced.rstrip() + "\n", encoding="utf-8")
 
     print(
-        f"Enhanced homepage with {len(SECTIONS)} primary section cards and "
-        f"{len(recent)} recent update cards."
+        f"Enhanced homepage with {len(SECTIONS)} primary section links and "
+        f"{len(recent)} recent update links using progressive Markdown."
     )
 
 
