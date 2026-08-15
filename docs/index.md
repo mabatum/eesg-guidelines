@@ -1,24 +1,100 @@
-# Клинические рекомендации EESG
+::: page-constructor
+blocks:
+  - type: 'header-block'
+    width: 's'
+    offset: 'default'
+    title: 'Клинические рекомендации EESG'
+    description: 'Профессиональный ресурс Восточно-Европейской группы по изучению сарком по диагностике и лечению сарком костей и мягких тканей.'
+    resetPaddings: true
+    verticalOffset: 'l'
+    background:
+      color: '#EAF3F6'
+      fullWidth: false
+    buttons:
+      - text: 'О проекте'
+        theme: 'outlined'
+        size: 'promo'
+        url: './gen_docs/about/'
 
-**Профессиональный ресурс Восточно-Европейской группы по изучению сарком.**
-
-Тестовая версия проекта клинических рекомендаций EESG по диагностике и лечению сарком костей и мягких тканей. Материалы предназначены прежде всего для врачей и других специалистов, участвующих в ведении пациентов с саркомами.
-
-## Быстрый доступ
-
-- [Общие принципы ведения пациентов с саркомами](gen_docs/general-principles/index.md)
-- [Саркомы мягких тканей](gen_docs/soft-tissue-sarcomas/index.md)
-- [Саркомы костей](gen_docs/bone-sarcomas/index.md)
-- [Отдельные нозологические группы](gen_docs/specific-tumor-groups/index.md)
-- [Препараты и режимы системной терапии](gen_docs/drugs-and-regimens/index.md)
-- [Отдельные клинические ситуации](gen_docs/special-clinical-situations/index.md)
+  - type: 'card-layout-block'
+    title: 'Основные разделы'
+    colSizes:
+      all: 12
+      md: 4
+      sm: 6
+    indent:
+      top: 'm'
+    children:
+      - type: 'layout-item'
+        border: true
+        content:
+          title: 'Саркомы мягких тканей'
+          text: 'Диагностика и лечение основных гистологических вариантов сарком мягких тканей.'
+          links:
+            - text: 'Открыть раздел'
+              url: './gen_docs/soft-tissue-sarcomas/'
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: 'Саркомы костей'
+          text: 'Остеосаркома, саркома Юинга, хондросаркома и другие первичные опухоли кости.'
+          links:
+            - text: 'Открыть раздел'
+              url: './gen_docs/bone-sarcomas/'
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: 'Отдельные нозологические группы'
+          text: 'ГИСО, десмоидные опухоли, хордома, сосудистые и другие редкие опухоли.'
+          links:
+            - text: 'Открыть раздел'
+              url: './gen_docs/specific-tumor-groups/'
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: 'Общие принципы'
+          text: 'Биопсия, патоморфология, стадирование, локальное и системное лечение, наблюдение.'
+          links:
+            - text: 'Открыть раздел'
+              url: './gen_docs/general-principles/'
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: 'Препараты и режимы'
+          text: 'Практические разделы по лекарственным препаратам и режимам системной терапии.'
+          links:
+            - text: 'Открыть раздел'
+              url: './gen_docs/drugs-and-regimens/'
+              theme: 'normal'
+              arrow: true
+      - type: 'layout-item'
+        border: true
+        content:
+          title: 'Особые клинические ситуации'
+          text: 'Беременность, наследственная предрасположенность, пожилой возраст, олигометастатическое заболевание и другие ситуации.'
+          links:
+            - text: 'Открыть раздел'
+              url: './gen_docs/special-clinical-situations/'
+              theme: 'normal'
+              arrow: true
+:::
 
 ## О проекте
 
-Рекомендации структурированы как практический справочный ресурс: нормативная формулировка рекомендации сопровождается оценкой доказательной базы, академическим комментарием и первичными источниками. Содержание развивается и обновляется рабочей группой EESG.
+Рекомендации создаются как практический профессиональный справочный ресурс. Структурированные клинические положения сопровождаются оценкой доказательной базы, академическим комментарием и первичными источниками.
+
+Проект находится в тестовой эксплуатации и развивается рабочей группой EESG.
 
 [Область применения и методология](gen_docs/about/index.md)
 
 ## Обратная связь
 
-Проект находится в тестовой эксплуатации. Замечания по содержанию, структуре и навигации можно направлять на **md.batov@gmail.com**.
+Замечания по содержанию, структуре и навигации можно направлять на **md.batov@gmail.com**.
