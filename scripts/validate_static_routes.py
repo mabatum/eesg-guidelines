@@ -10,6 +10,7 @@ STATIC_ROOT = Path("docs-html").resolve()
 SEARCH_INDEX = Path("docs/_assets/script/search-index-v2.js")
 UPDATES = Path("docs/updates.md")
 TOC = Path("docs/toc.yaml")
+BUILT_TOC = STATIC_ROOT / "toc.js"
 HOME = STATIC_ROOT / "index.html"
 
 INDEX_RE = re.compile(r"window\.EESG_SEARCH_INDEX=(\[.*\]);\s*$", re.DOTALL)
@@ -64,6 +65,8 @@ def main() -> int:
                 errors.append(
                     f"Homepage portal block was not rendered into index.html: missing {marker!r}"
                 )
+        if "_assets/script/header-nav-v1.js" not in home_html:
+            errors.append("Built homepage is missing header-nav-v1.js cache-bust navigation guard")
 
     if not SEARCH_INDEX.exists():
         errors.append(f"Missing search index: {SEARCH_INDEX}")
@@ -91,6 +94,17 @@ def main() -> int:
         for match in TOC_URL_RE.finditer(text):
             validate_local_url(errors, "Navigation URL", match.group("url").strip())
 
+    if not BUILT_TOC.exists():
+        errors.append(f"Built navigation payload is missing: {BUILT_TOC}")
+    else:
+        built_toc = BUILT_TOC.read_text(encoding="utf-8")
+        if '"text":"Рекомендации","url":"./index.html#osnovnye-razdely"' not in built_toc:
+            errors.append("Built toc.js does not contain the canonical Recommendations URL")
+        if '"text":"О проекте","url":"./about/"' not in built_toc:
+            errors.append("Built toc.js does not contain the canonical About URL")
+        if '"url":"./gen_docs/' in built_toc or '"url":"gen_docs/' in built_toc:
+            errors.append("Built toc.js still exposes internal gen_docs navigation URLs")
+
     if errors:
         print("Static route/render validation errors:")
         for error in errors:
@@ -99,8 +113,8 @@ def main() -> int:
         return 1
 
     print(
-        "Static validation passed: homepage portal blocks are rendered and "
-        "search, updates, and navigation links resolve to built files."
+        "Static validation passed: homepage portal blocks are rendered, "
+        "header navigation is canonical, and search/updates/navigation links resolve."
     )
     return 0
 
