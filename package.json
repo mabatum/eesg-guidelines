@@ -2,7 +2,7 @@
   "name": "eesg-guidelines",
   "private": true,
   "scripts": {
-    "build:docs": "yfm -i ./docs -o ./docs-html",
+    "build:docs": "yfm -i ./docs -o ./docs-html --allow-custom-resources",
     "build:pdf-input": "yfm -i ./docs -o ./docs-pdf --pdf",
     "build:pdf": "pdf-generator -i ./docs-pdf"
   },
