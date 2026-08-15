@@ -103,6 +103,7 @@ jobs:
             echo "No Wiki/search/updates/brand changes to commit."
           else
             git commit -m "Sync EESG content and generated indexes"
+            git pull --rebase origin main
             git push
           fi
 
