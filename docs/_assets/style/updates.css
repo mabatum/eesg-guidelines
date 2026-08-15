@@ -1,0 +1,144 @@
+/* EESG Guidelines — recent updates */
+
+.eesg-updates-page .eesg-updates-date {
+  margin-top: 2rem;
+  margin-bottom: .75rem;
+  padding-bottom: .45rem;
+  border-bottom: 1px solid var(--g-color-line-generic, #e0e6e9);
+  color: var(--g-color-text-secondary, #65747c);
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: .01em;
+}
+
+.eesg-update-card {
+  margin: 0 0 12px;
+  padding: 15px 16px 14px;
+  border: 1px solid var(--g-color-line-generic, #dde5e8);
+  border-radius: 14px;
+  background: var(--g-color-base-background, #fff);
+}
+
+.eesg-update-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.02rem;
+  line-height: 1.35;
+}
+
+.eesg-update-card h3 a {
+  color: var(--g-color-text-primary, #203039);
+  text-decoration: none;
+}
+
+.eesg-update-card h3 a:hover,
+.eesg-update-card h3 a:focus-visible {
+  color: var(--g-color-text-link, #245f73);
+  text-decoration: underline;
+}
+
+.eesg-update-card > p:last-child {
+  margin-bottom: 0;
+}
+
+.eesg-update-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.eesg-update-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  min-height: 28px;
+  padding: 5px 8px;
+  border: 1px solid var(--g-color-line-generic, #dce4e7);
+  border-radius: 999px;
+  background: var(--g-color-base-generic, #f5f7f8);
+  font-size: .76rem;
+  line-height: 1.2;
+}
+
+.eesg-update-chip__label {
+  color: var(--g-color-text-secondary, #6a7880);
+  font-weight: 500;
+}
+
+.eesg-update-chip__value {
+  font-weight: 650;
+}
+
+.eesg-update-chip_status.is-approved {
+  border-color: rgba(40, 123, 78, .30);
+  background: rgba(40, 123, 78, .10);
+}
+
+.eesg-update-chip_status.is-review {
+  border-color: rgba(173, 116, 15, .32);
+  background: rgba(173, 116, 15, .10);
+}
+
+.eesg-update-chip_status.is-draft {
+  border-color: rgba(123, 86, 32, .28);
+  background: rgba(123, 86, 32, .08);
+}
+
+.eesg-update-chip_status.is-test {
+  border-color: rgba(36, 95, 115, .25);
+  background: rgba(36, 95, 115, .08);
+}
+
+.eesg-update-chip_status.is-archive {
+  border-color: rgba(100, 111, 118, .25);
+  background: rgba(100, 111, 118, .08);
+}
+
+.eesg-update-chip_status.is-other {
+  border-style: dashed;
+}
+
+.eesg-update-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 20px 0 8px;
+}
+
+.eesg-update-filter {
+  min-height: 34px;
+  padding: 6px 11px;
+  border: 1px solid var(--g-color-line-generic, #d9e1e5);
+  border-radius: 999px;
+  background: var(--g-color-base-background, #fff);
+  color: inherit;
+  font: inherit;
+  font-size: .8rem;
+  cursor: pointer;
+}
+
+.eesg-update-filter.is-active,
+.eesg-update-filter:hover,
+.eesg-update-filter:focus-visible {
+  border-color: rgba(36, 95, 115, .38);
+  background: rgba(36, 95, 115, .09);
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .eesg-updates-page .eesg-updates-date {
+    margin-top: 1.55rem;
+  }
+
+  .eesg-update-card {
+    padding: 13px 13px 12px;
+    border-radius: 12px;
+  }
+
+  .eesg-update-card h3 {
+    font-size: 1rem;
+  }
+
+  .eesg-update-chip {
+    font-size: .73rem;
+  }
+}
