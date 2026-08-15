@@ -5,6 +5,7 @@ import os
 import posixpath
 import re
 import shutil
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -15,6 +16,7 @@ ROOT_SLUG = os.environ.get("ROOT_SLUG", "eesg").strip("/")
 WIKI_TOKEN = os.environ.get("WIKI_TOKEN")
 ORG_ID = os.environ.get("ORG_ID")
 OUTPUT_DIR = Path(os.environ.get("OUTPUT_DIR", "docs/gen_docs"))
+DEFAULT_PUBLICATION_STATUS = os.environ.get("PUBLICATION_STATUS", "Тестовая версия")
 
 MARKDOWN_LINK_RE = re.compile(
     r"(?P<prefix>\]\()"
@@ -199,18 +201,7 @@ def rewrite_internal_links(content: str, current_slug: str) -> tuple[str, int]:
 
 
 def render_recommendation_blocks(content: str) -> tuple[str, int]:
-    """Render explicitly structured Wiki recommendation sections as Diplodoc callouts.
-
-    Wiki authors keep simple Markdown such as:
-
-        ### Рекомендация
-        ...
-        **Уровень доказательности:** ...
-        **Сила рекомендации:** ...
-
-    The public build receives a YFM recommendation callout. Narrative text is never
-    inferred or rewritten unless the explicit recommendation heading is present.
-    """
+    """Render explicitly structured Wiki recommendation sections as Diplodoc callouts."""
     lines = content.splitlines()
     output: list[str] = []
     converted = 0
@@ -252,6 +243,61 @@ def render_recommendation_blocks(content: str) -> tuple[str, int]:
         i = j
 
     return "\n".join(output), converted
+
+
+def keyword_value(attributes: dict, prefixes: tuple[str, ...]) -> str | None:
+    for raw in attributes.get("keywords") or []:
+        text = str(raw).strip()
+        folded = text.casefold()
+        for prefix in prefixes:
+            if folded.startswith(prefix.casefold()):
+                value = text[len(prefix) :].strip()
+                if value:
+                    return value
+    return None
+
+
+def format_modified_date(value: str | None) -> str | None:
+    if not value:
+        return None
+    try:
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).strftime("%d.%m.%Y")
+    except ValueError:
+        return None
+
+
+def inject_publication_metadata(content: str, attributes: dict) -> str:
+    """Add a compact publication line after H1 using reliable Wiki metadata.
+
+    Optional Wiki page keywords can override/add fields:
+      status:<value> or статус:<value>
+      version:<value> or версия:<value>
+      review:<value> or пересмотр:<value>
+      group:<value> or рабочая-группа:<value>
+    """
+    status = keyword_value(attributes, ("status:", "статус:")) or DEFAULT_PUBLICATION_STATUS
+    version = keyword_value(attributes, ("version:", "версия:"))
+    review = keyword_value(attributes, ("review:", "пересмотр:"))
+    group = keyword_value(attributes, ("group:", "рабочая-группа:"))
+    modified = format_modified_date(attributes.get("modified_at"))
+
+    fields = [f"**Статус:** {status}"]
+    if version:
+        fields.append(f"**Версия:** {version}")
+    if modified:
+        fields.append(f"**Обновлено:** {modified}")
+    if review:
+        fields.append(f"**Следующий пересмотр:** {review}")
+    if group:
+        fields.append(f"**Рабочая группа:** {group}")
+
+    metadata = " · ".join(fields)
+    lines = content.splitlines()
+    for idx, line in enumerate(lines):
+        if line.startswith("# "):
+            lines[idx + 1 : idx + 1] = ["", metadata, ""]
+            return "\n".join(lines)
+    return content
 
 
 def yaml_string(value: str) -> str:
@@ -361,12 +407,13 @@ def export() -> None:
             rewritten_links += count
             content, count = render_recommendation_blocks(content)
             recommendation_blocks += count
-            destination = destination_for(slug)
-            destination.parent.mkdir(parents=True, exist_ok=True)
 
-            # Preserve Yandex Flavored Markdown; only publication-specific transforms are applied.
             if not content.lstrip().startswith("#"):
                 content = f"# {title}\n\n{content}"
+            content = inject_publication_metadata(content, attributes)
+
+            destination = destination_for(slug)
+            destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_text(content.rstrip() + "\n", encoding="utf-8")
             records.append({"slug": slug, "title": title})
             exported += 1
@@ -386,7 +433,7 @@ def export() -> None:
         f"Exported {exported} pages from '{ROOT_SLUG}'. "
         f"Skipped drafts: {skipped_drafts}. Rewritten internal links: {rewritten_links}. "
         f"Rendered recommendation blocks: {recommendation_blocks}. "
-        "Generated clinical-first navigation from Wiki page titles."
+        "Generated clinical-first navigation and publication metadata."
     )
 
 
