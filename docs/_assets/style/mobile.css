@@ -103,6 +103,34 @@
   [class*='Note'] {
     max-width: 100%;
   }
+
+  /* Diplodoc's default mobile TOC reserves 40px inside every item and then
+     adds another 20px for each nested level. That is too much for deep
+     clinical hierarchies on a 390–430px phone. Keep the hierarchy visible,
+     but use a denser indentation rhythm. */
+  .dc-sidebar-content__toc .dc-toc__top {
+    padding-inline-start: 16px;
+    padding-inline-end: 12px;
+  }
+
+  .dc-sidebar-content__toc .dc-toc-item__text-block {
+    padding: 9px 12px 9px 30px;
+  }
+
+  .dc-sidebar-content__toc .dc-toc-item__icon {
+    left: 8px;
+  }
+
+  .dc-sidebar-content__toc .dc-toc-item__arrow {
+    left: 8px;
+    margin-right: 12px;
+  }
+
+  .dc-sidebar-content__toc
+    .dc-toc__list-item:not(.dc-toc__list-item_labeled)
+    > .dc-toc__list {
+    padding-left: 12px;
+  }
 }
 
 /* Very narrow phones: avoid oversized table cells and headings. */
@@ -114,5 +142,15 @@
 
   h1 {
     font-size: 1.72rem;
+  }
+
+  .dc-sidebar-content__toc .dc-toc-item__text-block {
+    padding-inline-start: 28px;
+  }
+
+  .dc-sidebar-content__toc
+    .dc-toc__list-item:not(.dc-toc__list-item_labeled)
+    > .dc-toc__list {
+    padding-left: 10px;
   }
 }
