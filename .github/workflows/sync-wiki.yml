@@ -49,6 +49,9 @@ jobs:
       - name: Export Wiki subtree
         run: python scripts/export_wiki.py
 
+      - name: Generate title-only search index
+        run: python scripts/generate_search_index.py
+
       - name: Validate exported content
         run: python scripts/validate_export.py
 
@@ -86,9 +89,9 @@ jobs:
         run: |
           git config user.name "eesg-wiki-publisher"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/gen_docs
+          git add docs/gen_docs docs/_assets/script/search-index.js
           if git diff --cached --quiet; then
-            echo "No Wiki changes to commit."
+            echo "No Wiki/search-index changes to commit."
           else
             git commit -m "Sync EESG content from Yandex Wiki"
             git push
