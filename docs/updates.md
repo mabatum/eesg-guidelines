@@ -4,122 +4,122 @@
 
 Дата берётся из метаданных страницы Яндекс Вики. Версия и статус отображаются только если они заданы для страницы.
 
-## [Клинические рекомендации EESG по диагностике и лечению сарком](./gen_docs/)
+## [Клинические рекомендации EESG по диагностике и лечению сарком](./)
 
 15.08.2026 · Тестовая версия
 
-## [Эрибулин при липосаркоме](./gen_docs/drugs-and-regimens/eribulin/)
+## [Эрибулин при липосаркоме](./drugs-and-regimens/eribulin/)
 
 14.08.2026 · Тестовая версия
 
-## [Эпителиоидная саркома](./gen_docs/soft-tissue-sarcomas/epithelioid-sarcoma/)
+## [Эпителиоидная саркома](./soft-tissue-sarcomas/epithelioid-sarcoma/)
 
 14.08.2026 · Тестовая версия
 
-## [Эпителиоидная гемангиоэндотелиома](./gen_docs/specific-tumor-groups/epithelioid-hemangioendothelioma/)
+## [Эпителиоидная гемангиоэндотелиома](./specific-tumor-groups/epithelioid-hemangioendothelioma/)
 
 14.08.2026 · Тестовая версия
 
-## [Хордома: диагностика и оценка распространённости](./gen_docs/specific-tumor-groups/chordoma/diagnosis/)
+## [Хордома: диагностика и оценка распространённости](./specific-tumor-groups/chordoma/diagnosis/)
 
 14.08.2026 · Тестовая версия
 
-## [Хондросаркома](./gen_docs/bone-sarcomas/chondrosarcoma-adults/)
+## [Хондросаркома](./bone-sarcomas/chondrosarcoma-adults/)
 
 14.08.2026 · Тестовая версия
 
-## [Хирургическое лечение локализованных сарком мягких тканей](./gen_docs/general-principles/surgery-localized-sts/)
+## [Хирургическое лечение локализованных сарком мягких тканей](./general-principles/surgery-localized-sts/)
 
 14.08.2026 · Тестовая версия
 
-## [Трабектедин при саркомах](./gen_docs/drugs-and-regimens/trabectedin/)
+## [Трабектедин при саркомах](./drugs-and-regimens/trabectedin/)
 
 14.08.2026 · Тестовая версия
 
-## [Теносиновиальная гигантоклеточная опухоль](./gen_docs/specific-tumor-groups/tenosynovial-giant-cell-tumor/)
+## [Теносиновиальная гигантоклеточная опухоль](./specific-tumor-groups/tenosynovial-giant-cell-tumor/)
 
 14.08.2026 · Тестовая версия
 
-## [Солитарная фиброзная опухоль](./gen_docs/specific-tumor-groups/solitary-fibrous-tumor/)
+## [Солитарная фиброзная опухоль](./specific-tumor-groups/solitary-fibrous-tumor/)
 
 14.08.2026 · Тестовая версия
 
-## [Системная терапия распространённых липосарком](./gen_docs/soft-tissue-sarcomas/liposarcomas/advanced-systemic-therapy/)
+## [Системная терапия распространённых липосарком](./soft-tissue-sarcomas/liposarcomas/advanced-systemic-therapy/)
 
 14.08.2026 · Тестовая версия
 
-## [Системная терапия распространённой лейомиосаркомы](./gen_docs/soft-tissue-sarcomas/leiomyosarcoma/advanced-systemic-therapy/)
+## [Системная терапия распространённой лейомиосаркомы](./soft-tissue-sarcomas/leiomyosarcoma/advanced-systemic-therapy/)
 
 14.08.2026 · Тестовая версия
 
-## [Синовиальная саркома: диагностика и локализованная болезнь](./gen_docs/soft-tissue-sarcomas/synovial-sarcoma/diagnosis-localized/)
+## [Синовиальная саркома: диагностика и локализованная болезнь](./soft-tissue-sarcomas/synovial-sarcoma/diagnosis-localized/)
 
 14.08.2026 · Тестовая версия
 
-## [Синовиальная саркома](./gen_docs/soft-tissue-sarcomas/synovial-sarcoma/)
+## [Синовиальная саркома](./soft-tissue-sarcomas/synovial-sarcoma/)
 
 14.08.2026 · Тестовая версия
 
-## [Светлоклеточная саркома мягких тканей](./gen_docs/soft-tissue-sarcomas/clear-cell-sarcoma/)
+## [Светлоклеточная саркома мягких тканей](./soft-tissue-sarcomas/clear-cell-sarcoma/)
 
 14.08.2026 · Тестовая версия
 
-## [Саркомы мягких тканей](./gen_docs/soft-tissue-sarcomas/)
+## [Саркомы мягких тканей](./soft-tissue-sarcomas/)
 
 14.08.2026 · Тестовая версия
 
-## [Саркомы матки: распространённое и рецидивное заболевание](./gen_docs/specific-tumor-groups/uterine-sarcomas/advanced-recurrent-disease/)
+## [Саркомы матки: распространённое и рецидивное заболевание](./specific-tumor-groups/uterine-sarcomas/advanced-recurrent-disease/)
 
 14.08.2026 · Тестовая версия
 
-## [Саркомы матки: локализованное заболевание](./gen_docs/specific-tumor-groups/uterine-sarcomas/localized-disease/)
+## [Саркомы матки: локализованное заболевание](./specific-tumor-groups/uterine-sarcomas/localized-disease/)
 
 14.08.2026 · Тестовая версия
 
-## [Саркомы матки: диагностика и стадирование](./gen_docs/specific-tumor-groups/uterine-sarcomas/diagnosis/)
+## [Саркомы матки: диагностика и стадирование](./specific-tumor-groups/uterine-sarcomas/diagnosis/)
 
 14.08.2026 · Тестовая версия
 
-## [Саркомы матки](./gen_docs/specific-tumor-groups/uterine-sarcomas/)
+## [Саркомы матки](./specific-tumor-groups/uterine-sarcomas/)
 
 14.08.2026 · Тестовая версия
 
-## [Саркомы костей](./gen_docs/bone-sarcomas/)
+## [Саркомы костей](./bone-sarcomas/)
 
 14.08.2026 · Тестовая версия
 
-## [Саркома Юинга](./gen_docs/bone-sarcomas/ewing-sarcoma-adults/)
+## [Саркома Юинга](./bone-sarcomas/ewing-sarcoma-adults/)
 
 14.08.2026 · Тестовая версия
 
-## [Рецидивная и распространённая хордома](./gen_docs/specific-tumor-groups/chordoma/advanced-recurrent-disease/)
+## [Рецидивная и распространённая хордома](./specific-tumor-groups/chordoma/advanced-recurrent-disease/)
 
 14.08.2026 · Тестовая версия
 
-## [Распространённая синовиальная саркома](./gen_docs/soft-tissue-sarcomas/synovial-sarcoma/advanced-treatment/)
+## [Распространённая синовиальная саркома](./soft-tissue-sarcomas/synovial-sarcoma/advanced-treatment/)
 
 14.08.2026 · Тестовая версия
 
-## [Радиационно-ассоциированные саркомы](./gen_docs/special-clinical-situations/radiation-associated-sarcomas/)
+## [Радиационно-ассоциированные саркомы](./special-clinical-situations/radiation-associated-sarcomas/)
 
 14.08.2026 · Тестовая версия
 
-## [Рабдомиосаркома](./gen_docs/soft-tissue-sarcomas/rhabdomyosarcoma-adults/)
+## [Рабдомиосаркома](./soft-tissue-sarcomas/rhabdomyosarcoma-adults/)
 
 14.08.2026 · Тестовая версия
 
-## [Применимость данных исследований подростков и молодых взрослых](./gen_docs/special-clinical-situations/aya-evidence-framework/)
+## [Применимость данных исследований подростков и молодых взрослых](./special-clinical-situations/aya-evidence-framework/)
 
 14.08.2026 · Тестовая версия
 
-## [Препараты и режимы системной терапии](./gen_docs/drugs-and-regimens/)
+## [Препараты и режимы системной терапии](./drugs-and-regimens/)
 
 14.08.2026 · Тестовая версия
 
-## [Правила подготовки и представления рекомендаций](./gen_docs/editorial-standard/)
+## [Правила подготовки и представления рекомендаций](./editorial-standard/)
 
 14.08.2026 · Тестовая версия
 
-## [Последующие линии системной терапии сарком мягких тканей](./gen_docs/general-principles/systemic-therapy-later-lines-sts/)
+## [Последующие линии системной терапии сарком мягких тканей](./general-principles/systemic-therapy-later-lines-sts/)
 
 14.08.2026 · Тестовая версия
