@@ -1,6 +1,3 @@
 lang: ru
 linkify: true
 allowHtml: false
-
-extensions:
-  - '@diplodoc/mermaid-extension'
