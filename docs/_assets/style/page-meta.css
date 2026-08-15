@@ -31,19 +31,33 @@
 }
 
 .eesg-page-meta__item_status.is-approved {
-  border-color: rgba(40, 123, 78, .28);
-  background: rgba(40, 123, 78, .09);
+  border-color: rgba(40, 123, 78, .30);
+  background: rgba(40, 123, 78, .10);
 }
 
 .eesg-page-meta__item_status.is-review {
-  border-color: rgba(173, 116, 15, .30);
-  background: rgba(173, 116, 15, .09);
+  border-color: rgba(173, 116, 15, .32);
+  background: rgba(173, 116, 15, .10);
 }
 
-.eesg-page-meta__item_status.is-draft,
+.eesg-page-meta__item_status.is-draft {
+  border-color: rgba(123, 86, 32, .28);
+  background: rgba(123, 86, 32, .08);
+}
+
 .eesg-page-meta__item_status.is-test {
   border-color: rgba(36, 95, 115, .25);
   background: rgba(36, 95, 115, .08);
+}
+
+.eesg-page-meta__item_status.is-archive {
+  border-color: rgba(100, 111, 118, .25);
+  background: rgba(100, 111, 118, .08);
+  color: var(--g-color-text-secondary, #68777f);
+}
+
+.eesg-page-meta__item_status.is-other {
+  border-style: dashed;
 }
 
 .eesg-changelog-heading {
