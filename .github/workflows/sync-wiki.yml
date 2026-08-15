@@ -98,7 +98,7 @@ jobs:
         run: |
           git config user.name "eesg-wiki-publisher"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/gen_docs docs/updates.md docs/_assets/script/search-index.js docs/_assets/brand
+          git add docs/gen_docs docs/updates.md docs/_assets/script/search-index-v2.js docs/_assets/brand
           if git diff --cached --quiet; then
             echo "No Wiki/search/updates/brand changes to commit."
           else
