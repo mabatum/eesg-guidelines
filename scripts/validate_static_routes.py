@@ -9,6 +9,7 @@ from urllib.parse import urlsplit
 STATIC_ROOT = Path("docs-html").resolve()
 SEARCH_INDEX = Path("docs/_assets/script/search-index-v2.js")
 UPDATES = Path("docs/updates.md")
+HOME = STATIC_ROOT / "index.html"
 
 INDEX_RE = re.compile(r"window\.EESG_SEARCH_INDEX=(\[.*\]);\s*$", re.DOTALL)
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\((?P<url>[^)]+)\)")
@@ -36,6 +37,16 @@ def main() -> int:
 
     if not STATIC_ROOT.exists():
         errors.append(f"Static build directory does not exist: {STATIC_ROOT}")
+
+    if not HOME.exists():
+        errors.append(f"Built homepage does not exist: {HOME}")
+    else:
+        home_html = HOME.read_text(encoding="utf-8")
+        for marker in ("Основные разделы", "Недавно обновлено"):
+            if marker not in home_html:
+                errors.append(
+                    f"Homepage portal block was not rendered into index.html: missing {marker!r}"
+                )
 
     if not SEARCH_INDEX.exists():
         errors.append(f"Missing search index: {SEARCH_INDEX}")
@@ -78,13 +89,16 @@ def main() -> int:
                 errors.append(f"Updates target missing: {url} ({target})")
 
     if errors:
-        print("Static route validation errors:")
+        print("Static route/render validation errors:")
         for error in errors:
             print(f"  - {error}")
-        print(f"Static route validation failed with {len(errors)} error(s).")
+        print(f"Static validation failed with {len(errors)} error(s).")
         return 1
 
-    print("Static route validation passed: search and updates links resolve to built files.")
+    print(
+        "Static validation passed: homepage portal blocks are rendered and "
+        "search/updates links resolve to built files."
+    )
     return 0
 
 
