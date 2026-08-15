@@ -93,7 +93,7 @@ blocks:
 
 Проект находится в тестовой эксплуатации и развивается рабочей группой EESG.
 
-[Область применения и методология](gen_docs/about/index.md)
+[Область применения и методология](gen_docs/about/index.md) · [Правила подготовки рекомендаций](gen_docs/editorial-standard/index.md) · [Библиографическая база](gen_docs/materials-map/index.md)
 
 ## Обратная связь
 
