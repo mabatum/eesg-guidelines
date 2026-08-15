@@ -1,6 +1,10 @@
 title: Клинические рекомендации EESG
 href: index.md
 
+pdf:
+  startPages:
+    - pdf-cover.md
+
 navigation:
   logo:
     text: EESG
