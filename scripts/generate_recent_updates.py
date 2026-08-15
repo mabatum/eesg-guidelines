@@ -21,7 +21,10 @@ CHANGELOG_RE = re.compile(r"^#{2,3}\s+Что изменилось\s*$", re.IGNOR
 
 
 def page_url(page: Path) -> str:
-    relative = page.relative_to(DOCS_ROOT).as_posix()
+    """Return the public URL after Diplodoc merges gen_docs into the site root."""
+    relative = page.relative_to(GEN_ROOT).as_posix()
+    if relative == "index.md":
+        return "./"
     if relative.endswith("/index.md"):
         return "./" + relative[: -len("index.md")]
     return "./" + relative.removesuffix(".md") + ".html"
@@ -40,8 +43,6 @@ def main() -> None:
     records: list[dict[str, str | bool | datetime]] = []
 
     for page in sorted(GEN_ROOT.rglob("*.md")):
-        if page.name == "toc.yaml":
-            continue
         text = page.read_text(encoding="utf-8")
         h1 = H1_RE.search(text)
         meta = META_RE.search(text)
