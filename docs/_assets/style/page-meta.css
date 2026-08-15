@@ -1,0 +1,66 @@
+/* EESG Guidelines — neutral page metadata */
+
+.eesg-page-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 22px;
+}
+
+.eesg-page-meta__item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--g-color-line-generic, #d8e0e4);
+  border-radius: 999px;
+  background: var(--g-color-base-generic, #f5f7f8);
+  color: var(--g-color-text-primary, #203039);
+  font-size: .82rem;
+  line-height: 1.25;
+}
+
+.eesg-page-meta__label {
+  color: var(--g-color-text-secondary, #68777f);
+  font-weight: 500;
+}
+
+.eesg-page-meta__value {
+  font-weight: 650;
+}
+
+.eesg-page-meta__item_status.is-approved {
+  border-color: rgba(40, 123, 78, .28);
+  background: rgba(40, 123, 78, .09);
+}
+
+.eesg-page-meta__item_status.is-review {
+  border-color: rgba(173, 116, 15, .30);
+  background: rgba(173, 116, 15, .09);
+}
+
+.eesg-page-meta__item_status.is-draft,
+.eesg-page-meta__item_status.is-test {
+  border-color: rgba(36, 95, 115, .25);
+  background: rgba(36, 95, 115, .08);
+}
+
+.eesg-changelog-heading {
+  margin-top: 2rem;
+  padding-top: .9rem;
+  border-top: 1px solid var(--g-color-line-generic, #dfe6e9);
+}
+
+@media (max-width: 768px) {
+  .eesg-page-meta {
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .eesg-page-meta__item {
+    min-height: 30px;
+    padding: 5px 9px;
+    font-size: .78rem;
+  }
+}
