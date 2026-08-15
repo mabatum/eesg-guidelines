@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import os
 import posixpath
 import re
@@ -173,6 +174,62 @@ def rewrite_internal_links(content: str, current_slug: str) -> tuple[str, int]:
     return MARKDOWN_LINK_RE.sub(repl, content), rewritten
 
 
+def yaml_string(value: str) -> str:
+    """JSON strings are valid YAML strings and keep Cyrillic readable."""
+    return json.dumps(value, ensure_ascii=False)
+
+
+def toc_href(slug: str) -> str:
+    parts = safe_relative_parts(slug)
+    return posixpath.join(*parts, "index.md") if parts else "index.md"
+
+
+def write_toc(records: list[dict]) -> None:
+    """Create a Diplodoc TOC using Wiki page titles rather than directory slugs."""
+    by_slug = {record["slug"]: record for record in records}
+    root = by_slug.get(ROOT_SLUG)
+    if not root:
+        raise SystemExit(f"Root page '{ROOT_SLUG}' was not exported, cannot create TOC")
+
+    children: dict[str, list[str]] = {slug: [] for slug in by_slug}
+    for slug in by_slug:
+        if slug == ROOT_SLUG:
+            continue
+        parent = slug.rsplit("/", 1)[0]
+        while parent not in by_slug and parent != ROOT_SLUG:
+            parent = parent.rsplit("/", 1)[0] if "/" in parent else ROOT_SLUG
+        if parent not in by_slug:
+            parent = ROOT_SLUG
+        children.setdefault(parent, []).append(slug)
+
+    for siblings in children.values():
+        siblings.sort(key=lambda slug: (by_slug[slug]["title"].casefold(), slug))
+
+    lines = [
+        f"title: {yaml_string(root['title'])}",
+        "href: index.md",
+    ]
+
+    def render(slug: str, indent: int) -> None:
+        record = by_slug[slug]
+        prefix = " " * indent
+        lines.append(f"{prefix}- name: {yaml_string(record['title'])}")
+        lines.append(f"{prefix}  href: {yaml_string(toc_href(slug))}")
+        nested = children.get(slug, [])
+        if nested:
+            lines.append(f"{prefix}  items:")
+            for child in nested:
+                render(child, indent + 4)
+
+    top_level = children.get(ROOT_SLUG, [])
+    if top_level:
+        lines.append("items:")
+        for slug in top_level:
+            render(slug, 2)
+
+    (OUTPUT_DIR / "toc.yaml").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def export() -> None:
     require_env()
     s = authenticated_session()
@@ -189,6 +246,7 @@ def export() -> None:
     exported = 0
     skipped_drafts = 0
     rewritten_links = 0
+    records: list[dict] = []
 
     try:
         globals()["OUTPUT_DIR"] = tmp_dir
@@ -214,7 +272,10 @@ def export() -> None:
             if not content.lstrip().startswith("#"):
                 content = f"# {title}\n\n{content}"
             destination.write_text(content.rstrip() + "\n", encoding="utf-8")
+            records.append({"slug": slug, "title": title})
             exported += 1
+
+        write_toc(records)
 
         globals()["OUTPUT_DIR"] = original_output
         if original_output.exists():
@@ -227,7 +288,8 @@ def export() -> None:
 
     print(
         f"Exported {exported} pages from '{ROOT_SLUG}'. "
-        f"Skipped drafts: {skipped_drafts}. Rewritten internal links: {rewritten_links}."
+        f"Skipped drafts: {skipped_drafts}. Rewritten internal links: {rewritten_links}. "
+        "Generated navigation from Wiki page titles."
     )
 
 
