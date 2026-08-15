@@ -14,6 +14,6 @@ resources:
     - _assets/style/search.css
     - _assets/style/page-meta.css
   script:
-    - _assets/script/search-index.js
+    - _assets/script/search-index-v2.js
     - _assets/script/title-search-v2.js
     - _assets/script/page-meta.js
