@@ -1,4 +1,4 @@
-name: Sync Yandex Wiki
+name: Sync Yandex Wiki and Publish
 
 on:
   workflow_dispatch:
@@ -10,9 +10,16 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
+  actions: read
+
+concurrency:
+  group: eesg-publish
+  cancel-in-progress: false
 
 jobs:
-  sync:
+  sync-build:
     runs-on: ubuntu-latest
     env:
       ROOT_SLUG: eesg
@@ -58,3 +65,24 @@ jobs:
             git commit -m "Sync EESG content from Yandex Wiki"
             git push
           fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: './docs-html'
+
+  deploy:
+    needs: sync-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
