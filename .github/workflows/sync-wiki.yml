@@ -43,6 +43,9 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
+      - name: Import EESG brand assets
+        run: python scripts/import_eesg_brand.py
+
       - name: Install Diplodoc dependencies
         run: npm install --no-audit --no-fund
 
@@ -89,11 +92,11 @@ jobs:
         run: |
           git config user.name "eesg-wiki-publisher"
           git config user.email "actions@users.noreply.github.com"
-          git add docs/gen_docs docs/_assets/script/search-index.js
+          git add docs/gen_docs docs/_assets/script/search-index.js docs/_assets/brand
           if git diff --cached --quiet; then
-            echo "No Wiki/search-index changes to commit."
+            echo "No Wiki/search/brand changes to commit."
           else
-            git commit -m "Sync EESG content from Yandex Wiki"
+            git commit -m "Sync EESG content and brand assets"
             git push
           fi
 
