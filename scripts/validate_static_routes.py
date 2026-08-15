@@ -9,10 +9,12 @@ from urllib.parse import urlsplit
 STATIC_ROOT = Path("docs-html").resolve()
 SEARCH_INDEX = Path("docs/_assets/script/search-index-v2.js")
 UPDATES = Path("docs/updates.md")
+TOC = Path("docs/toc.yaml")
 HOME = STATIC_ROOT / "index.html"
 
 INDEX_RE = re.compile(r"window\.EESG_SEARCH_INDEX=(\[.*\]);\s*$", re.DOTALL)
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\((?P<url>[^)]+)\)")
+TOC_URL_RE = re.compile(r"^\s*url:\s*['\"]?(?P<url>[^'\"\s]+)['\"]?\s*$", re.MULTILINE)
 
 
 def static_target(raw_url: str) -> Path | None:
@@ -21,7 +23,7 @@ def static_target(raw_url: str) -> Path | None:
         return None
 
     path = parsed.path.lstrip("/")
-    if not path:
+    if path in {"", ".", "./"}:
         return STATIC_ROOT / "index.html"
     if ".." in Path(path).parts:
         raise ValueError(f"unsafe relative URL: {raw_url}")
@@ -30,6 +32,21 @@ def static_target(raw_url: str) -> Path | None:
     if path.endswith("/"):
         target = target / "index.html"
     return target
+
+
+def validate_local_url(errors: list[str], label: str, url: str) -> None:
+    if url.startswith("http") or url.startswith("mailto:") or url.startswith("#"):
+        return
+    if url.startswith("gen_docs/") or "/gen_docs/" in url:
+        errors.append(f"{label} still contains internal gen_docs path: {url}")
+        return
+    try:
+        target = static_target(url)
+    except ValueError as exc:
+        errors.append(f"{label} invalid: {exc}")
+        return
+    if target is not None and not target.exists():
+        errors.append(f"{label} target missing: {url} ({target})")
 
 
 def main() -> int:
@@ -60,33 +77,19 @@ def main() -> int:
             for item in records:
                 url = str(item.get("url") or "")
                 title = str(item.get("title") or "<untitled>")
-                if url.startswith("gen_docs/") or "/gen_docs/" in url:
-                    errors.append(f"Search URL still contains gen_docs: {title} -> {url}")
-                    continue
-                try:
-                    target = static_target(url)
-                except ValueError as exc:
-                    errors.append(f"Search URL invalid: {title} -> {exc}")
-                    continue
-                if target is not None and not target.exists():
-                    errors.append(f"Search target missing: {title} -> {url} ({target})")
+                validate_local_url(errors, f"Search URL for {title}", url)
 
     if UPDATES.exists():
         text = UPDATES.read_text(encoding="utf-8")
         for match in MD_LINK_RE.finditer(text):
-            url = match.group("url").strip()
-            if url.startswith("http") or url.startswith("mailto:") or url.startswith("#"):
-                continue
-            if "gen_docs/" in url:
-                errors.append(f"Updates URL still contains gen_docs: {url}")
-                continue
-            try:
-                target = static_target(url)
-            except ValueError as exc:
-                errors.append(f"Updates URL invalid: {exc}")
-                continue
-            if target is not None and not target.exists():
-                errors.append(f"Updates target missing: {url} ({target})")
+            validate_local_url(errors, "Updates URL", match.group("url").strip())
+
+    if not TOC.exists():
+        errors.append(f"Missing site TOC/navigation config: {TOC}")
+    else:
+        text = TOC.read_text(encoding="utf-8")
+        for match in TOC_URL_RE.finditer(text):
+            validate_local_url(errors, "Navigation URL", match.group("url").strip())
 
     if errors:
         print("Static route/render validation errors:")
@@ -97,7 +100,7 @@ def main() -> int:
 
     print(
         "Static validation passed: homepage portal blocks are rendered and "
-        "search/updates links resolve to built files."
+        "search, updates, and navigation links resolve to built files."
     )
     return 0
 
