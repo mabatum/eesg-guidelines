@@ -1,0 +1,11 @@
+title: EESG Guidelines
+href: index.md
+items:
+  - name: Клинические рекомендации
+    include:
+      path: gen_docs
+      includers:
+        - name: generic
+          autotitle: true
+          linkIndex: true
+      mode: link
