@@ -64,6 +64,9 @@ jobs:
       - name: Build Diplodoc static site
         run: npm run build:docs
 
+      - name: Validate built routes
+        run: python scripts/validate_static_routes.py
+
       - name: Upload site preview artifact
         uses: actions/upload-artifact@v4
         with:
