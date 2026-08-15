@@ -24,10 +24,10 @@
 
 ## Структура раздела
 
-- [Диагностика, CTNNB1 и семейный аденоматозный полипоз](/eesg/specific-tumor-groups/desmoid-tumors/diagnosis-and-fap)
-- [Активное наблюдение и показания к лечению](/eesg/specific-tumor-groups/desmoid-tumors/active-surveillance)
-- [Хирургия, криоабляция и лучевая терапия](/eesg/specific-tumor-groups/desmoid-tumors/local-treatment)
-- [Системная терапия](/eesg/specific-tumor-groups/desmoid-tumors/systemic-therapy)
+- [Диагностика, CTNNB1 и семейный аденоматозный полипоз](diagnosis-and-fap/index.md)
+- [Активное наблюдение и показания к лечению](active-surveillance/index.md)
+- [Хирургия, криоабляция и лучевая терапия](local-treatment/index.md)
+- [Системная терапия](systemic-therapy/index.md)
 
 ## Обоснование рекомендаций
 

@@ -6,50 +6,50 @@
 
 ## Гастроинтестинальная стромальная опухоль (ГИСО)
 
-- [Гастроинтестинальные стромальные опухоли (ГИСО)](/eesg/specific-tumor-groups/gist)
-- [Диагностика, стадирование и молекулярный профиль](/eesg/specific-tumor-groups/gist/diagnosis-and-molecular)
-- [Локализованная ГИСО](/eesg/specific-tumor-groups/gist/localized-disease)
-- [Нерезектабельная и метастатическая ГИСО](/eesg/specific-tumor-groups/gist/advanced-disease)
+- [Гастроинтестинальные стромальные опухоли (ГИСО)](gist/index.md)
+- [Диагностика, стадирование и молекулярный профиль](gist/diagnosis-and-molecular/index.md)
+- [Локализованная ГИСО](gist/localized-disease/index.md)
+- [Нерезектабельная и метастатическая ГИСО](gist/advanced-disease/index.md)
 
 ## Дерматофибросаркома протуберанс (ДФСП)
 
-- [Дерматофибросаркома протуберанс (ДФСП)](/eesg/specific-tumor-groups/dfsp)
-- [Диагностика и оценка риска](/eesg/specific-tumor-groups/dfsp/diagnosis-and-risk)
-- [Локализованная ДФСП](/eesg/specific-tumor-groups/dfsp/localized-disease)
-- [Нерезектабельная, рецидивная и метастатическая ДФСП](/eesg/specific-tumor-groups/dfsp/advanced-disease)
+- [Дерматофибросаркома протуберанс (ДФСП)](dfsp/index.md)
+- [Диагностика и оценка риска](dfsp/diagnosis-and-risk/index.md)
+- [Локализованная ДФСП](dfsp/localized-disease/index.md)
+- [Нерезектабельная, рецидивная и метастатическая ДФСП](dfsp/advanced-disease/index.md)
 
 ## Десмоидная опухоль
 
-- [Десмоидные опухоли](/eesg/specific-tumor-groups/desmoid-tumors)
-- [Диагностика, CTNNB1 и семейный аденоматозный полипоз](/eesg/specific-tumor-groups/desmoid-tumors/diagnosis-and-fap)
-- [Активное наблюдение и показания к лечению](/eesg/specific-tumor-groups/desmoid-tumors/active-surveillance)
-- [Локальные методы лечения](/eesg/specific-tumor-groups/desmoid-tumors/local-treatment)
-- [Системная терапия](/eesg/specific-tumor-groups/desmoid-tumors/systemic-therapy)
+- [Десмоидные опухоли](desmoid-tumors/index.md)
+- [Диагностика, CTNNB1 и семейный аденоматозный полипоз](desmoid-tumors/diagnosis-and-fap/index.md)
+- [Активное наблюдение и показания к лечению](desmoid-tumors/active-surveillance/index.md)
+- [Локальные методы лечения](desmoid-tumors/local-treatment/index.md)
+- [Системная терапия](desmoid-tumors/systemic-therapy/index.md)
 
 ## Саркомы матки
 
-- [Саркомы матки](/eesg/specific-tumor-groups/uterine-sarcomas)
-- [Диагностика и стадирование](/eesg/specific-tumor-groups/uterine-sarcomas/diagnosis)
-- [Локализованная болезнь](/eesg/specific-tumor-groups/uterine-sarcomas/localized-disease)
-- [Рецидивная и распространённая болезнь](/eesg/specific-tumor-groups/uterine-sarcomas/advanced-recurrent-disease)
+- [Саркомы матки](uterine-sarcomas/index.md)
+- [Диагностика и стадирование](uterine-sarcomas/diagnosis/index.md)
+- [Локализованная болезнь](uterine-sarcomas/localized-disease/index.md)
+- [Рецидивная и распространённая болезнь](uterine-sarcomas/advanced-recurrent-disease/index.md)
 
 ## Хордома
 
-- [Хордома](/eesg/specific-tumor-groups/chordoma)
-- [Диагностика и оценка распространённости](/eesg/specific-tumor-groups/chordoma/diagnosis)
-- [Локализованная хордома](/eesg/specific-tumor-groups/chordoma/localized-disease)
-- [Рецидивная и распространённая хордома](/eesg/specific-tumor-groups/chordoma/advanced-recurrent-disease)
+- [Хордома](chordoma/index.md)
+- [Диагностика и оценка распространённости](chordoma/diagnosis/index.md)
+- [Локализованная хордома](chordoma/localized-disease/index.md)
+- [Рецидивная и распространённая хордома](chordoma/advanced-recurrent-disease/index.md)
 
 ## Другие нозологические группы
 
-- [Периваскулярная эпителиоидноклеточная опухоль](/eesg/specific-tumor-groups/pecoma)
-- [Воспалительная миофибробластическая опухоль](/eesg/specific-tumor-groups/inflammatory-myofibroblastic-tumor)
-- [Теносиновиальная гигантоклеточная опухоль](/eesg/specific-tumor-groups/tenosynovial-giant-cell-tumor)
-- [Солитарная фиброзная опухоль](/eesg/specific-tumor-groups/solitary-fibrous-tumor)
-- [Эпителиоидная гемангиоэндотелиома](/eesg/specific-tumor-groups/epithelioid-hemangioendothelioma)
-- [Десмопластическая мелкокруглоклеточная опухоль](/eesg/specific-tumor-groups/dsrct-adults)
-- [Саркомы молочной железы](/eesg/specific-tumor-groups/breast-sarcomas)
-- [Первичные саркомы сердца](/eesg/specific-tumor-groups/primary-cardiac-sarcomas)
+- [Периваскулярная эпителиоидноклеточная опухоль](pecoma/index.md)
+- [Воспалительная миофибробластическая опухоль](inflammatory-myofibroblastic-tumor/index.md)
+- [Теносиновиальная гигантоклеточная опухоль](tenosynovial-giant-cell-tumor/index.md)
+- [Солитарная фиброзная опухоль](solitary-fibrous-tumor/index.md)
+- [Эпителиоидная гемангиоэндотелиома](epithelioid-hemangioendothelioma/index.md)
+- [Десмопластическая мелкокруглоклеточная опухоль](dsrct-adults/index.md)
+- [Саркомы молочной железы](breast-sarcomas/index.md)
+- [Первичные саркомы сердца](primary-cardiac-sarcomas/index.md)
 
 ## Принципы интерпретации
 

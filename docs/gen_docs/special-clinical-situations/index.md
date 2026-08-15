@@ -6,12 +6,12 @@
 
 ## Содержание
 
-- [Незапланированное удаление саркомы мягких тканей](/eesg/special-clinical-situations/unplanned-excision)
-- [Олигометастатическое заболевание](/eesg/special-clinical-situations/oligometastatic-disease)
-- [Радиационно-ассоциированные саркомы](/eesg/special-clinical-situations/radiation-associated-sarcomas)
-- [Применимость данных исследований подростков и молодых взрослых](/eesg/special-clinical-situations/aya-evidence-framework)
-- [Беременность и сохранение репродуктивной функции при саркомах](/eesg/special-clinical-situations/pregnancy-and-fertility)
-- [Пожилой возраст и старческая астения при саркомах](/eesg/special-clinical-situations/older-adults-and-frailty)
-- [Наследственная предрасположенность к саркомам](/eesg/special-clinical-situations/hereditary-predisposition)
+- [Незапланированное удаление саркомы мягких тканей](unplanned-excision/index.md)
+- [Олигометастатическое заболевание](oligometastatic-disease/index.md)
+- [Радиационно-ассоциированные саркомы](radiation-associated-sarcomas/index.md)
+- [Применимость данных исследований подростков и молодых взрослых](aya-evidence-framework/index.md)
+- [Беременность и сохранение репродуктивной функции при саркомах](pregnancy-and-fertility/index.md)
+- [Пожилой возраст и старческая астения при саркомах](older-adults-and-frailty/index.md)
+- [Наследственная предрасположенность к саркомам](hereditary-predisposition/index.md)
 
 Клинические положения в этих главах применяются совместно с нозологическими рекомендациями и не заменяют морфологическую, молекулярно-генетическую и стадийную оценку опухоли.

@@ -10,15 +10,15 @@
 
 Материал оценивает патоморфолог, специализирующийся на опухолях костей; молекулярные исследования назначают в соответствии с предполагаемой нозологией. После морфологической верификации завершают стадирование и формируют согласованный план системного и локального лечения ([рекомендации Британской группы по саркомам](https://doi.org/10.1038/s41416-024-02868-4)).
 
-Развёрнутое изложение представлено на странице [«Общие принципы ведения первичных опухолей кости»](/eesg/bone-sarcomas/general-principles). Вопросы техники биопсии и молекулярного исследования дополнительно рассмотрены в разделах [«Биопсия и патоморфологическая диагностика»](/eesg/general-principles/biopsy-and-pathology) и [«Молекулярная диагностика»](/eesg/general-principles/molecular-diagnostics).
+Развёрнутое изложение представлено на странице [«Общие принципы ведения первичных опухолей кости»](general-principles/index.md). Вопросы техники биопсии и молекулярного исследования дополнительно рассмотрены в разделах [«Биопсия и патоморфологическая диагностика»](../general-principles/biopsy-and-pathology/index.md) и [«Молекулярная диагностика»](../general-principles/molecular-diagnostics/index.md).
 
 ## Нозологические разделы
 
-- [Остеосаркома](/eesg/bone-sarcomas/osteosarcoma-adults).
-- [Саркома Юинга](/eesg/bone-sarcomas/ewing-sarcoma-adults).
-- [Хондросаркома](/eesg/bone-sarcomas/chondrosarcoma-adults).
-- [Гигантоклеточная опухоль кости](/eesg/bone-sarcomas/giant-cell-tumor-of-bone).
-- [Хордома](/eesg/specific-tumor-groups/chordoma).
+- [Остеосаркома](osteosarcoma-adults/index.md).
+- [Саркома Юинга](ewing-sarcoma-adults/index.md).
+- [Хондросаркома](chondrosarcoma-adults/index.md).
+- [Гигантоклеточная опухоль кости](giant-cell-tumor-of-bone/index.md).
+- [Хордома](../specific-tumor-groups/chordoma/index.md).
 
 ## Общие лечебные принципы
 

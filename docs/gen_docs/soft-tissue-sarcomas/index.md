@@ -22,40 +22,40 @@
 
 ### Распространённые гистологические группы
 
-- [Липосаркомы](/eesg/soft-tissue-sarcomas/liposarcomas): [диагностика](/eesg/soft-tissue-sarcomas/liposarcomas/diagnosis), [локализованные опухоли конечностей и туловища](/eesg/soft-tissue-sarcomas/liposarcomas/localized-extremity-trunk), [забрюшинные опухоли](/eesg/soft-tissue-sarcomas/liposarcomas/retroperitoneal), [системная терапия](/eesg/soft-tissue-sarcomas/liposarcomas/advanced-systemic-therapy).
-- [Лейомиосаркома](/eesg/soft-tissue-sarcomas/leiomyosarcoma): [диагностика и локализованная нематочная форма](/eesg/soft-tissue-sarcomas/leiomyosarcoma/diagnosis-localized), [распространённая болезнь](/eesg/soft-tissue-sarcomas/leiomyosarcoma/advanced-systemic-therapy).
-- [Синовиальная саркома](/eesg/soft-tissue-sarcomas/synovial-sarcoma): [диагностика и локализованная болезнь](/eesg/soft-tissue-sarcomas/synovial-sarcoma/diagnosis-localized), [распространённая болезнь](/eesg/soft-tissue-sarcomas/synovial-sarcoma/advanced-treatment).
-- [Ангиосаркома](/eesg/soft-tissue-sarcomas/angiosarcoma).
-- [Недифференцированная плеоморфная саркома](/eesg/soft-tissue-sarcomas/undifferentiated-pleomorphic-sarcoma).
-- [Миксофибросаркома](/eesg/soft-tissue-sarcomas/myxofibrosarcoma).
-- [Злокачественная опухоль оболочек периферических нервов](/eesg/soft-tissue-sarcomas/mpnst).
-- [Рабдомиосаркома](/eesg/soft-tissue-sarcomas/rhabdomyosarcoma-adults).
+- [Липосаркомы](liposarcomas/index.md): [диагностика](liposarcomas/diagnosis/index.md), [локализованные опухоли конечностей и туловища](liposarcomas/localized-extremity-trunk/index.md), [забрюшинные опухоли](liposarcomas/retroperitoneal/index.md), [системная терапия](liposarcomas/advanced-systemic-therapy/index.md).
+- [Лейомиосаркома](leiomyosarcoma/index.md): [диагностика и локализованная нематочная форма](leiomyosarcoma/diagnosis-localized/index.md), [распространённая болезнь](leiomyosarcoma/advanced-systemic-therapy/index.md).
+- [Синовиальная саркома](synovial-sarcoma/index.md): [диагностика и локализованная болезнь](synovial-sarcoma/diagnosis-localized/index.md), [распространённая болезнь](synovial-sarcoma/advanced-treatment/index.md).
+- [Ангиосаркома](angiosarcoma/index.md).
+- [Недифференцированная плеоморфная саркома](undifferentiated-pleomorphic-sarcoma/index.md).
+- [Миксофибросаркома](myxofibrosarcoma/index.md).
+- [Злокачественная опухоль оболочек периферических нервов](mpnst/index.md).
+- [Рабдомиосаркома](rhabdomyosarcoma-adults/index.md).
 
 ### Молекулярно определённые опухоли
 
-- [Альвеолярная саркома мягких тканей](/eesg/soft-tissue-sarcomas/alveolar-soft-part-sarcoma).
-- [Эпителиоидная саркома](/eesg/soft-tissue-sarcomas/epithelioid-sarcoma).
-- [Светлоклеточная саркома](/eesg/soft-tissue-sarcomas/clear-cell-sarcoma).
-- [Экстраскелетная миксоидная хондросаркома](/eesg/soft-tissue-sarcomas/extraskeletal-myxoid-chondrosarcoma).
-- Периваскулярноклеточная опухоль, воспалительная миофибробластическая опухоль, эпителиоидная гемангиоэндотелиома и десмопластическая мелкокруглоклеточная опухоль представлены в [разделе отдельных опухолевых групп](/eesg/specific-tumor-groups).
+- [Альвеолярная саркома мягких тканей](alveolar-soft-part-sarcoma/index.md).
+- [Эпителиоидная саркома](epithelioid-sarcoma/index.md).
+- [Светлоклеточная саркома](clear-cell-sarcoma/index.md).
+- [Экстраскелетная миксоидная хондросаркома](extraskeletal-myxoid-chondrosarcoma/index.md).
+- Периваскулярноклеточная опухоль, воспалительная миофибробластическая опухоль, эпителиоидная гемангиоэндотелиома и десмопластическая мелкокруглоклеточная опухоль представлены в [разделе отдельных опухолевых групп](../specific-tumor-groups/index.md).
 
 ## Анатомические разделы
 
-- [Первичная забрюшинная саркома](/eesg/soft-tissue-sarcomas/retroperitoneal-sarcoma).
-- [Саркомы головы и шеи](/eesg/soft-tissue-sarcomas/head-and-neck-sarcomas).
-- [Саркомы молочной железы](/eesg/specific-tumor-groups/breast-sarcomas).
-- [Саркомы матки](/eesg/specific-tumor-groups/uterine-sarcomas).
-- [Хирургическое лечение опухолей конечностей и поверхностного туловища](/eesg/general-principles/surgery-localized-sts).
-- [Лучевая терапия опухолей конечностей и поверхностного туловища](/eesg/general-principles/radiotherapy-localized-sts).
-- [Гастроинтестинальная стромальная опухоль](/eesg/specific-tumor-groups/gist).
+- [Первичная забрюшинная саркома](retroperitoneal-sarcoma/index.md).
+- [Саркомы головы и шеи](head-and-neck-sarcomas/index.md).
+- [Саркомы молочной железы](../specific-tumor-groups/breast-sarcomas/index.md).
+- [Саркомы матки](../specific-tumor-groups/uterine-sarcomas/index.md).
+- [Хирургическое лечение опухолей конечностей и поверхностного туловища](../general-principles/surgery-localized-sts/index.md).
+- [Лучевая терапия опухолей конечностей и поверхностного туловища](../general-principles/radiotherapy-localized-sts/index.md).
+- [Гастроинтестинальная стромальная опухоль](../specific-tumor-groups/gist/index.md).
 
 ## Клинические ситуации и общие методы
 
-- [Незапланированное удаление саркомы](/eesg/special-clinical-situations/unplanned-excision).
-- [Олигометастатическая болезнь](/eesg/special-clinical-situations/oligometastatic-disease).
-- [Радиационно-ассоциированные саркомы](/eesg/special-clinical-situations/radiation-associated-sarcomas).
-- [Первая линия системной терапии распространённых сарком мягких тканей](/eesg/general-principles/systemic-therapy-advanced-sts).
-- [Наблюдение после локального лечения](/eesg/general-principles/follow-up).
+- [Незапланированное удаление саркомы](../special-clinical-situations/unplanned-excision/index.md).
+- [Олигометастатическая болезнь](../special-clinical-situations/oligometastatic-disease/index.md).
+- [Радиационно-ассоциированные саркомы](../special-clinical-situations/radiation-associated-sarcomas/index.md).
+- [Первая линия системной терапии распространённых сарком мягких тканей](../general-principles/systemic-therapy-advanced-sts/index.md).
+- [Наблюдение после локального лечения](../general-principles/follow-up/index.md).
 
 ## Список литературы
 

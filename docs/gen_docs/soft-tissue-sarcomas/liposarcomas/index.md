@@ -32,10 +32,10 @@
 
 ## Структура раздела
 
-- [Морфологическая и молекулярная диагностика](/eesg/soft-tissue-sarcomas/liposarcomas/diagnosis)
-- [Локализованные опухоли конечностей и туловища](/eesg/soft-tissue-sarcomas/liposarcomas/localized-extremity-trunk)
-- [Забрюшинные липосаркомы](/eesg/soft-tissue-sarcomas/liposarcomas/retroperitoneal)
-- [Системная терапия распространённых липосарком](/eesg/soft-tissue-sarcomas/liposarcomas/advanced-systemic-therapy)
+- [Морфологическая и молекулярная диагностика](diagnosis/index.md)
+- [Локализованные опухоли конечностей и туловища](localized-extremity-trunk/index.md)
+- [Забрюшинные липосаркомы](retroperitoneal/index.md)
+- [Системная терапия распространённых липосарком](advanced-systemic-therapy/index.md)
 
 ## Ограничения опубликованных данных
 

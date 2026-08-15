@@ -18,9 +18,9 @@
 
 ## Разделы
 
-- [Диагностика и оценка распространённости](/eesg/specific-tumor-groups/chordoma/diagnosis)
-- [Локализованная хордома](/eesg/specific-tumor-groups/chordoma/localized-disease)
-- [Рецидивная и распространённая хордома](/eesg/specific-tumor-groups/chordoma/advanced-recurrent-disease)
+- [Диагностика и оценка распространённости](diagnosis/index.md)
+- [Локализованная хордома](localized-disease/index.md)
+- [Рецидивная и распространённая хордома](advanced-recurrent-disease/index.md)
 
 ## Обоснование рекомендаций
 

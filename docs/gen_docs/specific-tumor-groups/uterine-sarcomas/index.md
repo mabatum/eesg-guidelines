@@ -32,9 +32,9 @@
 
 ## Структура раздела
 
-- [Диагностика и стадирование](/eesg/specific-tumor-groups/uterine-sarcomas/diagnosis)
-- [Локализованное заболевание](/eesg/specific-tumor-groups/uterine-sarcomas/localized-disease)
-- [Распространённое и рецидивное заболевание](/eesg/specific-tumor-groups/uterine-sarcomas/advanced-recurrent-disease)
+- [Диагностика и стадирование](diagnosis/index.md)
+- [Локализованное заболевание](localized-disease/index.md)
+- [Распространённое и рецидивное заболевание](advanced-recurrent-disease/index.md)
 
 ## Обоснование рекомендаций
 

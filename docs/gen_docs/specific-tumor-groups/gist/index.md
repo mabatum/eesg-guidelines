@@ -20,9 +20,9 @@
 
 ## Структура раздела
 
-- [Диагностика, стадирование и молекулярный профиль](/eesg/specific-tumor-groups/gist/diagnosis-and-molecular)
-- [Локализованная опухоль: хирургия и периоперационная терапия](/eesg/specific-tumor-groups/gist/localized-disease)
-- [Нерезектабельная и метастатическая опухоль](/eesg/specific-tumor-groups/gist/advanced-disease)
+- [Диагностика, стадирование и молекулярный профиль](diagnosis-and-molecular/index.md)
+- [Локализованная опухоль: хирургия и периоперационная терапия](localized-disease/index.md)
+- [Нерезектабельная и метастатическая опухоль](advanced-disease/index.md)
 
 ## Обоснование рекомендаций
 

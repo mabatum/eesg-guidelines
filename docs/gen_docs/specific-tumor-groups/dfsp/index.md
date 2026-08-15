@@ -22,9 +22,9 @@
 
 ## Структура раздела
 
-- [Диагностика и оценка риска](/eesg/specific-tumor-groups/dfsp/diagnosis-and-risk)
-- [Локализованная опухоль: хирургия, лучевая терапия и наблюдение](/eesg/specific-tumor-groups/dfsp/localized-disease)
-- [Нерезектабельная, рецидивная и метастатическая опухоль](/eesg/specific-tumor-groups/dfsp/advanced-disease)
+- [Диагностика и оценка риска](diagnosis-and-risk/index.md)
+- [Локализованная опухоль: хирургия, лучевая терапия и наблюдение](localized-disease/index.md)
+- [Нерезектабельная, рецидивная и метастатическая опухоль](advanced-disease/index.md)
 
 ## Обоснование рекомендаций
 

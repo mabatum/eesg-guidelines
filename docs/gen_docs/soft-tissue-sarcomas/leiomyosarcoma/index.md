@@ -36,9 +36,9 @@
 
 ## Структура раздела
 
-- [Диагностика и лечение локализованной нематочной лейомиосаркомы](/eesg/soft-tissue-sarcomas/leiomyosarcoma/diagnosis-localized)
-- [Системная терапия распространённой лейомиосаркомы](/eesg/soft-tissue-sarcomas/leiomyosarcoma/advanced-systemic-therapy)
-- [Маточные саркомы](/eesg/specific-tumor-groups/uterine-sarcomas)
+- [Диагностика и лечение локализованной нематочной лейомиосаркомы](diagnosis-localized/index.md)
+- [Системная терапия распространённой лейомиосаркомы](advanced-systemic-therapy/index.md)
+- [Маточные саркомы](../../specific-tumor-groups/uterine-sarcomas/index.md)
 
 ## Ограничения опубликованных данных
 
