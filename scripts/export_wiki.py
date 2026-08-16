@@ -311,7 +311,7 @@ def toc_href(slug: str) -> str:
 
 
 def write_toc(records: list[dict]) -> None:
-    """Create a clinical-first Diplodoc TOC using Wiki page titles."""
+    """Create a clinical-first Diplodoc TOC using Wiki page titles and Wiki tree order."""
     by_slug = {record["slug"]: record for record in records}
     root = by_slug.get(ROOT_SLUG)
     if not root:
@@ -333,12 +333,12 @@ def write_toc(records: list[dict]) -> None:
             siblings.sort(
                 key=lambda slug: (
                     TOP_LEVEL_ORDER.get(slug, 500),
-                    by_slug[slug]["title"].casefold(),
+                    by_slug[slug]["source_order"],
                     slug,
                 )
             )
         else:
-            siblings.sort(key=lambda slug: (by_slug[slug]["title"].casefold(), slug))
+            siblings.sort(key=lambda slug: (by_slug[slug]["source_order"], slug))
 
     lines = [
         f"title: {yaml_string(root['title'])}",
@@ -390,7 +390,7 @@ def export() -> None:
 
     try:
         globals()["OUTPUT_DIR"] = tmp_dir
-        for item in sorted(subtree, key=lambda p: p.get("slug", "")):
+        for source_order, item in enumerate(subtree):
             slug = item.get("slug")
             if not slug:
                 continue
@@ -415,7 +415,7 @@ def export() -> None:
             destination = destination_for(slug)
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_text(content.rstrip() + "\n", encoding="utf-8")
-            records.append({"slug": slug, "title": title})
+            records.append({"slug": slug, "title": title, "source_order": source_order})
             exported += 1
 
         write_toc(records)
@@ -433,7 +433,7 @@ def export() -> None:
         f"Exported {exported} pages from '{ROOT_SLUG}'. "
         f"Skipped drafts: {skipped_drafts}. Rewritten internal links: {rewritten_links}. "
         f"Rendered recommendation blocks: {recommendation_blocks}. "
-        "Generated clinical-first navigation and publication metadata."
+        "Generated clinical-first navigation preserving Wiki tree order and publication metadata."
     )
 
 
