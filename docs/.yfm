@@ -17,13 +17,13 @@ resources:
     - _assets/style/page-nav.css
     - _assets/style/algorithm.css
     - _assets/style/homepage.css
-    - _assets/style/internal-page-v1.css
+    - _assets/style/internal-page-v2.css
   script:
     - _assets/script/search-index-v2.js
     - _assets/script/title-search-v2.js
     - _assets/script/header-nav-v1.js
     - _assets/script/page-meta.js
-    - _assets/script/internal-page-v1.js
+    - _assets/script/internal-page-v2.js
     - _assets/script/updates-page.js
     - _assets/script/page-nav.js
     - _assets/script/algorithm-ui.js
