@@ -20,7 +20,6 @@ CLINICAL_ROOTS = {
 }
 H1_RE = re.compile(r"^#\s+(.+?)\s*$", re.MULTILINE)
 H2_RE = re.compile(r"^##\s+(.+?)\s*$", re.MULTILINE)
-LINK_RE = re.compile(r"\[[^\]]+\]\((https?://[^)\s]+)\)", re.IGNORECASE)
 DOI_RE = re.compile(r"^10\.\d{4,9}/\S+$", re.IGNORECASE)
 
 
@@ -40,6 +39,44 @@ def literature_section(text: str) -> str | None:
     return None
 
 
+def markdown_http_links(text: str) -> list[str]:
+    """Extract Markdown link destinations while preserving balanced parentheses in DOI URLs."""
+    result: list[str] = []
+    cursor = 0
+    while True:
+        marker = text.find("](", cursor)
+        if marker < 0:
+            break
+        start = marker + 2
+        if not (text.startswith("http://", start) or text.startswith("https://", start)):
+            cursor = start
+            continue
+
+        depth = 0
+        index = start
+        while index < len(text):
+            char = text[index]
+            if char == "\\" and index + 1 < len(text):
+                index += 2
+                continue
+            if char == "(":
+                depth += 1
+            elif char == ")":
+                if depth == 0:
+                    break
+                depth -= 1
+            index += 1
+
+        if index < len(text):
+            candidate = text[start:index].strip()
+            if candidate.startswith(("http://", "https://")):
+                result.append(candidate)
+            cursor = index + 1
+        else:
+            break
+    return result
+
+
 def canonical_url(raw: str) -> str:
     parsed = urlsplit(raw.strip())
     scheme = parsed.scheme.lower()
@@ -57,18 +94,20 @@ def identifiers(url: str) -> tuple[str | None, str | None, str | None]:
 
     if host in {"doi.org", "dx.doi.org"}:
         doi = path.lower()
-        return (doi if DOI_RE.fullmatch(doi) else None, None, None if DOI_RE.fullmatch(doi) else doi)
+        valid = bool(DOI_RE.fullmatch(doi))
+        return (doi if valid else None, None, None if valid else doi)
 
     if host == "pubmed.ncbi.nlm.nih.gov":
         pmid = path.split("/", 1)[0]
-        return (None, pmid if pmid.isdigit() else None, None if pmid.isdigit() else pmid)
+        valid = pmid.isdigit()
+        return (None, pmid if valid else None, None if valid else pmid)
 
     return (None, None, None)
 
 
 def check_url(url: str) -> dict:
     headers = {
-        "User-Agent": "EESG-Guidelines-QC/1.0 (+https://eesg.ru/)",
+        "User-Agent": "EESG-Guidelines-QC/1.1 (+https://eesg.ru/)",
         "Accept": "text/html,application/xhtml+xml,application/pdf;q=0.9,*/*;q=0.8",
     }
     try:
@@ -101,14 +140,16 @@ def collect_pages() -> list[dict]:
             continue
         text = path.read_text(encoding="utf-8")
         section = literature_section(text)
-        urls = LINK_RE.findall(section or "")
+        literature_urls = markdown_http_links(section or "")
+        all_external_urls = markdown_http_links(text)
         pages.append(
             {
                 "path": relative.as_posix(),
                 "title": title_of(text, relative.as_posix()),
                 "has_literature": section is not None,
                 "literature_empty": section is not None and not section.strip(),
-                "urls": urls,
+                "literature_urls": literature_urls,
+                "all_external_urls": all_external_urls,
             }
         )
     return pages
@@ -117,45 +158,62 @@ def collect_pages() -> list[dict]:
 def build_report(check_external: bool) -> dict:
     pages = collect_pages()
     pages_without_literature = [page for page in pages if not page["has_literature"]]
+    pages_without_external_citations = [page for page in pages if not page["all_external_urls"]]
     empty_literature = [page for page in pages if page["literature_empty"]]
+    literature_without_links = [
+        page for page in pages
+        if page["has_literature"] and not page["literature_empty"] and not page["literature_urls"]
+    ]
 
     duplicate_entries: list[dict] = []
     invalid_identifiers: list[dict] = []
-    all_urls: set[str] = set()
+    literature_urls: set[str] = set()
+    external_urls: set[str] = set()
     doi_set: set[str] = set()
     pmid_set: set[str] = set()
 
     for page in pages:
-        seen: dict[str, str] = {}
-        for raw_url in page["urls"]:
+        seen_literature: dict[str, str] = {}
+        for raw_url in page["all_external_urls"]:
             url = canonical_url(raw_url)
-            all_urls.add(url)
+            external_urls.add(url)
             doi, pmid, malformed = identifiers(url)
             if doi:
                 doi_set.add(doi)
-                key = f"doi:{doi}"
-            elif pmid:
+            if pmid:
                 pmid_set.add(pmid)
-                key = f"pmid:{pmid}"
-            else:
-                key = f"url:{url}"
-
             if malformed is not None:
                 invalid_identifiers.append(
                     {"page": page["path"], "title": page["title"], "url": url, "value": malformed}
                 )
 
-            if key in seen:
+        for raw_url in page["literature_urls"]:
+            url = canonical_url(raw_url)
+            literature_urls.add(url)
+            doi, pmid, _ = identifiers(url)
+            if doi:
+                key = f"doi:{doi}"
+            elif pmid:
+                key = f"pmid:{pmid}"
+            else:
+                key = f"url:{url}"
+
+            if key in seen_literature:
                 duplicate_entries.append(
-                    {"page": page["path"], "title": page["title"], "url": url, "duplicate_of": seen[key]}
+                    {
+                        "page": page["path"],
+                        "title": page["title"],
+                        "url": url,
+                        "duplicate_of": seen_literature[key],
+                    }
                 )
             else:
-                seen[key] = url
+                seen_literature[key] = url
 
     live_results: list[dict] = []
-    if check_external and all_urls:
+    if check_external and external_urls:
         with ThreadPoolExecutor(max_workers=12) as executor:
-            futures = {executor.submit(check_url, url): url for url in sorted(all_urls)}
+            futures = {executor.submit(check_url, url): url for url in sorted(external_urls)}
             for future in as_completed(futures):
                 live_results.append(future.result())
         live_results.sort(key=lambda item: item["url"])
@@ -167,8 +225,11 @@ def build_report(check_external: bool) -> dict:
         "clinical_pages": len(pages),
         "pages_with_literature": sum(1 for page in pages if page["has_literature"]),
         "pages_without_literature": pages_without_literature,
+        "pages_without_external_citations": pages_without_external_citations,
         "empty_literature": empty_literature,
-        "unique_literature_urls": len(all_urls),
+        "literature_without_links": literature_without_links,
+        "unique_literature_urls": len(literature_urls),
+        "unique_external_citation_urls": len(external_urls),
         "unique_dois": len(doi_set),
         "unique_pmids": len(pmid_set),
         "duplicate_entries": duplicate_entries,
@@ -186,10 +247,12 @@ def markdown_report(report: dict) -> str:
         "",
         f"- Clinical pages checked: **{report['clinical_pages']}**",
         f"- Pages with `## Литература`: **{report['pages_with_literature']}**",
-        f"- Pages without literature section: **{len(report['pages_without_literature'])}**",
-        f"- Unique literature URLs: **{report['unique_literature_urls']}**",
+        f"- Pages without a dedicated literature section: **{len(report['pages_without_literature'])}**",
+        f"- Pages with no external citations anywhere: **{len(report['pages_without_external_citations'])}**",
+        f"- Unique URLs in literature sections: **{report['unique_literature_urls']}**",
+        f"- Unique external citation URLs overall: **{report['unique_external_citation_urls']}**",
         f"- Unique DOI: **{report['unique_dois']}**; PubMed IDs: **{report['unique_pmids']}**",
-        f"- Duplicate references within the same page: **{len(report['duplicate_entries'])}**",
+        f"- Duplicate references within the same literature section: **{len(report['duplicate_entries'])}**",
         f"- Malformed DOI/PMID identifiers: **{len(report['invalid_identifiers'])}**",
     ]
 
@@ -210,11 +273,13 @@ def markdown_report(report: dict) -> str:
             lines.append(f"- `{item['path']}` — {item['title']}")
         lines.append("")
 
-    add_pages("Pages without literature", report["pages_without_literature"])
+    add_pages("Pages without a dedicated literature section", report["pages_without_literature"])
+    add_pages("Pages with no external citations anywhere", report["pages_without_external_citations"])
     add_pages("Empty literature sections", report["empty_literature"])
+    add_pages("Literature sections without external links", report["literature_without_links"])
 
     if report["duplicate_entries"]:
-        lines.extend(["## Duplicate references within a page", ""])
+        lines.extend(["## Duplicate references within a literature section", ""])
         for item in report["duplicate_entries"]:
             lines.append(f"- `{item['page']}` — {item['url']}")
         lines.append("")
@@ -268,8 +333,9 @@ def main() -> None:
     print(
         "Literature QC: "
         f"{report['clinical_pages']} clinical pages; "
-        f"{len(report['pages_without_literature'])} without literature; "
-        f"{len(report['duplicate_entries'])} within-page duplicates; "
+        f"{len(report['pages_without_literature'])} without dedicated literature section; "
+        f"{len(report['pages_without_external_citations'])} without any external citations; "
+        f"{len(report['duplicate_entries'])} within-section duplicates; "
         f"{len(report['invalid_identifiers'])} malformed identifiers; "
         f"{len(report['broken_links'])} confirmed broken external links."
     )
