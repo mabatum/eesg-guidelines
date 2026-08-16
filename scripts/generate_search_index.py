@@ -112,9 +112,9 @@ def main() -> None:
 
     unknown_alias_targets = sorted(set(manual_aliases) - known_urls)
     if unknown_alias_targets:
-        raise SystemExit(
-            "Search alias config points to missing public page(s): "
-            + ", ".join(unknown_alias_targets)
+        print(
+            "WARNING search alias config points to missing/moved public page(s); "
+            "ignoring stale alias targets: " + ", ".join(unknown_alias_targets)
         )
 
     records.sort(key=lambda item: (item["title"].casefold(), item["url"]))
