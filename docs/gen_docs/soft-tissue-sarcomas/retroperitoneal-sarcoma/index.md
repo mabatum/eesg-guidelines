@@ -65,7 +65,7 @@
 
 ## Список литературы
 
-1. Swallow CJ. и соавт. Ведение первичной забрюшинной саркомы: международный консенсус. Ann Surg Oncol. 2021. [DOI](https://doi.org/10.1245/s10434-021-09654-z)
+1. [Swallow CJ. и соавт. Ведение первичной забрюшинной саркомы: международный консенсус. Ann Surg Oncol. 2021.](https://doi.org/10.1245/s10434-021-09654-z)
 2. Bonvalot S. и соавт. STRASS. Lancet Oncol. 2020;21:1366–1377. [DOI](https://doi.org/10.1016/S1470-2045(20)30446-0)
-3. Callegaro D. и соавт. Объединённый анализ STRASS и STREXIT. Ann Surg. 2023. [DOI](https://doi.org/10.1097/SLA.0000000000005492)
+3. [Callegaro D. и соавт. Объединённый анализ STRASS и STREXIT. Ann Surg. 2023.](https://doi.org/10.1097/SLA.0000000000005492)
 4. Trans-Atlantic Australasian Retroperitoneal Sarcoma Working Group. Рецидивная забрюшинная саркома. Ann Surg Oncol. 2022. [Резюме](https://pubmed.ncbi.nlm.nih.gov/35767103/)

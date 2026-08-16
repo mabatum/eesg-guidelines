@@ -63,6 +63,6 @@
 
 ## Список литературы
 
-1. Stacchiotti S. и соавт. Системная терапия распространённой светлоклеточной саркомы. ESMO Open. 2022;7:100522. [DOI](https://doi.org/10.1016/j.esmoop.2022.100522)
-2. Bianchi G, Charoenlap C, Cocchi S, и соавт. Clear cell sarcoma of soft tissue: a retrospective review and analysis of 31 cases treated at Istituto Ortopedico Rizzoli. Eur J Surg Oncol. 2014;40(5):505–510. [DOI](https://doi.org/10.1016/j.ejso.2014.01.016)
+1. [Stacchiotti S. и соавт. Системная терапия распространённой светлоклеточной саркомы. ESMO Open. 2022;7:100522.](https://doi.org/10.1016/j.esmoop.2022.100522)
+2. [Bianchi G, Charoenlap C, Cocchi S, и соавт. Clear cell sarcoma of soft tissue: a retrospective review and analysis of 31 cases treated at Istituto Ortopedico Rizzoli. Eur J Surg Oncol. 2014;40(5):505–510.](https://doi.org/10.1016/j.ejso.2014.01.016)
 3. Редакционная коллегия классификации опухолей ВОЗ. Классификация сарком мягких тканей: обзор обновлений. [Открытый текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC9216237/)

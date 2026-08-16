@@ -57,9 +57,9 @@
 
 ## Литература
 
-1. Kido A и соавт. Краевая и широкая резекция атипической липоматозной опухоли: систематический обзор. 2022. [PubMed](https://pubmed.ncbi.nlm.nih.gov/34865069/).
-2. Sivarajah G и соавт. Краевая резекция атипической липоматозной опухоли вне полостей тела. 2024. [PubMed](https://pubmed.ncbi.nlm.nih.gov/38041960/).
-3. O’Sullivan B и соавт. Предоперационная и послеоперационная лучевая терапия сарком конечности: рандомизированное исследование. *Lancet*. 2002. [PubMed](https://pubmed.ncbi.nlm.nih.gov/12103287/).
-4. Lansu J и соавт. DOREMY: снижение предоперационной дозы при миксоидной липосаркоме. *JAMA Oncology*. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC7662477/).
-5. Mowery YM и соавт. SU2C-SARC032: пембролизумаб, облучение и операция. *Lancet*. 2024. [PubMed](https://pubmed.ncbi.nlm.nih.gov/39547252/).
-6. Woll PJ и соавт. EORTC 62931: адъювантная химиотерапия. *Lancet Oncology*. 2012. [PubMed](https://pubmed.ncbi.nlm.nih.gov/22954508/).
+1. [Kido A и соавт. Краевая и широкая резекция атипической липоматозной опухоли: систематический обзор. 2022.](https://pubmed.ncbi.nlm.nih.gov/34865069/)
+2. [Sivarajah G и соавт. Краевая резекция атипической липоматозной опухоли вне полостей тела. 2024.](https://pubmed.ncbi.nlm.nih.gov/38041960/)
+3. [O’Sullivan B и соавт. Предоперационная и послеоперационная лучевая терапия сарком конечности: рандомизированное исследование. *Lancet*. 2002.](https://pubmed.ncbi.nlm.nih.gov/12103287/)
+4. [Lansu J и соавт. DOREMY: снижение предоперационной дозы при миксоидной липосаркоме. *JAMA Oncology*. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC7662477/)
+5. [Mowery YM и соавт. SU2C-SARC032: пембролизумаб, облучение и операция. *Lancet*. 2024.](https://pubmed.ncbi.nlm.nih.gov/39547252/)
+6. [Woll PJ и соавт. EORTC 62931: адъювантная химиотерапия. *Lancet Oncology*. 2012.](https://pubmed.ncbi.nlm.nih.gov/22954508/)

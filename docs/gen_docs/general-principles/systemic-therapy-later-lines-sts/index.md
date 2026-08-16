@@ -51,7 +51,7 @@
 
 ## Литература
 
-1. Maki RG, и соавт. Randomized phase II study of gemcitabine and docetaxel compared with gemcitabine alone. *J Clin Oncol*. 2007. [PubMed](https://pubmed.ncbi.nlm.nih.gov/17602081/).
+1. [Maki RG, и соавт. Randomized phase II study of gemcitabine and docetaxel compared with gemcitabine alone. *J Clin Oncol*. 2007.](https://pubmed.ncbi.nlm.nih.gov/17602081/)
 2. van der Graaf WTA, и соавт. Pazopanib for metastatic soft-tissue sarcoma (PALETTE). *Lancet*. 2012. [DOI 10.1016/S0140-6736(12)60651-5](https://doi.org/10.1016/S0140-6736(12)60651-5).
 3. Schöffski P, и соавт. Eribulin versus dacarbazine. *Lancet*. 2016. [DOI 10.1016/S0140-6736(15)01283-0](https://doi.org/10.1016/S0140-6736(15)01283-0).
 4. Demetri GD, и соавт. Trabectedin or dacarbazine for metastatic liposarcoma or leiomyosarcoma. *J Clin Oncol*. 2016. [DOI 10.1200/JCO.2015.62.4734](https://doi.org/10.1200/JCO.2015.62.4734).

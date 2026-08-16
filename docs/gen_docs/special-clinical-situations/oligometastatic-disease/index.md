@@ -55,7 +55,7 @@
 
 ## Список литературы
 
-1. Stamenovic D и соавт. Pulmonary metastasectomy in soft tissue sarcomas: a systematic review. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC8107546/).
-2. Stereotactic Body Radiotherapy versus Metastasectomy for Soft Tissue and Bone Sarcoma Lung Metastases: a systematic review. 2025. [DOI](https://doi.org/10.1016/j.ctro.2025.101097).
-3. Lindsay AD и соавт. Treatment of Sarcoma Lung Metastases with Stereotactic Body Radiotherapy. 2018. [PubMed](https://pubmed.ncbi.nlm.nih.gov/29808081/).
-4. SEOM–GEIS Spanish clinical guidelines for the management of soft-tissue sarcomas. 2024. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC12000159/).
+1. [Stamenovic D и соавт. Pulmonary metastasectomy in soft tissue sarcomas: a systematic review. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC8107546/)
+2. [Stereotactic Body Radiotherapy versus Metastasectomy for Soft Tissue and Bone Sarcoma Lung Metastases: a systematic review. 2025.](https://doi.org/10.1016/j.ctro.2025.101097)
+3. [Lindsay AD и соавт. Treatment of Sarcoma Lung Metastases with Stereotactic Body Radiotherapy. 2018.](https://pubmed.ncbi.nlm.nih.gov/29808081/)
+4. [SEOM–GEIS Spanish clinical guidelines for the management of soft-tissue sarcomas. 2024.](https://pmc.ncbi.nlm.nih.gov/articles/PMC12000159/)

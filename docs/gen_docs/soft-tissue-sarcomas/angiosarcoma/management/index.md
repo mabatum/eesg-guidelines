@@ -57,8 +57,8 @@
 
 ## Список литературы
 
-1. Penel N. и соавт. ANGIOTAX. J Clin Oncol. 2008;26:5269–5274. [DOI](https://doi.org/10.1200/JCO.2008.17.3146)
-2. Young RJ. и соавт. Антрациклинсодержащая первая линия при ангиосаркоме. Eur J Cancer. 2014;50:3178–3186. [DOI](https://doi.org/10.1016/j.ejca.2014.10.004)
-3. Ray-Coquard IL. и соавт. Паклитаксел с бевацизумабом или без него. J Clin Oncol. 2015;33:2797–2802. [DOI](https://doi.org/10.1200/JCO.2015.60.8505)
-4. Kim и соавт. Паклитаксел и авелумаб. ESMO Open. 2025. [DOI](https://doi.org/10.1016/j.esmoop.2025.106018)
-5. Penel N. и соавт. AngioCheck. EClinicalMedicine. 2025. [PubMed](https://pubmed.ncbi.nlm.nih.gov/40472568/)
+1. [Penel N. и соавт. ANGIOTAX. J Clin Oncol. 2008;26:5269–5274.](https://doi.org/10.1200/JCO.2008.17.3146)
+2. [Young RJ. и соавт. Антрациклинсодержащая первая линия при ангиосаркоме. Eur J Cancer. 2014;50:3178–3186.](https://doi.org/10.1016/j.ejca.2014.10.004)
+3. [Ray-Coquard IL. и соавт. Паклитаксел с бевацизумабом или без него. J Clin Oncol. 2015;33:2797–2802.](https://doi.org/10.1200/JCO.2015.60.8505)
+4. [Kim и соавт. Паклитаксел и авелумаб. ESMO Open. 2025.](https://doi.org/10.1016/j.esmoop.2025.106018)
+5. [Penel N. и соавт. AngioCheck. EClinicalMedicine. 2025.](https://pubmed.ncbi.nlm.nih.gov/40472568/)

@@ -46,9 +46,9 @@
 
 ## Литература
 
-1. WHO Classification of Tumours Editorial Board. *Soft Tissue and Bone Tumours*. 5-е изд. IARC, 2020. [Ссылка](https://publications.iarc.fr/Book-And-Report-Series/Who-Classification-Of-Tumours/Soft-Tissue-And-Bone-Tumours-2020).
-2. Hayes AJ и соавт. Рекомендации Британской саркомной группы по лечению сарком мягких тканей. 2024. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC11724041/).
-3. Swallow CJ и соавт. Консенсус по первичным забрюшинным саркомам. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC9257997/).
-4. Judson I и соавт. Доксорубицин в сравнении с доксорубицином и ифосфамидом. *Lancet Oncology*. 2014. [PubMed](https://pubmed.ncbi.nlm.nih.gov/24618336/).
-5. Demetri GD и соавт. Трабектедин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2016. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC5070559/).
-6. Demetri GD и соавт. Анализ подгруппы липосарком: эрибулин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2017. [PubMed](https://pubmed.ncbi.nlm.nih.gov/28854066/).
+1. [WHO Classification of Tumours Editorial Board. *Soft Tissue and Bone Tumours*. 5-е изд. IARC, 2020.](https://publications.iarc.fr/Book-And-Report-Series/Who-Classification-Of-Tumours/Soft-Tissue-And-Bone-Tumours-2020)
+2. [Hayes AJ и соавт. Рекомендации Британской саркомной группы по лечению сарком мягких тканей. 2024.](https://pmc.ncbi.nlm.nih.gov/articles/PMC11724041/)
+3. [Swallow CJ и соавт. Консенсус по первичным забрюшинным саркомам. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC9257997/)
+4. [Judson I и соавт. Доксорубицин в сравнении с доксорубицином и ифосфамидом. *Lancet Oncology*. 2014.](https://pubmed.ncbi.nlm.nih.gov/24618336/)
+5. [Demetri GD и соавт. Трабектедин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2016.](https://pmc.ncbi.nlm.nih.gov/articles/PMC5070559/)
+6. [Demetri GD и соавт. Анализ подгруппы липосарком: эрибулин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2017.](https://pubmed.ncbi.nlm.nih.gov/28854066/)

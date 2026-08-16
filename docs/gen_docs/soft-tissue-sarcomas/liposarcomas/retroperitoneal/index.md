@@ -55,8 +55,8 @@
 
 ## Литература
 
-1. Swallow CJ и соавт. Консенсус по лечению первичной забрюшинной саркомы. *Annals of Surgical Oncology*. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC9257997/).
+1. [Swallow CJ и соавт. Консенсус по лечению первичной забрюшинной саркомы. *Annals of Surgical Oncology*. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC9257997/)
 2. Bonvalot S и соавт. STRASS: предоперационное облучение при первичной забрюшинной саркоме. *Lancet Oncology*. 2020. [DOI](https://doi.org/10.1016/S1470-2045(20)30446-0).
-3. Callegaro D и соавт. Сопоставление STRASS и STREXIT. *Annals of Surgery*. 2023. [PubMed](https://pubmed.ncbi.nlm.nih.gov/35833413/).
-4. Трансатлантическая рабочая группа по забрюшинным саркомам. Консенсус по рецидивной забрюшинной саркоме. 2016. [PubMed](https://pubmed.ncbi.nlm.nih.gov/27480354/).
+3. [Callegaro D и соавт. Сопоставление STRASS и STREXIT. *Annals of Surgery*. 2023.](https://pubmed.ncbi.nlm.nih.gov/35833413/)
+4. [Трансатлантическая рабочая группа по забрюшинным саркомам. Консенсус по рецидивной забрюшинной саркоме. 2016.](https://pubmed.ncbi.nlm.nih.gov/27480354/)
 5. Международная рабочая группа по забрюшинным саркомам. STRASS2, NCT04031677. [Реестр исследования](https://clinicaltrials.gov/study/NCT04031677).

@@ -49,7 +49,7 @@
 
 ## Список литературы
 
-1. Hayes AJ и соавт. UK guidelines for the management of soft tissue sarcomas. 2024. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC11724041/).
-2. Kwee RM, Kwee TC. Diagnostic performance of MRI in detecting residual soft tissue sarcoma after unplanned excision. 2021. [DOI](https://doi.org/10.1016/j.ejrad.2021.110049).
-3. Larios F и соавт. Is Unplanned Excision of Soft Tissue Sarcomas Associated with Worse Oncological Outcomes? 2024. [DOI](https://doi.org/10.3390/cancers16020443).
-4. Sacchetti F и соавт. Re-excision after unplanned excision of soft tissue sarcoma. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC8165293/).
+1. [Hayes AJ и соавт. UK guidelines for the management of soft tissue sarcomas. 2024.](https://pmc.ncbi.nlm.nih.gov/articles/PMC11724041/)
+2. [Kwee RM, Kwee TC. Diagnostic performance of MRI in detecting residual soft tissue sarcoma after unplanned excision. 2021.](https://doi.org/10.1016/j.ejrad.2021.110049)
+3. [Larios F и соавт. Is Unplanned Excision of Soft Tissue Sarcomas Associated with Worse Oncological Outcomes? 2024.](https://doi.org/10.3390/cancers16020443)
+4. [Sacchetti F и соавт. Re-excision after unplanned excision of soft tissue sarcoma. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC8165293/)

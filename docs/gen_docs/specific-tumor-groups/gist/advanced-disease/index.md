@@ -52,7 +52,7 @@
 ## Список литературы
 
 1. Judson I, Jones RL, Wong NACS, и соавт. Gastrointestinal stromal tumour (GIST): British Sarcoma Group clinical practice guidelines. *Br J Cancer*. 2025;132:1–10. [doi:10.1038/s41416-024-02672-0](https://doi.org/10.1038/s41416-024-02672-0).
-2. Gastrointestinal Stromal Tumor Meta-Analysis Group. Comparison of two doses of imatinib for unresectable or metastatic GIST. *J Clin Oncol*. 2010;28:1247–1253. [PubMed](https://pubmed.ncbi.nlm.nih.gov/20124181/).
+2. [Gastrointestinal Stromal Tumor Meta-Analysis Group. Comparison of two doses of imatinib for unresectable or metastatic GIST. *J Clin Oncol*. 2010;28:1247–1253.](https://pubmed.ncbi.nlm.nih.gov/20124181/)
 3. Demetri GD, van Oosterom AT, Garrett CR, и соавт. Efficacy and safety of sunitinib in patients with advanced GIST after failure of imatinib. *Lancet*. 2006;368:1329–1338. [doi:10.1016/S0140-6736(06)69446-4](https://doi.org/10.1016/S0140-6736(06)69446-4).
 4. Demetri GD, Reichardt P, Kang YK, и соавт. Regorafenib for advanced GIST after failure of imatinib and sunitinib: GRID. *Lancet*. 2013;381:295–302. [doi:10.1016/S0140-6736(12)61857-1](https://doi.org/10.1016/S0140-6736(12)61857-1).
 5. Blay JY, Serrano C, Heinrich MC, и соавт. Ripretinib in advanced GIST: INVICTUS. *Lancet Oncol*. 2020;21:923–934. [doi:10.1016/S1470-2045(20)30168-6](https://doi.org/10.1016/S1470-2045(20)30168-6).

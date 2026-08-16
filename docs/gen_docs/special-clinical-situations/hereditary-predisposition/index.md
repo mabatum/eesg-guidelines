@@ -62,8 +62,8 @@
 
 ## Список литературы
 
-1. Ballinger ML и соавт. Monogenic and polygenic determinants of sarcoma risk. 2016. [PubMed](https://pubmed.ncbi.nlm.nih.gov/27498913/).
-2. Frebourg T и соавт. Guidelines for the Li–Fraumeni and heritable TP53-related cancer syndromes. 2020. [PubMed](https://pubmed.ncbi.nlm.nih.gov/32457520/).
-3. Mandelker D и соавт. Germline-focussed analysis of tumour-only sequencing. 2019. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC6683854/).
-4. Kuzbari Z и соавт. Germline-focused analysis of tumour-detected variants in 49 264 cancer patients. 2022. [PubMed](https://pubmed.ncbi.nlm.nih.gov/36529447/).
-5. Mirabello L и соавт. Frequency of Pathogenic Germline Variants in Patients With Osteosarcoma. 2020. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC7082769/).
+1. [Ballinger ML и соавт. Monogenic and polygenic determinants of sarcoma risk. 2016.](https://pubmed.ncbi.nlm.nih.gov/27498913/)
+2. [Frebourg T и соавт. Guidelines for the Li–Fraumeni and heritable TP53-related cancer syndromes. 2020.](https://pubmed.ncbi.nlm.nih.gov/32457520/)
+3. [Mandelker D и соавт. Germline-focussed analysis of tumour-only sequencing. 2019.](https://pmc.ncbi.nlm.nih.gov/articles/PMC6683854/)
+4. [Kuzbari Z и соавт. Germline-focused analysis of tumour-detected variants in 49 264 cancer patients. 2022.](https://pubmed.ncbi.nlm.nih.gov/36529447/)
+5. [Mirabello L и соавт. Frequency of Pathogenic Germline Variants in Patients With Osteosarcoma. 2020.](https://pmc.ncbi.nlm.nih.gov/articles/PMC7082769/)

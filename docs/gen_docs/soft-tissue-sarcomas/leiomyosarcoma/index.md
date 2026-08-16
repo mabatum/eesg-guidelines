@@ -49,8 +49,8 @@
 
 ## Литература
 
-1. WHO Classification of Tumours Editorial Board. *Soft Tissue and Bone Tumours*. 5-е изд. IARC, 2020. [Ссылка](https://publications.iarc.fr/Book-And-Report-Series/Who-Classification-Of-Tumours/Soft-Tissue-And-Bone-Tumours-2020).
-2. Swallow CJ и соавт. Консенсус по лечению первичной забрюшинной саркомы. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC9257997/).
-3. Pautier P и соавт. LMS04: доксорубицин и трабектедин с поддерживающим трабектедином. *New England Journal of Medicine*. 2024. [PubMed](https://pubmed.ncbi.nlm.nih.gov/39231341/).
-4. Demetri GD и соавт. Трабектедин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2016. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC5070559/).
-5. Blay J-Y и соавт. Эрибулин в сравнении с дакарбазином: анализ лейомиосарком. 2019. [PubMed](https://pubmed.ncbi.nlm.nih.gov/31065111/).
+1. [WHO Classification of Tumours Editorial Board. *Soft Tissue and Bone Tumours*. 5-е изд. IARC, 2020.](https://publications.iarc.fr/Book-And-Report-Series/Who-Classification-Of-Tumours/Soft-Tissue-And-Bone-Tumours-2020)
+2. [Swallow CJ и соавт. Консенсус по лечению первичной забрюшинной саркомы. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC9257997/)
+3. [Pautier P и соавт. LMS04: доксорубицин и трабектедин с поддерживающим трабектедином. *New England Journal of Medicine*. 2024.](https://pubmed.ncbi.nlm.nih.gov/39231341/)
+4. [Demetri GD и соавт. Трабектедин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2016.](https://pmc.ncbi.nlm.nih.gov/articles/PMC5070559/)
+5. [Blay J-Y и соавт. Эрибулин в сравнении с дакарбазином: анализ лейомиосарком. 2019.](https://pubmed.ncbi.nlm.nih.gov/31065111/)

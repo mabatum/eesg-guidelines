@@ -51,5 +51,5 @@
 
 1. Judson I, Jones RL, Wong NACS, и соавт. Gastrointestinal stromal tumour (GIST): British Sarcoma Group clinical practice guidelines. *Br J Cancer*. 2025;132:1–10. [doi:10.1038/s41416-024-02672-0](https://doi.org/10.1038/s41416-024-02672-0).
 2. Serrano C, García-Del-Muro X, Valverde C, и соавт. 2023 GEIS Guidelines for gastrointestinal stromal tumors. *Ther Adv Med Oncol*. 2023;15. [doi:10.1177/17588359231192388](https://doi.org/10.1177/17588359231192388).
-3. Gastrointestinal Stromal Tumor Meta-Analysis Group. Comparison of two doses of imatinib for the treatment of unresectable or metastatic GIST. *J Clin Oncol*. 2010;28:1247–1253. [PubMed](https://pubmed.ncbi.nlm.nih.gov/20124181/).
+3. [Gastrointestinal Stromal Tumor Meta-Analysis Group. Comparison of two doses of imatinib for the treatment of unresectable or metastatic GIST. *J Clin Oncol*. 2010;28:1247–1253.](https://pubmed.ncbi.nlm.nih.gov/20124181/)
 4. Jones RL, Serrano C, von Mehren M, и соавт. Avapritinib in unresectable or metastatic PDGFRA D842V-mutant GIST. *Lancet Oncol*. 2020;21:935–946. [doi:10.1016/S1470-2045(20)30269-2](https://doi.org/10.1016/S1470-2045(20)30269-2).

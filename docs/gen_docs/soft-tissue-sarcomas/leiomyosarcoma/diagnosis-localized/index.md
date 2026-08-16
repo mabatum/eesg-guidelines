@@ -67,8 +67,8 @@
 
 ## Литература
 
-1. Miettinen M. Иммуногистохимия мезенхимальных опухолей. 2014. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC7662208/).
-2. Choi JH, Ro JY. Диагностическая патология забрюшинных сарком. 2020. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC7555595/).
-3. Swallow CJ и соавт. Консенсус по первичной забрюшинной саркоме. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC9257997/).
-4. O’Sullivan B и соавт. Предоперационная и послеоперационная лучевая терапия. *Lancet*. 2002. [PubMed](https://pubmed.ncbi.nlm.nih.gov/12103287/).
-5. Woll PJ и соавт. EORTC 62931: адъювантная химиотерапия. *Lancet Oncology*. 2012. [PubMed](https://pubmed.ncbi.nlm.nih.gov/22954508/).
+1. [Miettinen M. Иммуногистохимия мезенхимальных опухолей. 2014.](https://pmc.ncbi.nlm.nih.gov/articles/PMC7662208/)
+2. [Choi JH, Ro JY. Диагностическая патология забрюшинных сарком. 2020.](https://pmc.ncbi.nlm.nih.gov/articles/PMC7555595/)
+3. [Swallow CJ и соавт. Консенсус по первичной забрюшинной саркоме. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC9257997/)
+4. [O’Sullivan B и соавт. Предоперационная и послеоперационная лучевая терапия. *Lancet*. 2002.](https://pubmed.ncbi.nlm.nih.gov/12103287/)
+5. [Woll PJ и соавт. EORTC 62931: адъювантная химиотерапия. *Lancet Oncology*. 2012.](https://pubmed.ncbi.nlm.nih.gov/22954508/)

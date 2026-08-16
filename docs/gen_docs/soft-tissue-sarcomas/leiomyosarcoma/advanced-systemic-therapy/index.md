@@ -63,9 +63,9 @@ LMS04 установил преимущество конкретной посл�
 
 ## Литература
 
-1. Pautier P и соавт. LMS04: доксорубицин и трабектедин с последующим трабектедином. *New England Journal of Medicine*. 2024. [PubMed](https://pubmed.ncbi.nlm.nih.gov/39231341/).
-2. Seddon B и соавт. GeDDiS: гемцитабин с доцетакселом в сравнении с доксорубицином. *Lancet Oncology*. 2017. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC5622179/).
-3. Demetri GD и соавт. Трабектедин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2016. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC5070559/).
+1. [Pautier P и соавт. LMS04: доксорубицин и трабектедин с последующим трабектедином. *New England Journal of Medicine*. 2024.](https://pubmed.ncbi.nlm.nih.gov/39231341/)
+2. [Seddon B и соавт. GeDDiS: гемцитабин с доцетакселом в сравнении с доксорубицином. *Lancet Oncology*. 2017.](https://pmc.ncbi.nlm.nih.gov/articles/PMC5622179/)
+3. [Demetri GD и соавт. Трабектедин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2016.](https://pmc.ncbi.nlm.nih.gov/articles/PMC5070559/)
 4. van der Graaf WTA и соавт. PALETTE: пазопаниб в сравнении с плацебо. *Lancet*. 2012. [DOI](https://doi.org/10.1016/S0140-6736(12)60651-5).
-5. Maki RG и соавт. Гемцитабин с доцетакселом в сравнении с гемцитабином. *Journal of Clinical Oncology*. 2007. [PubMed](https://pubmed.ncbi.nlm.nih.gov/17602081/).
-6. Blay J-Y и соавт. Эрибулин в сравнении с дакарбазином при лейомиосаркоме. 2019. [PubMed](https://pubmed.ncbi.nlm.nih.gov/31065111/).
+5. [Maki RG и соавт. Гемцитабин с доцетакселом в сравнении с гемцитабином. *Journal of Clinical Oncology*. 2007.](https://pubmed.ncbi.nlm.nih.gov/17602081/)
+6. [Blay J-Y и соавт. Эрибулин в сравнении с дакарбазином при лейомиосаркоме. 2019.](https://pubmed.ncbi.nlm.nih.gov/31065111/)

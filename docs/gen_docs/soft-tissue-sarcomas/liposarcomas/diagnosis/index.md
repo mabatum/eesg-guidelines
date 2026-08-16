@@ -51,8 +51,8 @@
 
 ## Литература
 
-1. WHO Classification of Tumours Editorial Board. *Soft Tissue and Bone Tumours*. 5-е изд. IARC, 2020. [Ссылка](https://publications.iarc.fr/Book-And-Report-Series/Who-Classification-Of-Tumours/Soft-Tissue-And-Bone-Tumours-2020).
-2. Weaver J и соавт. Исследование амплификации **MDM2** в материале пункционной биопсии. *Modern Pathology*. 2010. [DOI](https://doi.org/10.1038/modpathol.2010.106).
-3. Kimura H и соавт. Диагностическая применимость флуоресцентной гибридизации на месте для **MDM2**. 2013. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC3693195/).
-4. Baranov E и соавт. Иммуногистохимическое исследование DDIT3 при миксоидной липосаркоме высокой степени злокачественности. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC8763641/).
-5. Haniball J и соавт. Прогностические факторы и закономерности метастазирования при миксоидной липосаркоме. 2011. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC3236386/).
+1. [WHO Classification of Tumours Editorial Board. *Soft Tissue and Bone Tumours*. 5-е изд. IARC, 2020.](https://publications.iarc.fr/Book-And-Report-Series/Who-Classification-Of-Tumours/Soft-Tissue-And-Bone-Tumours-2020)
+2. [Weaver J и соавт. Исследование амплификации **MDM2** в материале пункционной биопсии. *Modern Pathology*. 2010.](https://doi.org/10.1038/modpathol.2010.106)
+3. [Kimura H и соавт. Диагностическая применимость флуоресцентной гибридизации на месте для **MDM2**. 2013.](https://pmc.ncbi.nlm.nih.gov/articles/PMC3693195/)
+4. [Baranov E и соавт. Иммуногистохимическое исследование DDIT3 при миксоидной липосаркоме высокой степени злокачественности. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC8763641/)
+5. [Haniball J и соавт. Прогностические факторы и закономерности метастазирования при миксоидной липосаркоме. 2011.](https://pmc.ncbi.nlm.nih.gov/articles/PMC3236386/)

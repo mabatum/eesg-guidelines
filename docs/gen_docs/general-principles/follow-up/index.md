@@ -44,6 +44,6 @@ TOSS было одноцентровым исследованием сарком
 ## Литература
 
 1. Hayes AJ, и соавт. UK guidelines for the management of soft tissue sarcomas. *Br J Cancer*. 2024. [Открытый текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC11724041/).
-2. Puri A, и соавт. Does intensity of surveillance affect survival after surgery for sarcomas? *Clin Orthop Relat Res*. 2014. [PubMed](https://pubmed.ncbi.nlm.nih.gov/24249538/).
-3. Puri A, и соавт. Updated results of the randomized TOSS study. *Bone Joint J*. 2018. [PubMed](https://pubmed.ncbi.nlm.nih.gov/29437071/).
+2. [Puri A, и соавт. Does intensity of surveillance affect survival after surgery for sarcomas? *Clin Orthop Relat Res*. 2014.](https://pubmed.ncbi.nlm.nih.gov/24249538/)
+3. [Puri A, и соавт. Updated results of the randomized TOSS study. *Bone Joint J*. 2018.](https://pubmed.ncbi.nlm.nih.gov/29437071/)
 4. Noebauer-Huhmann IM, и соавт. Soft tissue tumor imaging in adults: ESSR Guidelines 2024. *Eur Radiol*. 2025. [Открытый текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC12081562/).

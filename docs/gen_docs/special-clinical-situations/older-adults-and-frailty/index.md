@@ -72,8 +72,8 @@
 
 ## Список литературы
 
-1. Loh KP и соавт. ESMO/SIOG position paper on geriatric assessment and management. 2024. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC11410714/).
-2. Dale W и соавт. Practical Assessment and Management of Vulnerabilities in Older Patients Receiving Systemic Cancer Therapy. 2023. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/12803700/).
-3. Mohile SG и соавт. Evaluation of geriatric assessment and management on the toxic effects of cancer treatment. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC8647163/).
-4. Li D и соавт. Geriatric Assessment–Driven Intervention on Chemotherapy-Related Toxic Effects in Older Adults With Cancer. 2021. [DOI](https://doi.org/10.1001/jamaoncol.2021.4158).
-5. Grünwald V и соавт. Randomized Comparison of Pazopanib and Doxorubicin as First-Line Treatment in Patients With Metastatic Soft Tissue Sarcoma Age 60 Years or Older. 2020. [DOI](https://doi.org/10.1200/JCO.20.00714).
+1. [Loh KP и соавт. ESMO/SIOG position paper on geriatric assessment and management. 2024.](https://pmc.ncbi.nlm.nih.gov/articles/PMC11410714/)
+2. [Dale W и соавт. Practical Assessment and Management of Vulnerabilities in Older Patients Receiving Systemic Cancer Therapy. 2023.](https://pmc.ncbi.nlm.nih.gov/articles/12803700/)
+3. [Mohile SG и соавт. Evaluation of geriatric assessment and management on the toxic effects of cancer treatment. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC8647163/)
+4. [Li D и соавт. Geriatric Assessment–Driven Intervention on Chemotherapy-Related Toxic Effects in Older Adults With Cancer. 2021.](https://doi.org/10.1001/jamaoncol.2021.4158)
+5. [Grünwald V и соавт. Randomized Comparison of Pazopanib and Doxorubicin as First-Line Treatment in Patients With Metastatic Soft Tissue Sarcoma Age 60 Years or Older. 2020.](https://doi.org/10.1200/JCO.20.00714)

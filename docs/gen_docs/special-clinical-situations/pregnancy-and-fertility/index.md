@@ -67,8 +67,8 @@
 
 ## Список литературы
 
-1. Nanda S и соавт. Cancer in pregnancy: FIGO Best Practice Advice. 2025. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC12447680/).
-2. Su HI и соавт. Fertility Preservation in People With Cancer: ASCO Guideline Update. 2025. [PubMed](https://pubmed.ncbi.nlm.nih.gov/40106739/).
+1. [Nanda S и соавт. Cancer in pregnancy: FIGO Best Practice Advice. 2025.](https://pmc.ncbi.nlm.nih.gov/articles/PMC12447680/)
+2. [Su HI и соавт. Fertility Preservation in People With Cancer: ASCO Guideline Update. 2025.](https://pubmed.ncbi.nlm.nih.gov/40106739/)
 3. Society for Maternal–Fetal Medicine Consult Series No. 76: Cancer in pregnancy. 2026. [Официальный документ](https://assets.noviams.com/novi-file-uploads/smfm/Publications_and_Guidelines/Consults/SMFM_Consult_Series_76_Cancer_in_pregnancy.pdf).
-4. Maxwell C и соавт. Pregnancy after cancer: FIGO Best Practice Advice. 2025. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC12093925/).
+4. [Maxwell C и соавт. Pregnancy after cancer: FIGO Best Practice Advice. 2025.](https://pmc.ncbi.nlm.nih.gov/articles/PMC12093925/)
 5. de Haan J и соавт. Oncological management and obstetric and neonatal outcomes for women diagnosed with cancer during pregnancy. 2018. [DOI](https://doi.org/10.1016/S1470-2045(18)30059-7).

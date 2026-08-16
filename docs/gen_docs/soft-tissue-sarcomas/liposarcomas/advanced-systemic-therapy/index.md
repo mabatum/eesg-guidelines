@@ -55,10 +55,10 @@
 
 ## Литература
 
-1. Judson I и соавт. Доксорубицин и доксорубицин с ифосфамидом: EORTC 62012. *Lancet Oncology*. 2014. [PubMed](https://pubmed.ncbi.nlm.nih.gov/24618336/).
-2. Demetri GD и соавт. Эрибулин в подгруппе липосарком. *Journal of Clinical Oncology*. 2017. [PubMed](https://pubmed.ncbi.nlm.nih.gov/28854066/).
-3. Demetri GD и соавт. Трабектедин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2016. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC5070559/).
-4. Dickson MA и соавт. Палбоциклиб при высокодифференцированной и дедифференцированной липосаркоме. *JAMA Oncology*. 2016. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC4991028/).
-5. Gleason CE и соавт. Абемациклиб при дедифференцированной липосаркоме. *Clinical Cancer Research*. 2024. [PubMed](https://pubmed.ncbi.nlm.nih.gov/37695642/).
-6. Schöffski P и соавт. Brightline-1: бригимадлин в сравнении с доксорубицином. *Clinical Cancer Research*. 2026. [PubMed](https://pubmed.ncbi.nlm.nih.gov/42268294/).
-7. Grosso F и соавт. Трабектедин при ранее леченной миксоидной липосаркоме. *Lancet Oncology*. 2007. [PubMed](https://pubmed.ncbi.nlm.nih.gov/17586092/).
+1. [Judson I и соавт. Доксорубицин и доксорубицин с ифосфамидом: EORTC 62012. *Lancet Oncology*. 2014.](https://pubmed.ncbi.nlm.nih.gov/24618336/)
+2. [Demetri GD и соавт. Эрибулин в подгруппе липосарком. *Journal of Clinical Oncology*. 2017.](https://pubmed.ncbi.nlm.nih.gov/28854066/)
+3. [Demetri GD и соавт. Трабектедин в сравнении с дакарбазином. *Journal of Clinical Oncology*. 2016.](https://pmc.ncbi.nlm.nih.gov/articles/PMC5070559/)
+4. [Dickson MA и соавт. Палбоциклиб при высокодифференцированной и дедифференцированной липосаркоме. *JAMA Oncology*. 2016.](https://pmc.ncbi.nlm.nih.gov/articles/PMC4991028/)
+5. [Gleason CE и соавт. Абемациклиб при дедифференцированной липосаркоме. *Clinical Cancer Research*. 2024.](https://pubmed.ncbi.nlm.nih.gov/37695642/)
+6. [Schöffski P и соавт. Brightline-1: бригимадлин в сравнении с доксорубицином. *Clinical Cancer Research*. 2026.](https://pubmed.ncbi.nlm.nih.gov/42268294/)
+7. [Grosso F и соавт. Трабектедин при ранее леченной миксоидной липосаркоме. *Lancet Oncology*. 2007.](https://pubmed.ncbi.nlm.nih.gov/17586092/)

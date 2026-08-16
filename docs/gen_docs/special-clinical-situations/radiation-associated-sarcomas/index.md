@@ -49,7 +49,7 @@
 
 ## Список литературы
 
-1. Raj R и соавт. Clinical Characteristics, Patterns of Care, and Treatment Outcomes of Radiation-Associated Sarcomas. 2024. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC11119080/).
-2. Gladdy RA и соавт. Do Radiation-Associated Soft Tissue Sarcomas Have the Same Prognosis as Sporadic Soft Tissue Sarcomas? 2010. [DOI](https://doi.org/10.1200/JCO.2009.25.1728).
-3. Mergancová J и соавт. Radiation-associated angiosarcoma of the breast: an international multicenter analysis. 2022. [DOI](https://doi.org/10.1016/j.suronc.2022.101726).
-4. Bjerkehagen B и соавт. The clinical and functional outcome for patients with radiation-induced soft tissue sarcoma. 2012. [PubMed](https://pubmed.ncbi.nlm.nih.gov/21989796/).
+1. [Raj R и соавт. Clinical Characteristics, Patterns of Care, and Treatment Outcomes of Radiation-Associated Sarcomas. 2024.](https://pmc.ncbi.nlm.nih.gov/articles/PMC11119080/)
+2. [Gladdy RA и соавт. Do Radiation-Associated Soft Tissue Sarcomas Have the Same Prognosis as Sporadic Soft Tissue Sarcomas? 2010.](https://doi.org/10.1200/JCO.2009.25.1728)
+3. [Mergancová J и соавт. Radiation-associated angiosarcoma of the breast: an international multicenter analysis. 2022.](https://doi.org/10.1016/j.suronc.2022.101726)
+4. [Bjerkehagen B и соавт. The clinical and functional outcome for patients with radiation-induced soft tissue sarcoma. 2012.](https://pubmed.ncbi.nlm.nih.gov/21989796/)

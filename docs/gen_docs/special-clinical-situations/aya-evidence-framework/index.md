@@ -60,7 +60,7 @@
 
 ## Список литературы
 
-1. Ferrari A и соавт. Adolescents and young adults with cancer: a position paper from the ESMO/SIOPE Working Group. 2021. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC8103533/).
-2. Womer RB и соавт. Randomized controlled trial of interval-compressed chemotherapy for the treatment of localized Ewing sarcoma. 2012. [DOI](https://doi.org/10.1200/JCO.2011.41.5703).
-3. Lu E и соавт. Feasibility of Treating Adults with Ewing or Ewing-Like Sarcoma with Interval-Compressed Chemotherapy. 2020. [Полный текст](https://pmc.ncbi.nlm.nih.gov/articles/PMC7011630/).
-4. Mata Fernández C и соавт. Clinical practice guidelines for the treatment of Ewing sarcoma. 2024. [DOI](https://doi.org/10.1007/s12094-024-03602-5).
+1. [Ferrari A и соавт. Adolescents and young adults with cancer: a position paper from the ESMO/SIOPE Working Group. 2021.](https://pmc.ncbi.nlm.nih.gov/articles/PMC8103533/)
+2. [Womer RB и соавт. Randomized controlled trial of interval-compressed chemotherapy for the treatment of localized Ewing sarcoma. 2012.](https://doi.org/10.1200/JCO.2011.41.5703)
+3. [Lu E и соавт. Feasibility of Treating Adults with Ewing or Ewing-Like Sarcoma with Interval-Compressed Chemotherapy. 2020.](https://pmc.ncbi.nlm.nih.gov/articles/PMC7011630/)
+4. [Mata Fernández C и соавт. Clinical practice guidelines for the treatment of Ewing sarcoma. 2024.](https://doi.org/10.1007/s12094-024-03602-5)
