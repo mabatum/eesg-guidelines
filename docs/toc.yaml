@@ -10,9 +10,9 @@ navigation:
     url: './'
     urlTitle: 'Клинические рекомендации EESG'
     light:
-      icon: '_assets/brand/eesg-icon-2.png'
+      icon: '_assets/brand/eesg-logo.png'
     dark:
-      icon: '_assets/brand/eesg-icon-2.png'
+      icon: '_assets/brand/eesg-logo.png'
   header:
     leftItems:
       - type: link
