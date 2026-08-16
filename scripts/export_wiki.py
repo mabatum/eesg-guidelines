@@ -36,8 +36,8 @@ TOP_LEVEL_ORDER = {
     f"{ROOT_SLUG}/soft-tissue-sarcomas": 20,
     f"{ROOT_SLUG}/bone-sarcomas": 30,
     f"{ROOT_SLUG}/specific-tumor-groups": 40,
-    f"{ROOT_SLUG}/drugs-and-regimens": 50,
-    f"{ROOT_SLUG}/special-clinical-situations": 60,
+    f"{ROOT_SLUG}/special-clinical-situations": 50,
+    f"{ROOT_SLUG}/drugs-and-regimens": 60,
     f"{ROOT_SLUG}/about": 900,
     f"{ROOT_SLUG}/editorial-standard": 910,
     f"{ROOT_SLUG}/materials-map": 920,
@@ -257,6 +257,18 @@ def keyword_value(attributes: dict, prefixes: tuple[str, ...]) -> str | None:
     return None
 
 
+def navigation_order_value(attributes: dict) -> float | None:
+    """Read an explicit navigation order from Wiki keywords when provided."""
+    raw = keyword_value(attributes, ("nav-order:", "порядок:", "order:"))
+    if raw is None:
+        return None
+    try:
+        return float(raw.replace(",", "."))
+    except ValueError:
+        print(f"WARNING invalid navigation order keyword: {raw!r}")
+        return None
+
+
 def format_modified_date(value: str | None) -> str | None:
     if not value:
         return None
@@ -274,6 +286,7 @@ def inject_publication_metadata(content: str, attributes: dict) -> str:
       version:<value> or версия:<value>
       review:<value> or пересмотр:<value>
       group:<value> or рабочая-группа:<value>
+      nav-order:<number> or порядок:<number> controls navigation order
     """
     status = keyword_value(attributes, ("status:", "статус:")) or DEFAULT_PUBLICATION_STATUS
     version = keyword_value(attributes, ("version:", "версия:"))
@@ -310,8 +323,31 @@ def toc_href(slug: str) -> str:
     return posixpath.join(*parts, "index.md") if parts else "index.md"
 
 
+def linked_child_position(parent_record: dict, parent_slug: str, child_slug: str) -> int | None:
+    """Use the first direct link to a child on the parent Wiki page as its order."""
+    content = parent_record.get("content") or ""
+    try:
+        href = relative_internal_link(parent_slug, "/" + child_slug)
+    except ValueError:
+        return None
+
+    positions = []
+    for needle in (f"]({href})", f"]({href}#", f"]({href}?"):
+        pos = content.find(needle)
+        if pos >= 0:
+            positions.append(pos)
+    return min(positions) if positions else None
+
+
 def write_toc(records: list[dict]) -> None:
-    """Create a clinical-first Diplodoc TOC using Wiki page titles and Wiki tree order."""
+    """Create a deterministic clinical-first TOC.
+
+    Yandex Wiki's public descendants API does not expose manual tree position.
+    Nested order therefore follows, in priority order:
+    1) explicit nav-order:/порядок: Wiki keyword;
+    2) first direct child link on the parent page;
+    3) alphabetical fallback.
+    """
     by_slug = {record["slug"]: record for record in records}
     root = by_slug.get(ROOT_SLUG)
     if not root:
@@ -333,12 +369,37 @@ def write_toc(records: list[dict]) -> None:
             siblings.sort(
                 key=lambda slug: (
                     TOP_LEVEL_ORDER.get(slug, 500),
-                    -by_slug[slug]["source_order"],
+                    by_slug[slug]["title"].casefold(),
+                    slug,
+                )
+            )
+            continue
+
+        parent_record = by_slug[parent]
+        explicit_present = any(by_slug[slug].get("nav_order") is not None for slug in siblings)
+        link_positions = {
+            slug: linked_child_position(parent_record, parent, slug)
+            for slug in siblings
+        }
+
+        if explicit_present:
+            siblings.sort(
+                key=lambda slug: (
+                    by_slug[slug]["nav_order"] if by_slug[slug].get("nav_order") is not None else float("inf"),
+                    link_positions[slug] if link_positions[slug] is not None else float("inf"),
+                    by_slug[slug]["title"].casefold(),
                     slug,
                 )
             )
         else:
-            siblings.sort(key=lambda slug: (-by_slug[slug]["source_order"], slug))
+            siblings.sort(
+                key=lambda slug: (
+                    0 if link_positions[slug] is not None else 1,
+                    link_positions[slug] if link_positions[slug] is not None else float("inf"),
+                    by_slug[slug]["title"].casefold(),
+                    slug,
+                )
+            )
 
     lines = [
         f"title: {yaml_string(root['title'])}",
@@ -390,7 +451,7 @@ def export() -> None:
 
     try:
         globals()["OUTPUT_DIR"] = tmp_dir
-        for source_order, item in enumerate(subtree):
+        for item in sorted(subtree, key=lambda p: p.get("slug", "")):
             slug = item.get("slug")
             if not slug:
                 continue
@@ -415,7 +476,14 @@ def export() -> None:
             destination = destination_for(slug)
             destination.parent.mkdir(parents=True, exist_ok=True)
             destination.write_text(content.rstrip() + "\n", encoding="utf-8")
-            records.append({"slug": slug, "title": title, "source_order": source_order})
+            records.append(
+                {
+                    "slug": slug,
+                    "title": title,
+                    "content": content,
+                    "nav_order": navigation_order_value(attributes),
+                }
+            )
             exported += 1
 
         write_toc(records)
@@ -433,7 +501,7 @@ def export() -> None:
         f"Exported {exported} pages from '{ROOT_SLUG}'. "
         f"Skipped drafts: {skipped_drafts}. Rewritten internal links: {rewritten_links}. "
         f"Rendered recommendation blocks: {recommendation_blocks}. "
-        "Generated clinical-first navigation preserving Wiki tree order and publication metadata."
+        "Generated deterministic clinical navigation and publication metadata."
     )
 
 
