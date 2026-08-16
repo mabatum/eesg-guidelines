@@ -42,6 +42,12 @@
 
 ## Недавно обновлено
 
+### [Миксофибросаркома](./soft-tissue-sarcomas/myxofibrosarcoma/)
+
+Саркомы мягких тканей · 16.08.2026
+
+[Открыть](./soft-tissue-sarcomas/myxofibrosarcoma/)
+
 ### [Хондросаркома](./bone-sarcomas/chondrosarcoma-adults/)
 
 Саркомы костей · 15.08.2026
@@ -59,12 +65,6 @@
 Саркомы мягких тканей · 15.08.2026
 
 [Открыть](./soft-tissue-sarcomas/clear-cell-sarcoma/)
-
-### [Последующие линии системной терапии сарком мягких тканей](./general-principles/systemic-therapy-later-lines-sts/)
-
-Общие принципы ведения пациентов с саркомами · 15.08.2026
-
-[Открыть](./general-principles/systemic-therapy-later-lines-sts/)
 
 [Все обновления](./updates.html)
 
