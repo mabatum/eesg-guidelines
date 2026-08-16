@@ -201,12 +201,6 @@ items:
         href: "drugs-and-regimens/gemcitabine-docetaxel/index.md"
       - name: "Дакарбазин и темозоломид при саркомах"
         href: "drugs-and-regimens/dacarbazine-temozolomide/index.md"
-  - name: "Клинические исследования"
-    href: "clinical-trials/index.md"
-  - name: "Мероприятия"
-    href: "events/index.md"
-  - name: "Новости"
-    href: "news/index.md"
   - name: "Область применения и методология"
     href: "about/index.md"
     hidden: true
