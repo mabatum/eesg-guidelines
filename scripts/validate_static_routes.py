@@ -8,6 +8,7 @@ from urllib.parse import urlsplit
 
 STATIC_ROOT = Path("docs-html").resolve()
 SEARCH_INDEX = Path("docs/_assets/script/search-index-v3.js")
+HOMEPAGE_SCRIPT = Path("docs/_assets/script/homepage-v2.js")
 UPDATES = Path("docs/updates.md")
 TOC = Path("docs/toc.yaml")
 BUILT_TOC = STATIC_ROOT / "toc.js"
@@ -73,8 +74,6 @@ def main() -> int:
                 errors.append(
                     f"Homepage v2 portal block was not rendered into index.html: missing {marker!r}"
                 )
-        if 'id="rekomendatsii"' not in home_html:
-            errors.append("Homepage v2 is missing canonical #rekomendatsii anchor")
         for asset in (
             "_assets/style/homepage-v2.css",
             "_assets/script/homepage-v2.js",
@@ -84,6 +83,14 @@ def main() -> int:
         ):
             if asset not in home_html:
                 errors.append(f"Built homepage is missing required UI asset: {asset}")
+
+    if not HOMEPAGE_SCRIPT.exists():
+        errors.append(f"Homepage v2 enhancer is missing: {HOMEPAGE_SCRIPT}")
+    else:
+        homepage_script = HOMEPAGE_SCRIPT.read_text(encoding="utf-8")
+        for marker in ("heading.id = 'rekomendatsii'", "ensureRecommendationsAnchor"):
+            if marker not in homepage_script:
+                errors.append(f"Homepage v2 enhancer lost runtime recommendations anchor logic: {marker}")
 
     if not LMS_PAGE.exists():
         errors.append(f"Reference internal clinical page is missing: {LMS_PAGE}")
@@ -151,7 +158,7 @@ def main() -> int:
     else:
         built_toc = BUILT_TOC.read_text(encoding="utf-8")
         expected_header_links = {
-            "Рекомендации": "./index.html#rekomendatsii",
+            "Рекомендации": "./index.html",
             "Клинические исследования": "./clinical-trials/",
             "Мероприятия": "./events/",
             "Новости": "./news/",
@@ -174,8 +181,8 @@ def main() -> int:
 
     print(
         "Static validation passed: portal homepage v2 and canonical header navigation are present, "
-        "alias-aware search v3 resolves expected clinical aliases, bibliography labels are normalized, "
-        "internal clinical UX assets are present, and routes resolve."
+        "runtime recommendations anchor logic is present, alias-aware search v3 resolves expected clinical aliases, "
+        "bibliography labels are normalized, internal clinical UX assets are present, and routes resolve."
     )
     return 0
 
