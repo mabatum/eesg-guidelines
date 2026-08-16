@@ -159,8 +159,13 @@ def recent_pages(limit: int = 4) -> list[dict[str, str]]:
     ]
 
 
-def cards_markdown(title: str, cards: list[tuple[str, str, str]]) -> list[str]:
-    lines = [f"## {title}", ""]
+def cards_markdown(
+    title: str,
+    cards: list[tuple[str, str, str]],
+    anchor: str | None = None,
+) -> list[str]:
+    heading = f"## {title}" + (f" {{#{anchor}}}" if anchor else "")
+    lines = [heading, ""]
     for card_title, description, url in cards:
         lines.extend(
             [
@@ -183,7 +188,7 @@ def portal_markdown(recent: list[dict[str, str]]) -> str:
         "",
     ]
 
-    lines.extend(cards_markdown("Рекомендации", RECOMMENDATION_SECTIONS))
+    lines.extend(cards_markdown("Рекомендации", RECOMMENDATION_SECTIONS, "rekomendatsii"))
     lines.extend(cards_markdown("Разделы портала", PORTAL_SECTIONS))
 
     if recent:
