@@ -82,6 +82,15 @@ def main() -> int:
         for marker in ("Структура раздела", "Литература", '"headings":['):
             if marker not in lms_html:
                 errors.append(f"Reference clinical page lost expected structured content: {marker!r}")
+        for obsolete_label in (
+            "&gt;Ссылка&lt;/a&gt;",
+            "&gt;Полный текст&lt;/a&gt;",
+            "&gt;PubMed&lt;/a&gt;",
+        ):
+            if obsolete_label in lms_html:
+                errors.append(
+                    f"Reference clinical page still exposes a service bibliography label: {obsolete_label}"
+                )
 
     if not SEARCH_INDEX.exists():
         errors.append(f"Missing search index: {SEARCH_INDEX}")
@@ -128,8 +137,9 @@ def main() -> int:
         return 1
 
     print(
-        "Static validation passed: homepage portal blocks are rendered, internal clinical UX v2 assets "
-        "are present on the LMS reference page, header navigation is canonical, and routes resolve."
+        "Static validation passed: homepage portal blocks are rendered, bibliography service labels "
+        "are normalized on the LMS reference page, internal clinical UX assets are present, "
+        "header navigation is canonical, and routes resolve."
     )
     return 0
 
