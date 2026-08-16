@@ -54,6 +54,26 @@
 > статистика конкордации составила 0,74 и 0,71 в выборке разработки и 0,68 и
 > 0,69 в проверочной. Стадия сама по себе такой разрешающей способности не даёт.
 
+## Чувствительность к лекарственной терапии
+
+**Чувствительность к химиотерапии различается между подтипами кратно, поэтому средний показатель по липосаркомам к конкретному больному неприменим.**
+[[6]](https://doi.org/10.1016/j.ejca.2005.07.023)
+
+> Частота объективного ответа на первую линию составила 48 % (95 % ДИ 28–69)
+> при миксоидной липосаркоме против 11 % (95 % ДИ 2–29) при
+> высокодифференцированной и дедифференцированной (p = 0,005). При сравнении
+> миксоидной со всеми остальными подтипами вместе различие сохранялось: 48 %
+> против 18 % (95 % ДИ 8–31).
+
+**Эрибулин увеличивает общую выживаемость именно в популяции липосарком.**
+[[7]](https://doi.org/10.1200/JCO.2016.71.6605)
+
+> В заранее определённом анализе подгруппы медиана общей выживаемости составила
+> 15,6 против 8,4 месяца в пользу эрибулина по сравнению с дакарбазином
+> (отношение рисков 0,51; 95 % ДИ 0,35–0,75; p < 0,001), выживаемость без
+> прогрессирования — 2,9 против 1,7 месяца (отношение рисков 0,52). Увеличение
+> выживаемости отмечено во всех гистологических подтипах липосаркомы.
+
 ## Общие положения
 
 Диагностика, показания к направлению, объём операции, лучевая терапия,
@@ -77,3 +97,5 @@
 3. Evans HL. Atypical lipomatous tumor, its variants, and its combined forms: a study of 61 cases, with a minimum follow-up of 10 years. *Am J Surg Pathol*. 2007;31(1):1-14. [DOI 10.1097/01.pas.0000213406.95440.7a](https://doi.org/10.1097/01.pas.0000213406.95440.7a)
 4. Mussi C, Collini P, Miceli R, и соавт. The prognostic impact of dedifferentiation in retroperitoneal liposarcoma: a series of surgically treated patients at a single institution. *Cancer*. 2008;113(7):1657-1665. [DOI 10.1002/cncr.23774](https://doi.org/10.1002/cncr.23774)
 5. Gronchi A, Miceli R, Shurell E, и соавт. Outcome prediction in primary resected retroperitoneal soft tissue sarcoma: histology-specific overall survival and disease-free survival nomograms built on major sarcoma center data sets. *J Clin Oncol*. 2013;31(13):1649-1655. [DOI 10.1200/JCO.2012.44.3747](https://doi.org/10.1200/JCO.2012.44.3747)
+6. Jones RL, Fisher C, Al-Muderis O, Judson IR. Differential sensitivity of liposarcoma subtypes to chemotherapy. *Eur J Cancer*. 2005;41(18):2853-2860. [DOI 10.1016/j.ejca.2005.07.023](https://doi.org/10.1016/j.ejca.2005.07.023)
+7. Demetri GD, Schöffski P, Grignani G, и соавт. Activity of eribulin in patients with advanced liposarcoma demonstrated in a subgroup analysis from a randomized phase III study of eribulin versus dacarbazine. *J Clin Oncol*. 2017;35(30):3433-3439. [DOI 10.1200/JCO.2016.71.6605](https://doi.org/10.1200/JCO.2016.71.6605)
