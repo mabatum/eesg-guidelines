@@ -1,0 +1,81 @@
+{
+  "soft-tissue-sarcomas/index.html": [
+    "STS",
+    "СМТ",
+    "soft tissue sarcoma",
+    "soft tissue sarcomas"
+  ],
+  "soft-tissue-sarcomas/leiomyosarcoma/index.html": [
+    "LMS",
+    "ЛМС",
+    "leiomyosarcoma"
+  ],
+  "soft-tissue-sarcomas/liposarcomas/index.html": [
+    "LPS",
+    "WDLPS",
+    "DDLPS",
+    "MLPS",
+    "PLPS",
+    "WD-LPS",
+    "DD-LPS",
+    "liposarcoma"
+  ],
+  "soft-tissue-sarcomas/retroperitoneal-sarcoma/index.html": [
+    "RPS",
+    "retroperitoneal sarcoma"
+  ],
+  "soft-tissue-sarcomas/alveolar-soft-part-sarcoma/index.html": [
+    "ASPS",
+    "alveolar soft part sarcoma"
+  ],
+  "soft-tissue-sarcomas/mpnst/index.html": [
+    "MPNST",
+    "malignant peripheral nerve sheath tumor",
+    "malignant peripheral nerve sheath tumour"
+  ],
+  "soft-tissue-sarcomas/undifferentiated-pleomorphic-sarcoma/index.html": [
+    "UPS",
+    "undifferentiated pleomorphic sarcoma"
+  ],
+  "specific-tumor-groups/gist/index.html": [
+    "GIST",
+    "ГИСО",
+    "gastrointestinal stromal tumor",
+    "gastrointestinal stromal tumour"
+  ],
+  "specific-tumor-groups/dfsp/index.html": [
+    "DFSP",
+    "ДФСП",
+    "dermatofibrosarcoma protuberans"
+  ],
+  "specific-tumor-groups/pecoma/index.html": [
+    "PEComa",
+    "ПЭКома",
+    "perivascular epithelioid cell tumor",
+    "perivascular epithelioid cell tumour"
+  ],
+  "specific-tumor-groups/dsrct-adults/index.html": [
+    "DSRCT",
+    "desmoplastic small round cell tumor",
+    "desmoplastic small round cell tumour"
+  ],
+  "specific-tumor-groups/inflammatory-myofibroblastic-tumor/index.html": [
+    "IMT",
+    "inflammatory myofibroblastic tumor",
+    "inflammatory myofibroblastic tumour"
+  ],
+  "bone-sarcomas/giant-cell-tumor-of-bone/index.html": [
+    "GCTB",
+    "giant cell tumor of bone",
+    "giant cell tumour of bone"
+  ],
+  "special-clinical-situations/aya-evidence-framework/index.html": [
+    "AYA",
+    "adolescent and young adult"
+  ],
+  "drugs-and-regimens/gemcitabine-docetaxel/index.html": [
+    "GemTax",
+    "GemDoc",
+    "gemcitabine docetaxel"
+  ]
+}
