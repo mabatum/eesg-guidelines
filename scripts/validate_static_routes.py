@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 STATIC_ROOT = Path("docs-html").resolve()
-SEARCH_INDEX = Path("docs/_assets/script/search-index-v2.js")
+SEARCH_INDEX = Path("docs/_assets/script/search-index-v3.js")
 UPDATES = Path("docs/updates.md")
 TOC = Path("docs/toc.yaml")
 BUILT_TOC = STATIC_ROOT / "toc.js"
@@ -66,8 +66,13 @@ def main() -> int:
                 errors.append(
                     f"Homepage portal block was not rendered into index.html: missing {marker!r}"
                 )
-        if "_assets/script/header-nav-v1.js" not in home_html:
-            errors.append("Built homepage is missing header-nav-v1.js cache-bust navigation guard")
+        for asset in (
+            "_assets/script/header-nav-v1.js",
+            "_assets/script/search-index-v3.js",
+            "_assets/script/title-search-v3.js",
+        ):
+            if asset not in home_html:
+                errors.append(f"Built homepage is missing required UI asset: {asset}")
 
     if not LMS_PAGE.exists():
         errors.append(f"Reference internal clinical page is missing: {LMS_PAGE}")
@@ -101,10 +106,22 @@ def main() -> int:
             errors.append("Could not parse EESG search index payload")
         else:
             records = json.loads(match.group(1))
+            by_url = {str(item.get("url") or ""): item for item in records}
             for item in records:
                 url = str(item.get("url") or "")
                 title = str(item.get("title") or "<untitled>")
                 validate_local_url(errors, f"Search URL for {title}", url)
+
+            expected_aliases = {
+                "soft-tissue-sarcomas/leiomyosarcoma/index.html": "LMS",
+                "specific-tumor-groups/gist/index.html": "GIST",
+                "specific-tumor-groups/dfsp/index.html": "DFSP",
+            }
+            for url, alias in expected_aliases.items():
+                record = by_url.get(url)
+                aliases = {str(value).casefold() for value in (record or {}).get("aliases", [])}
+                if alias.casefold() not in aliases:
+                    errors.append(f"Search index lost expected alias {alias!r} for {url}")
 
     if UPDATES.exists():
         text = UPDATES.read_text(encoding="utf-8")
@@ -137,8 +154,8 @@ def main() -> int:
         return 1
 
     print(
-        "Static validation passed: homepage portal blocks are rendered, bibliography service labels "
-        "are normalized on the LMS reference page, internal clinical UX assets are present, "
+        "Static validation passed: alias-aware search v3 is present, expected clinical aliases resolve, "
+        "bibliography service labels are normalized, internal clinical UX assets are present, "
         "header navigation is canonical, and routes resolve."
     )
     return 0
