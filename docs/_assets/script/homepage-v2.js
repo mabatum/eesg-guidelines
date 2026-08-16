@@ -17,7 +17,7 @@
     let seenMeta = false;
     while (cursor && cursor.tagName !== 'H2') {
       const text = clean(cursor.textContent);
-      if (text.startsWith('Статус:')) {
+      if (cursor.classList?.contains('eesg-page-meta') || text.startsWith('Статус:')) {
         seenMeta = true;
       } else if (seenMeta && cursor.tagName === 'P' && text.startsWith('Клинические рекомендации,')) {
         cursor.classList.add('eesg-home-lead');
