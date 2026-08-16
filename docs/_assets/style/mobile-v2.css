@@ -94,16 +94,26 @@
   }
 
   /* Mobile table of contents.
-     Diplodoc defaults to 16px outer padding, 28px title padding,
-     40px leaf padding and 20px per nested level. These values accumulate
-     too quickly on a phone. Override the actual dc-toc classes directly. */
+     Keep the clinical tree compact; prose line-height and generic tap-target
+     rules must not inflate navigation rows. */
   .dc-toc {
-    padding: 10px 8px 0 !important;
+    padding: 8px 8px 0 !important;
+  }
+
+  .dc-toc li,
+  .dc-toc-item__text-block {
+    line-height: 1.28 !important;
+  }
+
+  .dc-toc button,
+  .dc-toc [role='button'],
+  .dc-toc summary {
+    min-height: 0 !important;
   }
 
   .dc-toc__top {
-    padding: 8px 8px 8px 8px !important;
-    margin-bottom: 2px !important;
+    padding: 6px 8px !important;
+    margin-bottom: 0 !important;
   }
 
   .dc-toc__top_with-extra-header {
@@ -115,7 +125,7 @@
   }
 
   .dc-toc-item__text-block {
-    padding: 9px 10px 9px 30px !important;
+    padding: 5px 10px 5px 30px !important;
   }
 
   .dc-toc-item__icon {
@@ -124,7 +134,7 @@
 
   .dc-toc-item__arrow {
     left: 8px !important;
-    margin-right: 10px !important;
+    margin-right: 8px !important;
   }
 
   .dc-toc-item__arrow .g-button__icon {
@@ -132,7 +142,7 @@
   }
 
   .dc-toc__list-item:not(.dc-toc__list-item_labeled) > .dc-toc__list {
-    padding-left: 10px !important;
+    padding-left: 8px !important;
   }
 
   .dc-toc__content > .dc-toc__list {
@@ -151,14 +161,14 @@
   }
 
   .dc-toc {
-    padding-inline: 6px !important;
+    padding-inline: 5px !important;
   }
 
   .dc-toc-item__text-block {
-    padding-left: 28px !important;
+    padding-left: 27px !important;
   }
 
   .dc-toc__list-item:not(.dc-toc__list-item_labeled) > .dc-toc__list {
-    padding-left: 8px !important;
+    padding-left: 7px !important;
   }
 }
