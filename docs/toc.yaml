@@ -1,4 +1,4 @@
-title: Клинические рекомендации EESG
+title: EESG
 href: index.md
 
 pdf:
@@ -8,7 +8,7 @@ pdf:
 navigation:
   logo:
     url: './'
-    urlTitle: 'Клинические рекомендации EESG'
+    urlTitle: 'EESG'
     light:
       icon: '_assets/brand/eesg-logo.png'
     dark:
@@ -52,9 +52,14 @@ navigation:
         url: 'mailto:md.batov@gmail.com'
 
 items:
+  - name: 'Клинические рекомендации'
+    items:
+      - name: 'Онкология'
+        items:
+          - name: 'Саркомы'
+            include:
+              path: gen_docs/toc.yaml
+              mode: merge
   - name: 'Последние обновления'
     href: updates.md
     hidden: true
-  - include:
-      path: gen_docs/toc.yaml
-      mode: merge
