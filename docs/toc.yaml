@@ -56,6 +56,9 @@ items:
     include:
       path: gen_docs/toc.yaml
       mode: merge
+  - include:
+      path: gen_docs/portal-toc.yaml
+      mode: merge
   - name: 'Последние обновления'
     href: updates.md
     hidden: true
