@@ -4,21 +4,67 @@ Keeps clinical page text structurally unchanged. The legacy recommendation-callo
 converter remains available in export_wiki.py for a possible future editorial phase,
 but is explicitly disabled in the production pipeline for now.
 
-The Wiki descendants endpoint can briefly return a page that has just been moved or
-deleted while the page endpoint already returns 404. Production export retries such
-pages and then skips only the stale descendant instead of failing the whole snapshot.
+Production-specific resilience:
+- retry/skip descendants that disappear during a Wiki move;
+- rewrite known old Wiki slugs to their new locations before public links are built.
 """
 
+import json
 import time
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 import export_wiki
 
 
-_ORIGINAL_GET_PAGE = export_wiki.get_page
+ROUTE_ALIASES_FILE = Path("config/wiki-route-aliases.json")
+_ORIGINAL_RELATIVE_INTERNAL_LINK = export_wiki.relative_internal_link
 
 
 def passthrough(content: str) -> tuple[str, int]:
     return content, 0
+
+
+def load_route_aliases() -> dict[str, str]:
+    if not ROUTE_ALIASES_FILE.exists():
+        return {}
+    raw = json.loads(ROUTE_ALIASES_FILE.read_text(encoding="utf-8"))
+    if not isinstance(raw, dict):
+        raise SystemExit(f"Wiki route aliases must be an object: {ROUTE_ALIASES_FILE}")
+
+    aliases: dict[str, str] = {}
+    for old, new in raw.items():
+        if not isinstance(old, str) or not isinstance(new, str):
+            raise SystemExit(f"Invalid Wiki route alias: {old!r} -> {new!r}")
+        old_slug = unquote(old.strip("/"))
+        new_slug = unquote(new.strip("/"))
+        if not old_slug.startswith(f"{export_wiki.ROOT_SLUG}/"):
+            raise SystemExit(f"Old Wiki route is outside export root: {old}")
+        if not new_slug.startswith(f"{export_wiki.ROOT_SLUG}/"):
+            raise SystemExit(f"New Wiki route is outside export root: {new}")
+        aliases[old_slug] = new_slug
+    return aliases
+
+
+ROUTE_ALIASES = load_route_aliases()
+
+
+def resolve_moved_slug(slug: str) -> str:
+    normalized = unquote(slug.strip("/"))
+    for old_prefix in sorted(ROUTE_ALIASES, key=len, reverse=True):
+        if normalized == old_prefix or normalized.startswith(old_prefix + "/"):
+            suffix = normalized[len(old_prefix):]
+            return ROUTE_ALIASES[old_prefix] + suffix
+    return normalized
+
+
+def moved_route_internal_link(current_slug: str, raw_url: str, suffix: str = "") -> str:
+    path = urlsplit(raw_url).path if raw_url.startswith("http") else raw_url
+    target_slug = unquote(path.strip("/"))
+    resolved = resolve_moved_slug(target_slug)
+    if resolved != target_slug:
+        raw_url = "/" + resolved
+    return _ORIGINAL_RELATIVE_INTERNAL_LINK(current_slug, raw_url, suffix)
 
 
 def tolerant_get_page(session, slug: str) -> dict:
@@ -43,8 +89,6 @@ def tolerant_get_page(session, slug: str) -> dict:
         "WARNING Wiki descendants snapshot contains a page that no longer resolves; "
         f"skipping stale descendant: {slug}"
     )
-    # export_wiki.export() already has a safe skip path for is_draft pages. Reuse it
-    # here so the core exporter remains unchanged and the atomic snapshot still works.
     return {
         "title": slug.rsplit("/", 1)[-1],
         "content": "",
@@ -53,6 +97,9 @@ def tolerant_get_page(session, slug: str) -> dict:
 
 
 if __name__ == "__main__":
+    if ROUTE_ALIASES:
+        print(f"Loaded {len(ROUTE_ALIASES)} Wiki route alias(es) for moved pages.")
     export_wiki.render_recommendation_blocks = passthrough
+    export_wiki.relative_internal_link = moved_route_internal_link
     export_wiki.get_page = tolerant_get_page
     export_wiki.export()
