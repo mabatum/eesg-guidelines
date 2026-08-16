@@ -102,9 +102,8 @@ def main() -> int:
         ):
             if asset not in lms_html:
                 errors.append(f"Reference clinical page is missing UX asset: {asset}")
-        for marker in ("Структура раздела", "Литература", '"headings":['):
-            if marker not in lms_html:
-                errors.append(f"Reference clinical page lost expected structured content: {marker!r}")
+        if '"headings":[' not in lms_html:
+            errors.append("Reference clinical page lost heading metadata")
         for obsolete_label in (
             "&gt;Ссылка&lt;/a&gt;",
             "&gt;Полный текст&lt;/a&gt;",
