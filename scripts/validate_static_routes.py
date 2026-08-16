@@ -12,6 +12,7 @@ UPDATES = Path("docs/updates.md")
 TOC = Path("docs/toc.yaml")
 BUILT_TOC = STATIC_ROOT / "toc.js"
 HOME = STATIC_ROOT / "index.html"
+LMS_PAGE = STATIC_ROOT / "soft-tissue-sarcomas/leiomyosarcoma/index.html"
 
 INDEX_RE = re.compile(r"window\.EESG_SEARCH_INDEX=(\[.*\]);\s*$", re.DOTALL)
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\((?P<url>[^)]+)\)")
@@ -68,6 +69,20 @@ def main() -> int:
         if "_assets/script/header-nav-v1.js" not in home_html:
             errors.append("Built homepage is missing header-nav-v1.js cache-bust navigation guard")
 
+    if not LMS_PAGE.exists():
+        errors.append(f"Reference internal clinical page is missing: {LMS_PAGE}")
+    else:
+        lms_html = LMS_PAGE.read_text(encoding="utf-8")
+        for asset in (
+            "_assets/style/internal-page-v1.css",
+            "_assets/script/internal-page-v1.js",
+        ):
+            if asset not in lms_html:
+                errors.append(f"Reference clinical page is missing UX asset: {asset}")
+        for marker in ("Структура раздела", "Литература", '"headings":['):
+            if marker not in lms_html:
+                errors.append(f"Reference clinical page lost expected structured content: {marker!r}")
+
     if not SEARCH_INDEX.exists():
         errors.append(f"Missing search index: {SEARCH_INDEX}")
     else:
@@ -113,8 +128,8 @@ def main() -> int:
         return 1
 
     print(
-        "Static validation passed: homepage portal blocks are rendered, "
-        "header navigation is canonical, and search/updates/navigation links resolve."
+        "Static validation passed: homepage portal blocks are rendered, internal clinical UX assets "
+        "are present on the LMS reference page, header navigation is canonical, and routes resolve."
     )
     return 0
 
