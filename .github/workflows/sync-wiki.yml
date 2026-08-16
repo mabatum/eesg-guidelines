@@ -49,9 +49,6 @@ jobs:
       - name: Install Diplodoc dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Create portal root pages in Yandex Wiki
-        run: python scripts/bootstrap_portal_sections.py
-
       - name: Export Wiki subtree
         run: python scripts/export_wiki_neutral.py
 
