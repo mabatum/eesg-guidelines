@@ -31,6 +31,16 @@
     }
   }
 
+  function ensureRecommendationsAnchor() {
+    const heading = sectionHeading('Рекомендации');
+    if (!heading) return;
+    heading.id = 'rekomendatsii';
+
+    if (window.location.hash === '#rekomendatsii') {
+      requestAnimationFrame(() => heading.scrollIntoView({block: 'start'}));
+    }
+  }
+
   function enhanceCards(title, modifier = '', allUpdatesLabel = '') {
     const heading = sectionHeading(title);
     if (!heading || heading.dataset.eesgEnhanced === 'true') return;
@@ -83,6 +93,7 @@
 
   function init() {
     findLead();
+    ensureRecommendationsAnchor();
     enhanceCards('Рекомендации', 'eesg-home-grid--recommendations');
     enhanceCards('Разделы портала', 'eesg-home-grid--portal');
     enhanceCards('Недавно обновлено', 'eesg-home-grid--recent', 'Все обновления рекомендаций');
