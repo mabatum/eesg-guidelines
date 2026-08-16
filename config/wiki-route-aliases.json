@@ -1,0 +1,5 @@
+{
+  "eesg/specific-tumor-groups/chordoma": "eesg/bone-sarcomas/chordoma",
+  "eesg/soft-tissue-sarcomas/retroperitoneal-sarcoma": "eesg/specific-tumor-groups/retroperitoneal-sarcoma",
+  "eesg/soft-tissue-sarcomas/head-and-neck-sarcomas": "eesg/specific-tumor-groups/head-and-neck-sarcomas"
+}
