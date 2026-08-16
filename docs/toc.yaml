@@ -56,9 +56,12 @@ items:
     include:
       path: gen_docs/toc.yaml
       mode: merge
-  - include:
-      path: gen_docs/portal-toc.yaml
-      mode: merge
+  - name: 'Клинические исследования'
+    href: clinical-trials/index.md
+  - name: 'Мероприятия'
+    href: events/index.md
+  - name: 'Новости'
+    href: news/index.md
   - name: 'Последние обновления'
     href: updates.md
     hidden: true
