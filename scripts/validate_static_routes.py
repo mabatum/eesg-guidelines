@@ -67,7 +67,7 @@ def main() -> int:
                     f"Homepage portal block was not rendered into index.html: missing {marker!r}"
                 )
         for asset in (
-            "_assets/script/header-nav-v1.js",
+            "_assets/script/header-nav-v2.js",
             "_assets/script/search-index-v3.js",
             "_assets/script/title-search-v3.js",
         ):
@@ -139,10 +139,18 @@ def main() -> int:
         errors.append(f"Built navigation payload is missing: {BUILT_TOC}")
     else:
         built_toc = BUILT_TOC.read_text(encoding="utf-8")
-        if '"text":"Рекомендации","url":"./index.html#osnovnye-razdely"' not in built_toc:
-            errors.append("Built toc.js does not contain the canonical Recommendations URL")
-        if '"text":"О проекте","url":"./about/"' not in built_toc:
-            errors.append("Built toc.js does not contain the canonical About URL")
+        expected_header_links = {
+            "Рекомендации": "./index.html#osnovnye-razdely",
+            "Клинические исследования": "./clinical-trials/",
+            "Мероприятия": "./events/",
+            "Новости": "./news/",
+            "Обновления": "./updates.html",
+            "О проекте": "./about/",
+        }
+        for text, url in expected_header_links.items():
+            marker = f'"text":"{text}","url":"{url}"'
+            if marker not in built_toc:
+                errors.append(f"Built toc.js does not contain canonical header link {text!r} -> {url}")
         if '"url":"./gen_docs/' in built_toc or '"url":"gen_docs/' in built_toc:
             errors.append("Built toc.js still exposes internal gen_docs navigation URLs")
 
@@ -156,7 +164,7 @@ def main() -> int:
     print(
         "Static validation passed: alias-aware search v3 is present, expected clinical aliases resolve, "
         "bibliography service labels are normalized, internal clinical UX assets are present, "
-        "header navigation is canonical, and routes resolve."
+        "portal header navigation is canonical, and routes resolve."
     )
     return 0
 
