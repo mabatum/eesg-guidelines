@@ -17,9 +17,16 @@ META_RE = re.compile(
     r"(?:\n|$)"
 )
 
-HIDDEN_PREFIXES = {"about", "editorial-standard", "materials-map"}
+HIDDEN_PREFIXES = {
+    "about",
+    "editorial-standard",
+    "materials-map",
+    "news",
+    "events",
+    "clinical-trials",
+}
 
-SECTIONS = [
+RECOMMENDATION_SECTIONS = [
     (
         "Саркомы мягких тканей",
         "Диагностика и лечение основных гистологических вариантов сарком мягких тканей.",
@@ -49,6 +56,24 @@ SECTIONS = [
         "Особые клинические ситуации",
         "Беременность, наследственная предрасположенность, пожилой возраст и другие ситуации.",
         "./special-clinical-situations/",
+    ),
+]
+
+PORTAL_SECTIONS = [
+    (
+        "Клинические исследования",
+        "Исследования в области сарком, включая проекты EESG и информацию об открытом наборе.",
+        "./clinical-trials/",
+    ),
+    (
+        "Мероприятия",
+        "Научные и образовательные мероприятия EESG, конференции и профессиональные встречи.",
+        "./events/",
+    ),
+    (
+        "Новости",
+        "Новости группы, обновления проектов, публикаций и профессиональной деятельности EESG.",
+        "./news/",
     ),
 ]
 
@@ -134,19 +159,32 @@ def recent_pages(limit: int = 4) -> list[dict[str, str]]:
     ]
 
 
-def portal_markdown(recent: list[dict[str, str]]) -> str:
-    lines = ["## Основные разделы", ""]
-    for title, text, url in SECTIONS:
+def cards_markdown(title: str, cards: list[tuple[str, str, str]]) -> list[str]:
+    lines = [f"## {title}", ""]
+    for card_title, description, url in cards:
         lines.extend(
             [
-                f"### [{title}]({url})",
+                f"### [{card_title}]({url})",
                 "",
-                text,
+                description,
                 "",
                 f"[Открыть раздел]({url})",
                 "",
             ]
         )
+    return lines
+
+
+def portal_markdown(recent: list[dict[str, str]]) -> str:
+    lines = [
+        "Клинические рекомендации, клинические исследования, новости и мероприятия Восточно-Европейской группы по изучению сарком.",
+        "",
+        "[Рекомендации](#rekomendatsii) · [Клинические исследования](./clinical-trials/) · [Новости](./news/) · [Мероприятия](./events/)",
+        "",
+    ]
+
+    lines.extend(cards_markdown("Рекомендации", RECOMMENDATION_SECTIONS))
+    lines.extend(cards_markdown("Разделы портала", PORTAL_SECTIONS))
 
     if recent:
         lines.extend(["## Недавно обновлено", ""])
@@ -163,7 +201,7 @@ def portal_markdown(recent: list[dict[str, str]]) -> str:
                     "",
                 ]
             )
-        lines.extend(["[Все обновления](./updates.html)", ""])
+        lines.extend(["[Все обновления рекомендаций](./updates.html)", ""])
 
     return "\n".join(lines).rstrip()
 
@@ -184,8 +222,8 @@ def main() -> None:
     ROOT_PAGE.write_text(enhanced.rstrip() + "\n", encoding="utf-8")
 
     print(
-        f"Enhanced homepage with {len(SECTIONS)} primary section links and "
-        f"{len(recent)} recent update links using progressive Markdown."
+        f"Enhanced homepage v2 with {len(RECOMMENDATION_SECTIONS)} recommendation cards, "
+        f"{len(PORTAL_SECTIONS)} portal cards and {len(recent)} recent recommendation updates."
     )
 
 
