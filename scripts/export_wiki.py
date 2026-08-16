@@ -33,8 +33,8 @@ ANY_HEADING_RE = re.compile(r"^(?P<marks>#{1,6})\s+.+$")
 
 TOP_LEVEL_ORDER = {
     f"{ROOT_SLUG}/general-principles": 10,
-    f"{ROOT_SLUG}/soft-tissue-sarcomas": 20,
-    f"{ROOT_SLUG}/bone-sarcomas": 30,
+    f"{ROOT_SLUG}/bone-sarcomas": 20,
+    f"{ROOT_SLUG}/soft-tissue-sarcomas": 30,
     f"{ROOT_SLUG}/specific-tumor-groups": 40,
     f"{ROOT_SLUG}/special-clinical-situations": 50,
     f"{ROOT_SLUG}/drugs-and-regimens": 60,
