@@ -52,6 +52,9 @@ jobs:
       - name: Export Wiki subtree
         run: python scripts/export_wiki_neutral.py
 
+      - name: Normalize literature links
+        run: python scripts/normalize_literature_links.py
+
       - name: Generate recent updates
         run: python scripts/generate_recent_updates.py
 
