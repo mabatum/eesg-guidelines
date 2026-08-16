@@ -42,29 +42,29 @@
 
 ## Недавно обновлено
 
-### [Миксофибросаркома](./soft-tissue-sarcomas/myxofibrosarcoma/)
+### [Хирургическое лечение локализованных сарком мягких тканей](./general-principles/surgery-localized-sts/)
 
-Саркомы мягких тканей · 16.08.2026
+Общие принципы ведения пациентов с саркомами · 16.08.2026
 
-[Открыть](./soft-tissue-sarcomas/myxofibrosarcoma/)
+[Открыть](./general-principles/surgery-localized-sts/)
 
-### [Хондросаркома](./bone-sarcomas/chondrosarcoma-adults/)
+### [Специализированный саркомный центр и многопрофильный консилиум](./general-principles/sarcoma-center-and-mdt/)
 
-Саркомы костей · 15.08.2026
+Общие принципы ведения пациентов с саркомами · 16.08.2026
 
-[Открыть](./bone-sarcomas/chondrosarcoma-adults/)
+[Открыть](./general-principles/sarcoma-center-and-mdt/)
 
-### [Синовиальная саркома](./soft-tissue-sarcomas/synovial-sarcoma/)
+### [Последующие линии системной терапии сарком мягких тканей](./general-principles/systemic-therapy-later-lines-sts/)
 
-Саркомы мягких тканей · 15.08.2026
+Общие принципы ведения пациентов с саркомами · 16.08.2026
 
-[Открыть](./soft-tissue-sarcomas/synovial-sarcoma/)
+[Открыть](./general-principles/systemic-therapy-later-lines-sts/)
 
-### [Светлоклеточная саркома мягких тканей](./soft-tissue-sarcomas/clear-cell-sarcoma/)
+### [Периоперационная химиотерапия локализованных сарком мягких тканей](./general-principles/perioperative-chemotherapy/)
 
-Саркомы мягких тканей · 15.08.2026
+Общие принципы ведения пациентов с саркомами · 16.08.2026
 
-[Открыть](./soft-tissue-sarcomas/clear-cell-sarcoma/)
+[Открыть](./general-principles/perioperative-chemotherapy/)
 
 [Все обновления](./updates.html)
 
