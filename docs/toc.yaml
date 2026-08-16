@@ -53,13 +53,9 @@ navigation:
 
 items:
   - name: 'Клинические рекомендации'
-    items:
-      - name: 'Онкология'
-        items:
-          - name: 'Саркомы'
-            include:
-              path: gen_docs/toc.yaml
-              mode: merge
+    include:
+      path: gen_docs/toc.yaml
+      mode: merge
   - name: 'Последние обновления'
     href: updates.md
     hidden: true
