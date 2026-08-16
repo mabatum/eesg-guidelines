@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 
 GUIDELINES_TOC = Path("docs/gen_docs/toc.yaml")
-PORTAL_TOC = Path("docs/gen_docs/portal-toc.yaml")
 
 PORTAL_NAMES = (
     "Клинические исследования",
@@ -12,7 +11,7 @@ PORTAL_NAMES = (
 )
 
 
-def split_top_level_items(text: str) -> tuple[str, dict[str, list[str]]]:
+def strip_portal_items(text: str) -> str:
     lines = text.splitlines()
     try:
         items_index = lines.index("items:")
@@ -34,18 +33,25 @@ def split_top_level_items(text: str) -> tuple[str, dict[str, list[str]]]:
     if current:
         blocks.append(current)
 
-    portal: dict[str, list[str]] = {}
+    found: set[str] = set()
     kept: list[list[str]] = []
 
     for block in blocks:
         first = block[0] if block else ""
-        matched = next((name for name in PORTAL_NAMES if f'"{name}"' in first or f"'{name}'" in first), None)
+        matched = next(
+            (
+                name
+                for name in PORTAL_NAMES
+                if f'"{name}"' in first or f"'{name}'" in first
+            ),
+            None,
+        )
         if matched:
-            portal[matched] = block
+            found.add(matched)
         else:
             kept.append(block)
 
-    missing = [name for name in PORTAL_NAMES if name not in portal]
+    missing = [name for name in PORTAL_NAMES if name not in found]
     if missing:
         raise SystemExit(
             "Portal navigation pages were not found in generated TOC: " + ", ".join(missing)
@@ -54,26 +60,14 @@ def split_top_level_items(text: str) -> tuple[str, dict[str, list[str]]]:
     output_lines = prefix[:]
     for block in kept:
         output_lines.extend(block)
-    return "\n".join(output_lines).rstrip() + "\n", portal
-
-
-def write_portal_toc(portal: dict[str, list[str]]) -> None:
-    lines = [
-        'title: "Разделы портала"',
-        "items:",
-    ]
-    for name in PORTAL_NAMES:
-        lines.extend(portal[name])
-    PORTAL_TOC.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
+    return "\n".join(output_lines).rstrip() + "\n"
 
 
 def main() -> None:
     text = GUIDELINES_TOC.read_text(encoding="utf-8")
-    guidelines_text, portal = split_top_level_items(text)
-    GUIDELINES_TOC.write_text(guidelines_text, encoding="utf-8")
-    write_portal_toc(portal)
+    GUIDELINES_TOC.write_text(strip_portal_items(text), encoding="utf-8")
     print(
-        "Separated portal navigation from clinical guidelines: "
+        "Removed portal pages from clinical guidelines navigation: "
         + ", ".join(PORTAL_NAMES)
     )
 
