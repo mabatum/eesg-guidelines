@@ -333,12 +333,12 @@ def write_toc(records: list[dict]) -> None:
             siblings.sort(
                 key=lambda slug: (
                     TOP_LEVEL_ORDER.get(slug, 500),
-                    by_slug[slug]["source_order"],
+                    -by_slug[slug]["source_order"],
                     slug,
                 )
             )
         else:
-            siblings.sort(key=lambda slug: (by_slug[slug]["source_order"], slug))
+            siblings.sort(key=lambda slug: (-by_slug[slug]["source_order"], slug))
 
     lines = [
         f"title: {yaml_string(root['title'])}",
