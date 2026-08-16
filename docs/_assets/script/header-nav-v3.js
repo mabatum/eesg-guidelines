@@ -25,7 +25,7 @@
 
   const SITE_ROOT = detectSiteRoot();
   const TARGETS = new Map([
-    ['Рекомендации', new URL('index.html#rekomendatsii', SITE_ROOT).href],
+    ['Рекомендации', new URL('index.html', SITE_ROOT).href],
     ['Клинические исследования', new URL('clinical-trials/', SITE_ROOT).href],
     ['Мероприятия', new URL('events/', SITE_ROOT).href],
     ['Новости', new URL('news/', SITE_ROOT).href],
