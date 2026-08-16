@@ -21,7 +21,7 @@ resources:
   script:
     - _assets/script/search-index-v3.js
     - _assets/script/title-search-v3.js
-    - _assets/script/header-nav-v1.js
+    - _assets/script/header-nav-v2.js
     - _assets/script/page-meta.js
     - _assets/script/internal-page-v2.js
     - _assets/script/updates-page.js
