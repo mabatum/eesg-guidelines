@@ -74,8 +74,8 @@ def main() -> int:
     else:
         lms_html = LMS_PAGE.read_text(encoding="utf-8")
         for asset in (
-            "_assets/style/internal-page-v1.css",
-            "_assets/script/internal-page-v1.js",
+            "_assets/style/internal-page-v2.css",
+            "_assets/script/internal-page-v2.js",
         ):
             if asset not in lms_html:
                 errors.append(f"Reference clinical page is missing UX asset: {asset}")
@@ -128,7 +128,7 @@ def main() -> int:
         return 1
 
     print(
-        "Static validation passed: homepage portal blocks are rendered, internal clinical UX assets "
+        "Static validation passed: homepage portal blocks are rendered, internal clinical UX v2 assets "
         "are present on the LMS reference page, header navigation is canonical, and routes resolve."
     )
     return 0
