@@ -17,7 +17,7 @@ navigation:
     leftItems:
       - type: link
         text: 'Рекомендации'
-        url: './index.html#osnovnye-razdely'
+        url: './index.html#rekomendatsii'
       - type: link
         text: 'Клинические исследования'
         url: './clinical-trials/'
