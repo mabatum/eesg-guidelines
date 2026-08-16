@@ -61,13 +61,24 @@ def main() -> int:
         errors.append(f"Built homepage does not exist: {HOME}")
     else:
         home_html = HOME.read_text(encoding="utf-8")
-        for marker in ("Основные разделы", "Недавно обновлено"):
+        for marker in (
+            "Рекомендации",
+            "Разделы портала",
+            "Клинические исследования",
+            "Мероприятия",
+            "Новости",
+            "Недавно обновлено",
+        ):
             if marker not in home_html:
                 errors.append(
-                    f"Homepage portal block was not rendered into index.html: missing {marker!r}"
+                    f"Homepage v2 portal block was not rendered into index.html: missing {marker!r}"
                 )
+        if 'id="rekomendatsii"' not in home_html:
+            errors.append("Homepage v2 is missing canonical #rekomendatsii anchor")
         for asset in (
-            "_assets/script/header-nav-v2.js",
+            "_assets/style/homepage-v2.css",
+            "_assets/script/homepage-v2.js",
+            "_assets/script/header-nav-v3.js",
             "_assets/script/search-index-v3.js",
             "_assets/script/title-search-v3.js",
         ):
@@ -140,7 +151,7 @@ def main() -> int:
     else:
         built_toc = BUILT_TOC.read_text(encoding="utf-8")
         expected_header_links = {
-            "Рекомендации": "./index.html#osnovnye-razdely",
+            "Рекомендации": "./index.html#rekomendatsii",
             "Клинические исследования": "./clinical-trials/",
             "Мероприятия": "./events/",
             "Новости": "./news/",
@@ -162,9 +173,9 @@ def main() -> int:
         return 1
 
     print(
-        "Static validation passed: alias-aware search v3 is present, expected clinical aliases resolve, "
-        "bibliography service labels are normalized, internal clinical UX assets are present, "
-        "portal header navigation is canonical, and routes resolve."
+        "Static validation passed: portal homepage v2 and canonical header navigation are present, "
+        "alias-aware search v3 resolves expected clinical aliases, bibliography labels are normalized, "
+        "internal clinical UX assets are present, and routes resolve."
     )
     return 0
 
