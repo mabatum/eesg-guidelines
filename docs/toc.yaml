@@ -19,6 +19,15 @@ navigation:
         text: 'Рекомендации'
         url: './index.html#osnovnye-razdely'
       - type: link
+        text: 'Клинические исследования'
+        url: './clinical-trials/'
+      - type: link
+        text: 'Мероприятия'
+        url: './events/'
+      - type: link
+        text: 'Новости'
+        url: './news/'
+      - type: link
         text: 'Обновления'
         url: './updates.html'
       - type: link
