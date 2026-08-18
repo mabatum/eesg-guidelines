@@ -18,12 +18,14 @@ resources:
     - _assets/style/algorithm.css
     - _assets/style/homepage-v2.css
     - _assets/style/internal-page-v2.css
+    - _assets/style/section-landing-v1.css
   script:
     - _assets/script/search-index-v3.js
     - _assets/script/title-search-v3.js
     - _assets/script/header-nav-v3.js
     - _assets/script/page-meta.js
     - _assets/script/internal-page-v2.js
+    - _assets/script/section-landing-v1.js
     - _assets/script/updates-page.js
     - _assets/script/page-nav.js
     - _assets/script/algorithm-ui.js
