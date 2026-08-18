@@ -91,7 +91,7 @@
       list.appendChild(li);
     };
 
-    addLink('Рекомендации', new URL('index.html#osnovnye-razdely', SITE_ROOT).href);
+    addLink('Рекомендации', new URL('index.html', SITE_ROOT).href);
 
     for (const title of record.breadcrumbs || []) {
       const ancestor = findAncestorRecord(title, record);

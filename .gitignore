@@ -1,0 +1,12 @@
+# Сборка сайта и PDF
+/docs-html/
+/docs-pdf/
+/build/
+
+# Зависимости
+/node_modules/
+package-lock.json
+
+# Питон
+__pycache__/
+*.pyc
