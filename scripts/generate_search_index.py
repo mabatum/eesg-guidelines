@@ -7,6 +7,16 @@ from pathlib import Path
 CONTENT_ROOT = Path("docs/gen_docs")
 ALIASES_FILE = Path("config/search-aliases.json")
 OUTPUT = Path("docs/_assets/script/search-index-v3.js")
+
+PUBLIC_PREFIXES = {
+    "general-principles",
+    "bone-sarcomas",
+    "clinical-trials",
+    "events",
+    "news",
+    "about",
+}
+
 H1_RE = re.compile(r"^#\s+(.+?)\s*$")
 PAREN_RE = re.compile(r"\(([^()]+)\)")
 ACRONYM_RE = re.compile(r"^[A-Za-zА-Яа-яЁё0-9+./-]{2,12}$")
@@ -23,9 +33,15 @@ def extract_title(path: Path) -> str | None:
 
 
 def page_url(path: Path) -> str:
-    """Return the URL produced by Diplodoc for a page from the included gen_docs TOC."""
     relative = path.relative_to(CONTENT_ROOT)
     return relative.as_posix().removesuffix(".md") + ".html"
+
+
+def is_public(path: Path) -> bool:
+    relative = path.relative_to(CONTENT_ROOT)
+    if relative.as_posix() == "index.md":
+        return True
+    return bool(relative.parts) and relative.parts[0] in PUBLIC_PREFIXES
 
 
 def parent_titles(path: Path, titles_by_dir: dict[Path, str]) -> list[str]:
@@ -59,7 +75,6 @@ def load_aliases() -> dict[str, list[str]]:
 
 
 def automatic_aliases(title: str) -> list[str]:
-    """Extract explicit short acronyms from title parentheses, e.g. (ГИСО), (ДФСП)."""
     aliases: list[str] = []
     for match in PAREN_RE.finditer(title):
         candidate = match.group(1).strip()
@@ -81,13 +96,14 @@ def dedupe(values: list[str]) -> list[str]:
 
 
 def main() -> None:
-    pages = sorted(CONTENT_ROOT.rglob("index.md"))
+    all_pages = sorted(CONTENT_ROOT.rglob("index.md"))
+    pages = [path for path in all_pages if is_public(path)]
     if not pages:
-        raise SystemExit(f"No generated pages found under {CONTENT_ROOT}")
+        raise SystemExit(f"No public generated pages found under {CONTENT_ROOT}")
 
     manual_aliases = load_aliases()
     titles_by_dir: dict[Path, str] = {}
-    for path in pages:
+    for path in all_pages:
         title = extract_title(path)
         if title:
             titles_by_dir[path.parent] = title
@@ -110,11 +126,11 @@ def main() -> None:
             record["aliases"] = aliases
         records.append(record)
 
-    unknown_alias_targets = sorted(set(manual_aliases) - known_urls)
-    if unknown_alias_targets:
+    hidden_alias_targets = sorted(set(manual_aliases) - known_urls)
+    if hidden_alias_targets:
         print(
-            "WARNING search alias config points to missing/moved public page(s); "
-            "ignoring stale alias targets: " + ", ".join(unknown_alias_targets)
+            "INFO search aliases for non-public sections were excluded: "
+            + ", ".join(hidden_alias_targets)
         )
 
     records.sort(key=lambda item: (item["title"].casefold(), item["url"]))
@@ -123,12 +139,12 @@ def main() -> None:
     payload = json.dumps(records, ensure_ascii=False, separators=(",", ":"))
     alias_count = sum(len(item.get("aliases", [])) for item in records)
     OUTPUT.write_text(
-        "/* Generated from page titles, breadcrumbs and curated aliases only. No body text is indexed. */\n"
+        "/* Generated from public page titles, breadcrumbs and curated aliases only. No body text is indexed. */\n"
         f"window.EESG_SEARCH_INDEX={payload};\n",
         encoding="utf-8",
     )
     print(
-        f"Generated title/alias search index with {len(records)} entries and "
+        f"Generated public title/alias search index with {len(records)} entries and "
         f"{alias_count} aliases: {OUTPUT}"
     )
 
