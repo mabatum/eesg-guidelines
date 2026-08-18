@@ -70,8 +70,6 @@
 
 **Оптимальный метод поиска костных метастазов и оптимальная схема визуализации при наблюдении окончательно не установлены.** — согласованное мнение рабочей группы
 
-> Совместные европейские рекомендации по визуализации 2026 года подтверждают недостаточность сравнительных данных для выбора единственного предпочтительного метода стадирования всего скелета и для определения оптимальной частоты последующего наблюдения.
-
 **При патологическом переломе внутренняя фиксация до морфологической верификации и определения хирургической тактики не выполняется; сам перелом не является абсолютным показанием к ампутации.** [[6]](https://doi.org/10.1200/JCO.19.00827)
 
 > В анализе COSS патологический перелом был независимым неблагоприятным прогностическим фактором, однако органосохраняющее лечение оставалось возможным у отобранных пациентов.
@@ -231,6 +229,6 @@
 15. Palmerini E, Setola E, Grignani G, et al. High dose ifosfamide in relapsed and unresectable high-grade osteosarcoma patients: a retrospective series. *Cells*. 2020;9(11):2389. [DOI 10.3390/cells9112389](https://doi.org/10.3390/cells9112389)
 16. Davis LE, Bolejack V, Ryan CW, et al. Randomized double-blind phase II study of regorafenib in patients with metastatic osteosarcoma. *J Clin Oncol*. 2019;37(16):1424-1431. [DOI 10.1200/JCO.18.02374](https://doi.org/10.1200/JCO.18.02374)
 17. Italiano A, Mir O, Mathoulin-Pelissier S, et al. Cabozantinib in patients with advanced Ewing sarcoma or osteosarcoma (CABONE): a multicentre, single-arm, phase 2 trial. *Lancet Oncol*. 2020;21(3):446-455. [DOI 10.1016/S1470-2045(19)30825-3](https://doi.org/10.1016/S1470-2045(19)30825-3)
-18. Gaspar N, Venkatramani R, Hecker-Nolting S, et al. Lenvatinib with etoposide plus ifosfamide in patients with refractory or relapsed osteosarcoma: a phase 1/2 study. *ESMO Open*. 2021;6(5):100250. [DOI 10.1016/j.esmoop.2021.100250](https://doi.org/10.1016/j.esmoop.2021.100250)
-19. Gaspar N, et al. Lenvatinib plus ifosfamide and etoposide versus ifosfamide and etoposide in relapsed or refractory osteosarcoma (OLIE): a randomized clinical trial. *JAMA Oncol*. 2024. [DOI 10.1001/jamaoncol.2024.4381](https://doi.org/10.1001/jamaoncol.2024.4381)
+18. Gaspar N, Campbell-Hewson Q, Gallego Melcon S, et al. Phase I/II study of single-agent lenvatinib in children and adolescents with refractory or relapsed solid malignancies and young adults with osteosarcoma (ITCC-050). *ESMO Open*. 2021;6(5):100250. [DOI 10.1016/j.esmoop.2021.100250](https://doi.org/10.1016/j.esmoop.2021.100250)
+19. Gaspar N, Hung GY, Strauss SJ, et al. Lenvatinib plus ifosfamide and etoposide in children and young adults with relapsed osteosarcoma: a phase 2 randomized clinical trial. *JAMA Oncol*. 2024;10(12):1645-1653. [DOI 10.1001/jamaoncol.2024.4381](https://doi.org/10.1001/jamaoncol.2024.4381)
 20. Xie L, Xu J, Sun X, et al. Apatinib plus ifosfamide and etoposide versus ifosfamide and etoposide in patients with advanced osteosarcomas (OAIE/PKUPH-sarcoma 11): a randomized phase II study. *Nat Commun*. 2025;16:10473. [DOI 10.1038/s41467-025-65467-8](https://doi.org/10.1038/s41467-025-65467-8)
