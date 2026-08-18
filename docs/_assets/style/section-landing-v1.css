@@ -1,0 +1,151 @@
+/* EESG Guidelines — section landing page UX v1 */
+
+body.eesg-section-landing-page .dc-doc-layout__right {
+  display: none !important;
+}
+
+body.eesg-section-landing-page .dc-doc-layout__center {
+  max-width: none !important;
+}
+
+.eesg-section-landing {
+  max-width: 980px;
+}
+
+.eesg-section-landing .eesg-page-meta {
+  margin-bottom: 18px;
+  color: var(--g-color-text-secondary, #66757d);
+  font-size: .84rem;
+}
+
+.eesg-section-landing > p:first-of-type {
+  max-width: 760px;
+  margin-bottom: 18px;
+  color: var(--g-color-text-secondary, #52636b);
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.eesg-key-principle {
+  max-width: 860px;
+  margin: 20px 0 34px;
+  padding: 18px 20px;
+  border: 1px solid color-mix(in srgb, var(--g-color-text-link, #245f73) 24%, transparent);
+  border-left: 4px solid var(--g-color-text-link, #245f73);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--g-color-text-link, #245f73) 5%, var(--g-color-base-background, #fff));
+}
+
+.eesg-key-principle__label {
+  margin-bottom: 8px;
+  color: var(--g-color-text-link, #245f73);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.eesg-key-principle > p {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.5;
+}
+
+.eesg-key-principle__evidence {
+  margin: 14px 0 0 !important;
+  padding: 12px 0 0 14px !important;
+  border-top: 1px solid var(--g-color-line-generic, #dce4e7);
+  border-left-width: 2px !important;
+  color: var(--g-color-text-secondary, #5f6d74);
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.eesg-section-landing h2 {
+  margin-top: 2rem !important;
+  margin-bottom: 14px;
+}
+
+.eesg-section-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 28px;
+}
+
+.eesg-section-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto 1fr;
+  gap: 7px 14px;
+  min-height: 118px;
+  padding: 17px 18px;
+  border: 1px solid var(--g-color-line-generic, #dce4e7);
+  border-radius: 12px;
+  background: var(--g-color-base-background, #fff);
+  color: var(--g-color-text-primary, #203039) !important;
+  text-decoration: none !important;
+  transition: border-color .15s ease, background-color .15s ease, transform .15s ease;
+}
+
+.eesg-section-card:hover,
+.eesg-section-card:focus-visible {
+  border-color: color-mix(in srgb, var(--g-color-text-link, #245f73) 44%, transparent);
+  background: color-mix(in srgb, var(--g-color-text-link, #245f73) 5%, var(--g-color-base-background, #fff));
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.eesg-section-card__title {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.eesg-section-card__description {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
+  color: var(--g-color-text-secondary, #66757d);
+  font-size: .88rem;
+  line-height: 1.45;
+}
+
+.eesg-section-card__arrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  color: var(--g-color-text-secondary, #66757d);
+  font-size: 1.05rem;
+}
+
+@media (max-width: 900px) {
+  .eesg-section-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .eesg-section-landing {
+    max-width: none;
+  }
+
+  .eesg-key-principle {
+    margin: 16px 0 28px;
+    padding: 15px 16px;
+  }
+
+  .eesg-section-card {
+    min-height: 104px;
+    padding: 15px 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eesg-section-card {
+    transition: none;
+  }
+}
