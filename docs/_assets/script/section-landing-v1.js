@@ -61,6 +61,13 @@
     }
   }
 
+  function patchBreadcrumb() {
+    const link = [...document.querySelectorAll('.eesg-breadcrumbs a')].find(
+      (node) => clean(node.textContent) === 'Рекомендации',
+    );
+    if (link) link.href = new URL('index.html', SITE_ROOT).href;
+  }
+
   function makeKeyPrinciple(content) {
     const paragraphs = [...content.querySelectorAll('p')];
     const principle = paragraphs.find((node) =>
@@ -89,7 +96,8 @@
 
   function buildCards() {
     const heading = findHeading('Страницы раздела');
-    if (!heading || heading.dataset.eesgLandingEnhanced === 'true') return false;
+    if (!heading) return false;
+    if (heading.dataset.eesgLandingEnhanced === 'true') return true;
 
     let table = heading.nextElementSibling;
     while (table && table.tagName !== 'H2' && table.tagName !== 'TABLE') table = table.nextElementSibling;
@@ -137,7 +145,6 @@
   }
 
   function enhanceBoneLanding() {
-    if (!BONE_PATHS.has(currentPath())) return true;
     const h1 = document.querySelector('.dc-doc-page__content h1, main h1, article h1, h1');
     if (!h1) return false;
     const content = h1.closest('.dc-doc-page__content') || h1.parentElement;
@@ -145,17 +152,38 @@
 
     document.body.classList.add('eesg-section-landing-page');
     content.classList.add('eesg-section-landing');
+    patchBreadcrumb();
+
+    if (content.dataset.eesgSectionLandingEnhanced === 'true') return true;
+
     shortenIntro(content);
     makeKeyPrinciple(content);
-    buildCards();
+    const cardsReady = buildCards();
+    if (!cardsReady) return false;
+
     removeSection('Общие положения раздела');
     removeSection('Список литературы');
+    content.dataset.eesgSectionLandingEnhanced = 'true';
     return true;
   }
 
+  let scheduled = false;
   function run() {
-    if (document.documentElement.dataset.eesgSectionLandingReady === '1') return;
-    if (enhanceBoneLanding()) document.documentElement.dataset.eesgSectionLandingReady = '1';
+    const isBoneLanding = BONE_PATHS.has(currentPath());
+    if (!isBoneLanding) {
+      document.body?.classList.remove('eesg-section-landing-page');
+      return;
+    }
+    enhanceBoneLanding();
+  }
+
+  function scheduleRun() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      run();
+    });
   }
 
   if (document.readyState === 'loading') {
@@ -164,12 +192,7 @@
     run();
   }
 
-  const observer = new MutationObserver(() => {
-    if (document.documentElement.dataset.eesgSectionLandingReady === '1') {
-      observer.disconnect();
-      return;
-    }
-    run();
-  });
+  const observer = new MutationObserver(scheduleRun);
   observer.observe(document.documentElement, {childList: true, subtree: true});
+  window.addEventListener('popstate', scheduleRun);
 })();
