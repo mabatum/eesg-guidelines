@@ -9,6 +9,11 @@ DOCS_ROOT = Path("docs")
 GEN_ROOT = DOCS_ROOT / "gen_docs"
 OUTPUT = DOCS_ROOT / "updates.md"
 
+PUBLIC_RECOMMENDATION_PREFIXES = {
+    "general-principles",
+    "bone-sarcomas",
+}
+
 H1_RE = re.compile(r"^#\s+(.+?)\s*$", re.MULTILINE)
 META_RE = re.compile(
     r"\*\*Статус:\*\*\s*(?P<status>.+?)"
@@ -37,10 +42,7 @@ MONTHS = {
 
 
 def page_url(page: Path) -> str:
-    """Return the public URL after Diplodoc merges gen_docs into the site root."""
     relative = page.relative_to(GEN_ROOT).as_posix()
-    if relative == "index.md":
-        return "./"
     if relative.endswith("/index.md"):
         return "./" + relative[: -len("index.md")]
     return "./" + relative.removesuffix(".md") + ".html"
@@ -89,11 +91,19 @@ def section_titles(page: Path, titles_by_dir: dict[Path, str]) -> list[str]:
     return result
 
 
+def is_public_recommendation(page: Path) -> bool:
+    relative = page.relative_to(GEN_ROOT)
+    return bool(relative.parts) and relative.parts[0] in PUBLIC_RECOMMENDATION_PREFIXES
+
+
 def main() -> None:
     records: list[dict[str, object]] = []
     titles_by_dir = build_titles_by_dir()
 
     for page in sorted(GEN_ROOT.rglob("*.md")):
+        if not is_public_recommendation(page):
+            continue
+
         text = page.read_text(encoding="utf-8")
         h1 = H1_RE.search(text)
         meta = META_RE.search(text)
@@ -116,10 +126,7 @@ def main() -> None:
         )
 
     records.sort(
-        key=lambda item: (
-            item["updated_dt"],
-            str(item["title"]).casefold(),
-        ),
+        key=lambda item: (item["updated_dt"], str(item["title"]).casefold()),
         reverse=True,
     )
 
@@ -131,14 +138,16 @@ def main() -> None:
     lines = [
         "# Последние обновления",
         "",
-        "Здесь автоматически отображаются недавно изменённые разделы портала EESG. Дата берётся из Яндекс Вики; версия и редакционный статус отображаются только из метаданных страницы.",
+        "Здесь автоматически отображаются изменения в опубликованных разделах клинических рекомендаций EESG.",
         "",
         f"**Показано:** {len(visible)} последних изменений · **С версией:** {versioned} · **С описанием изменений:** {changelogged}",
         "",
     ]
 
     if len(status_counts) > 1:
-        status_summary = " · ".join(f"{status}: {count}" for status, count in status_counts.most_common())
+        status_summary = " · ".join(
+            f"{status}: {count}" for status, count in status_counts.most_common()
+        )
         lines.extend([f"**Статусы:** {status_summary}", ""])
 
     grouped: dict[datetime, list[dict[str, object]]] = defaultdict(list)
@@ -146,14 +155,11 @@ def main() -> None:
         grouped[item["updated_dt"]].append(item)
 
     for date_value in sorted(grouped, reverse=True):
-        lines.append(f"## {human_date(date_value)}")
-        lines.append("")
-
+        lines.extend([f"## {human_date(date_value)}", ""])
         for item in grouped[date_value]:
             title = str(item["title"])
             url = str(item["url"])
-            lines.append(f"### [{title}]({url})")
-            lines.append("")
+            lines.extend([f"### [{title}]({url})", ""])
 
             details: list[str] = []
             if item["section"]:
@@ -166,12 +172,14 @@ def main() -> None:
                 lines.append(" · ".join(details))
 
             if item["has_changelog"]:
-                lines.append("")
-                lines.append(f"[Что изменилось]({url}#что-изменилось)")
+                lines.extend(["", f"[Что изменилось]({url}#что-изменилось)"])
             lines.append("")
 
     OUTPUT.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
-    print(f"Generated {OUTPUT} from {len(records)} page metadata records; showing {len(visible)}.")
+    print(
+        f"Generated {OUTPUT} from {len(records)} public recommendation metadata records; "
+        f"showing {len(visible)}."
+    )
 
 
 if __name__ == "__main__":
