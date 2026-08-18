@@ -8,12 +8,23 @@ from urllib.parse import urlsplit
 
 STATIC_ROOT = Path("docs-html").resolve()
 SEARCH_INDEX = Path("docs/_assets/script/search-index-v3.js")
-HOMEPAGE_SCRIPT = Path("docs/_assets/script/homepage-v2.js")
 UPDATES = Path("docs/updates.md")
 TOC = Path("docs/toc.yaml")
+GUIDELINES_TOC = Path("docs/gen_docs/toc.yaml")
 BUILT_TOC = STATIC_ROOT / "toc.js"
 HOME = STATIC_ROOT / "index.html"
 LMS_PAGE = STATIC_ROOT / "soft-tissue-sarcomas/leiomyosarcoma/index.html"
+
+PUBLIC_GUIDELINE_NAMES = (
+    "Общие принципы ведения пациентов с саркомами",
+    "Саркомы костей",
+)
+HIDDEN_GUIDELINE_NAMES = (
+    "Саркомы мягких тканей",
+    "Отдельные нозологические группы",
+    "Отдельные клинические ситуации",
+    "Препараты и режимы системной терапии",
+)
 
 INDEX_RE = re.compile(r"window\.EESG_SEARCH_INDEX=(\[.*\]);\s*$", re.DOTALL)
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\((?P<url>[^)]+)\)")
@@ -52,6 +63,35 @@ def validate_local_url(errors: list[str], label: str, url: str) -> None:
         errors.append(f"{label} target missing: {url} ({target})")
 
 
+def top_level_blocks(text: str) -> list[list[str]]:
+    lines = text.splitlines()
+    try:
+        items_index = lines.index("items:")
+    except ValueError:
+        return []
+    body = lines[items_index + 1 :]
+    blocks: list[list[str]] = []
+    current: list[str] = []
+    for line in body:
+        if line.startswith("  - name: "):
+            if current:
+                blocks.append(current)
+            current = [line]
+        else:
+            current.append(line)
+    if current:
+        blocks.append(current)
+    return blocks
+
+
+def block_for_name(blocks: list[list[str]], name: str) -> list[str] | None:
+    for block in blocks:
+        first = block[0] if block else ""
+        if f'"{name}"' in first or f"'{name}'" in first:
+            return block
+    return None
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -62,21 +102,19 @@ def main() -> int:
         errors.append(f"Built homepage does not exist: {HOME}")
     else:
         home_html = HOME.read_text(encoding="utf-8")
-        for marker in (
-            "Рекомендации",
-            "Разделы портала",
-            "Клинические исследования",
-            "Мероприятия",
-            "Новости",
-            "Недавно обновлено",
-        ):
+        for marker in PUBLIC_GUIDELINE_NAMES:
             if marker not in home_html:
+                errors.append(f"Simplified homepage is missing public section {marker!r}")
+        for obsolete_marker in (
+            "Разделы портала",
+            "Недавно обновлено",
+            "Перейти к рекомендациям",
+        ):
+            if obsolete_marker in home_html:
                 errors.append(
-                    f"Homepage v2 portal block was not rendered into index.html: missing {marker!r}"
+                    f"Simplified homepage still contains duplicate block {obsolete_marker!r}"
                 )
         for asset in (
-            "_assets/style/homepage-v2.css",
-            "_assets/script/homepage-v2.js",
             "_assets/script/header-nav-v3.js",
             "_assets/script/search-index-v3.js",
             "_assets/script/title-search-v3.js",
@@ -84,16 +122,9 @@ def main() -> int:
             if asset not in home_html:
                 errors.append(f"Built homepage is missing required UI asset: {asset}")
 
-    if not HOMEPAGE_SCRIPT.exists():
-        errors.append(f"Homepage v2 enhancer is missing: {HOMEPAGE_SCRIPT}")
-    else:
-        homepage_script = HOMEPAGE_SCRIPT.read_text(encoding="utf-8")
-        for marker in ("heading.id = 'rekomendatsii'", "ensureRecommendationsAnchor"):
-            if marker not in homepage_script:
-                errors.append(f"Homepage v2 enhancer lost runtime recommendations anchor logic: {marker}")
-
+    # Hidden branches must remain buildable for direct/internal references.
     if not LMS_PAGE.exists():
-        errors.append(f"Reference internal clinical page is missing: {LMS_PAGE}")
+        errors.append(f"Hidden reference clinical page is no longer buildable: {LMS_PAGE}")
     else:
         lms_html = LMS_PAGE.read_text(encoding="utf-8")
         for asset in (
@@ -129,21 +160,37 @@ def main() -> int:
                 title = str(item.get("title") or "<untitled>")
                 validate_local_url(errors, f"Search URL for {title}", url)
 
-            expected_aliases = {
-                "soft-tissue-sarcomas/leiomyosarcoma/index.html": "LMS",
-                "specific-tumor-groups/gist/index.html": "GIST",
-                "specific-tumor-groups/dfsp/index.html": "DFSP",
+            allowed_alias_url = "bone-sarcomas/giant-cell-tumor-of-bone/index.html"
+            allowed_aliases = {
+                str(value).casefold()
+                for value in by_url.get(allowed_alias_url, {}).get("aliases", [])
             }
-            for url, alias in expected_aliases.items():
-                record = by_url.get(url)
-                aliases = {str(value).casefold() for value in (record or {}).get("aliases", [])}
-                if alias.casefold() not in aliases:
-                    errors.append(f"Search index lost expected alias {alias!r} for {url}")
+            if "gctb" not in allowed_aliases:
+                errors.append("Public bone-sarcoma search alias GCTB is missing")
+
+            for hidden_url in (
+                "soft-tissue-sarcomas/leiomyosarcoma/index.html",
+                "specific-tumor-groups/gist/index.html",
+                "drugs-and-regimens/gemcitabine-docetaxel/index.html",
+            ):
+                if hidden_url in by_url:
+                    errors.append(f"Hidden recommendation section leaked into search: {hidden_url}")
 
     if UPDATES.exists():
         text = UPDATES.read_text(encoding="utf-8")
         for match in MD_LINK_RE.finditer(text):
-            validate_local_url(errors, "Updates URL", match.group("url").strip())
+            url = match.group("url").strip()
+            validate_local_url(errors, "Updates URL", url)
+            if any(
+                url.lstrip("./").startswith(prefix + "/")
+                for prefix in (
+                    "soft-tissue-sarcomas",
+                    "specific-tumor-groups",
+                    "special-clinical-situations",
+                    "drugs-and-regimens",
+                )
+            ):
+                errors.append(f"Hidden recommendation section leaked into updates: {url}")
 
     if not TOC.exists():
         errors.append(f"Missing site TOC/navigation config: {TOC}")
@@ -151,6 +198,23 @@ def main() -> int:
         text = TOC.read_text(encoding="utf-8")
         for match in TOC_URL_RE.finditer(text):
             validate_local_url(errors, "Navigation URL", match.group("url").strip())
+
+    if not GUIDELINES_TOC.exists():
+        errors.append(f"Missing generated recommendations TOC: {GUIDELINES_TOC}")
+    else:
+        blocks = top_level_blocks(GUIDELINES_TOC.read_text(encoding="utf-8"))
+        for name in PUBLIC_GUIDELINE_NAMES:
+            block = block_for_name(blocks, name)
+            if block is None:
+                errors.append(f"Public guideline section missing from TOC: {name}")
+            elif any(line.strip() == "hidden: true" for line in block):
+                errors.append(f"Public guideline section is incorrectly hidden: {name}")
+        for name in HIDDEN_GUIDELINE_NAMES:
+            block = block_for_name(blocks, name)
+            if block is None:
+                errors.append(f"Hidden guideline section disappeared from build TOC: {name}")
+            elif not any(line.strip() == "hidden: true" for line in block):
+                errors.append(f"Guideline section should be hidden but is visible: {name}")
 
     if not BUILT_TOC.exists():
         errors.append(f"Built navigation payload is missing: {BUILT_TOC}")
@@ -179,9 +243,9 @@ def main() -> int:
         return 1
 
     print(
-        "Static validation passed: portal homepage v2 and canonical header navigation are present, "
-        "runtime recommendations anchor logic is present, alias-aware search v3 resolves expected clinical aliases, "
-        "bibliography labels are normalized, internal clinical UX assets are present, and routes resolve."
+        "Static validation passed: homepage duplication removed; only General Principles and Bone Sarcomas "
+        "remain visible in recommendations; hidden sections remain buildable but are excluded from search and "
+        "updates; canonical portal navigation and tested routes resolve."
     )
     return 0
 
