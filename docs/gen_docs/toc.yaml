@@ -45,6 +45,7 @@ items:
         href: "bone-sarcomas/rare-bone-tumours/index.md"
   - name: "Саркомы мягких тканей"
     href: "soft-tissue-sarcomas/index.md"
+    hidden: true
     expanded: false
     items:
       - name: "Липосаркомы"
@@ -92,6 +93,7 @@ items:
         href: "soft-tissue-sarcomas/alveolar-soft-part-sarcoma/index.md"
   - name: "Отдельные нозологические группы"
     href: "specific-tumor-groups/index.md"
+    hidden: true
     expanded: false
     items:
       - name: "Гастроинтестинальные стромальные опухоли (ГИСО)"
@@ -124,6 +126,7 @@ items:
         href: "specific-tumor-groups/tenosynovial-giant-cell-tumor/index.md"
   - name: "Отдельные клинические ситуации"
     href: "special-clinical-situations/index.md"
+    hidden: true
     expanded: false
     items:
       - name: "Незапланированное удаление саркомы мягких тканей"
@@ -142,6 +145,7 @@ items:
         href: "special-clinical-situations/aya-evidence-framework/index.md"
   - name: "Препараты и режимы системной терапии"
     href: "drugs-and-regimens/index.md"
+    hidden: true
     expanded: false
     items:
       - name: "Доксорубицин при саркомах"
