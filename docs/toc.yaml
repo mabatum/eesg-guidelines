@@ -16,26 +16,17 @@ navigation:
   header:
     leftItems:
       - type: link
-        text: 'Рекомендации'
-        url: './index.html'
+        text: 'Саркомы костей'
+        url: './bone-sarcomas/'
       - type: link
-        text: 'Клинические исследования'
-        url: './clinical-trials/'
-      - type: link
-        text: 'Мероприятия'
-        url: './events/'
-      - type: link
-        text: 'Новости'
-        url: './news/'
+        text: 'Общие принципы'
+        url: './general-principles/'
       - type: link
         text: 'Обновления'
         url: './updates.html'
-      - type: link
-        text: 'О проекте'
-        url: './about/'
       - type: label
         theme: warning
-        text: 'Тестовая версия'
+        text: 'Проект на обсуждении'
     rightItems:
       - type: link
         text: 'EESG.ru'
@@ -56,12 +47,6 @@ items:
     include:
       path: gen_docs/toc.yaml
       mode: merge
-  - name: 'Клинические исследования'
-    href: clinical-trials/index.md
-  - name: 'Мероприятия'
-    href: events/index.md
-  - name: 'Новости'
-    href: news/index.md
   - name: 'Последние обновления'
     href: updates.md
     hidden: true

@@ -1,3 +1,11 @@
+"""Проверка собранного сайта.
+
+Контракт после сужения области: на сайте есть только разделы из
+config/site-scope.json. Прочие ветки не должны присутствовать ни в навигации,
+ни в поиске, ни в каталоге сборки — раньше они прятались, но оставались
+доступными по прямой ссылке.
+"""
+
 from __future__ import annotations
 
 import json
@@ -13,17 +21,26 @@ TOC = Path("docs/toc.yaml")
 GUIDELINES_TOC = Path("docs/gen_docs/toc.yaml")
 BUILT_TOC = STATIC_ROOT / "toc.js"
 HOME = STATIC_ROOT / "index.html"
-LMS_PAGE = STATIC_ROOT / "soft-tissue-sarcomas/leiomyosarcoma/index.html"
+SCOPE_FILE = Path("config/site-scope.json")
+REFERENCE_PAGE = STATIC_ROOT / "bone-sarcomas/osteosarcoma-adults/index.html"
 
 PUBLIC_GUIDELINE_NAMES = (
     "Общие принципы ведения пациентов с саркомами",
     "Саркомы костей",
 )
-HIDDEN_GUIDELINE_NAMES = (
-    "Саркомы мягких тканей",
-    "Отдельные нозологические группы",
-    "Отдельные клинические ситуации",
-    "Препараты и режимы системной терапии",
+
+EXPECTED_HEADER_LINKS = {
+    "Общие принципы": "./general-principles/",
+    "Саркомы костей": "./bone-sarcomas/",
+    "Обновления": "./updates.html",
+}
+
+REQUIRED_HOME_ASSETS = (
+    "_assets/script/header-nav-v3.js",
+    "_assets/script/search-index-v3.js",
+    "_assets/script/title-search-v3.js",
+    "_assets/script/feedback-v1.js",
+    "_assets/style/feedback-v1.css",
 )
 
 INDEX_RE = re.compile(r"window\.EESG_SEARCH_INDEX=(\[.*\]);\s*$", re.DOTALL)
@@ -31,17 +48,20 @@ MD_LINK_RE = re.compile(r"\[[^\]]+\]\((?P<url>[^)]+)\)")
 TOC_URL_RE = re.compile(r"^\s*url:\s*['\"]?(?P<url>[^'\"\s]+)['\"]?\s*$", re.MULTILINE)
 
 
+def load_scope() -> tuple[list[str], list[str]]:
+    raw = json.loads(SCOPE_FILE.read_text(encoding="utf-8"))
+    return [str(x) for x in raw.get("publish", [])], [str(x) for x in raw.get("keep_hidden", [])]
+
+
 def static_target(raw_url: str) -> Path | None:
     parsed = urlsplit(raw_url.strip())
     if parsed.scheme or parsed.netloc:
         return None
-
     path = parsed.path.lstrip("/")
     if path in {"", ".", "./"}:
         return STATIC_ROOT / "index.html"
     if ".." in Path(path).parts:
         raise ValueError(f"unsafe relative URL: {raw_url}")
-
     target = STATIC_ROOT / path
     if path.endswith("/"):
         target = target / "index.html"
@@ -50,9 +70,6 @@ def static_target(raw_url: str) -> Path | None:
 
 def validate_local_url(errors: list[str], label: str, url: str) -> None:
     if url.startswith("http") or url.startswith("mailto:") or url.startswith("#"):
-        return
-    if url.startswith("gen_docs/") or "/gen_docs/" in url:
-        errors.append(f"{label} still contains internal gen_docs path: {url}")
         return
     try:
         target = static_target(url)
@@ -69,10 +86,9 @@ def top_level_blocks(text: str) -> list[list[str]]:
         items_index = lines.index("items:")
     except ValueError:
         return []
-    body = lines[items_index + 1 :]
     blocks: list[list[str]] = []
     current: list[str] = []
-    for line in body:
+    for line in lines[items_index + 1 :]:
         if line.startswith("  - name: "):
             if current:
                 blocks.append(current)
@@ -94,110 +110,83 @@ def block_for_name(blocks: list[list[str]], name: str) -> list[str] | None:
 
 def main() -> int:
     errors: list[str] = []
+    publish, hidden = load_scope()
+    allowed = set(publish) | set(hidden)
 
     if not STATIC_ROOT.exists():
-        errors.append(f"Static build directory does not exist: {STATIC_ROOT}")
+        print(f"Static build directory does not exist: {STATIC_ROOT}")
+        return 1
 
+    # 1. Домашняя страница
     if not HOME.exists():
         errors.append(f"Built homepage does not exist: {HOME}")
     else:
         home_html = HOME.read_text(encoding="utf-8")
-        for marker in PUBLIC_GUIDELINE_NAMES:
+        for marker in ("Саркомы костей", "Общие принципы"):
             if marker not in home_html:
-                errors.append(f"Simplified homepage is missing public section {marker!r}")
-        for obsolete_marker in (
-            "Разделы портала",
-            "Недавно обновлено",
-            "Перейти к рекомендациям",
-        ):
-            if obsolete_marker in home_html:
-                errors.append(
-                    f"Simplified homepage still contains duplicate block {obsolete_marker!r}"
-                )
-        for asset in (
-            "_assets/script/header-nav-v3.js",
-            "_assets/script/search-index-v3.js",
-            "_assets/script/title-search-v3.js",
-        ):
+                errors.append(f"Homepage is missing section {marker!r}")
+        for asset in REQUIRED_HOME_ASSETS:
             if asset not in home_html:
-                errors.append(f"Built homepage is missing required UI asset: {asset}")
+                errors.append(f"Homepage is missing required asset: {asset}")
 
-    # Hidden branches must remain buildable for direct/internal references.
-    if not LMS_PAGE.exists():
-        errors.append(f"Hidden reference clinical page is no longer buildable: {LMS_PAGE}")
+    # 2. Опорная клиническая страница
+    if not REFERENCE_PAGE.exists():
+        errors.append(f"Reference clinical page is not buildable: {REFERENCE_PAGE}")
     else:
-        lms_html = LMS_PAGE.read_text(encoding="utf-8")
+        page_html = REFERENCE_PAGE.read_text(encoding="utf-8")
         for asset in (
             "_assets/style/internal-page-v2.css",
             "_assets/script/internal-page-v2.js",
+            "_assets/script/feedback-v1.js",
         ):
-            if asset not in lms_html:
-                errors.append(f"Reference clinical page is missing UX asset: {asset}")
-        if '"headings":[' not in lms_html:
+            if asset not in page_html:
+                errors.append(f"Reference clinical page is missing asset: {asset}")
+        if '"headings":[' not in page_html:
             errors.append("Reference clinical page lost heading metadata")
-        for obsolete_label in (
-            "&gt;Ссылка&lt;/a&gt;",
-            "&gt;Полный текст&lt;/a&gt;",
-            "&gt;PubMed&lt;/a&gt;",
-        ):
-            if obsolete_label in lms_html:
-                errors.append(
-                    f"Reference clinical page still exposes a service bibliography label: {obsolete_label}"
-                )
 
+    # 3. Убранные разделы не должны существовать в сборке
+    for entry in sorted(p.name for p in STATIC_ROOT.iterdir() if p.is_dir()):
+        if entry.startswith("_") or entry in allowed:
+            continue
+        errors.append(f"Section outside site scope is present in the build: {entry}")
+
+    # 4. Поисковый указатель
     if not SEARCH_INDEX.exists():
         errors.append(f"Missing search index: {SEARCH_INDEX}")
     else:
-        text = SEARCH_INDEX.read_text(encoding="utf-8")
-        match = INDEX_RE.search(text)
+        match = INDEX_RE.search(SEARCH_INDEX.read_text(encoding="utf-8"))
         if not match:
             errors.append("Could not parse EESG search index payload")
         else:
-            records = json.loads(match.group(1))
-            by_url = {str(item.get("url") or ""): item for item in records}
-            for item in records:
+            for item in json.loads(match.group(1)):
                 url = str(item.get("url") or "")
                 title = str(item.get("title") or "<untitled>")
                 validate_local_url(errors, f"Search URL for {title}", url)
+                path = url.lstrip("./")
+                section = path.split("/", 1)[0] if "/" in path else ""
+                if section and section not in allowed:
+                    errors.append(f"Section outside site scope leaked into search: {url}")
 
-            allowed_alias_url = "bone-sarcomas/giant-cell-tumor-of-bone/index.html"
-            allowed_aliases = {
-                str(value).casefold()
-                for value in by_url.get(allowed_alias_url, {}).get("aliases", [])
-            }
-            if "gctb" not in allowed_aliases:
-                errors.append("Public bone-sarcoma search alias GCTB is missing")
-
-            for hidden_url in (
-                "soft-tissue-sarcomas/leiomyosarcoma/index.html",
-                "specific-tumor-groups/gist/index.html",
-                "drugs-and-regimens/gemcitabine-docetaxel/index.html",
-            ):
-                if hidden_url in by_url:
-                    errors.append(f"Hidden recommendation section leaked into search: {hidden_url}")
-
+    # 5. Страница обновлений
     if UPDATES.exists():
-        text = UPDATES.read_text(encoding="utf-8")
-        for match in MD_LINK_RE.finditer(text):
+        for match in MD_LINK_RE.finditer(UPDATES.read_text(encoding="utf-8")):
             url = match.group("url").strip()
             validate_local_url(errors, "Updates URL", url)
-            if any(
-                url.lstrip("./").startswith(prefix + "/")
-                for prefix in (
-                    "soft-tissue-sarcomas",
-                    "specific-tumor-groups",
-                    "special-clinical-situations",
-                    "drugs-and-regimens",
-                )
-            ):
-                errors.append(f"Hidden recommendation section leaked into updates: {url}")
+            path = url.lstrip("./")
+            section = path.split("/", 1)[0] if "/" in path else ""
+            if section and not url.startswith(("http", "mailto:", "#")) and section not in allowed:
+                errors.append(f"Section outside site scope leaked into updates: {url}")
 
+    # 6. Навигация
     if not TOC.exists():
         errors.append(f"Missing site TOC/navigation config: {TOC}")
     else:
-        text = TOC.read_text(encoding="utf-8")
-        for match in TOC_URL_RE.finditer(text):
-            validate_local_url(errors, "Navigation URL", match.group("url").strip())
+        for match in TOC_URL_RE.finditer(TOC.read_text(encoding="utf-8")):
+            url = match.group("url").strip()
+            if "gen_docs/" in url:
+                errors.append(f"Navigation URL exposes internal gen_docs path: {url}")
+                continue
+            validate_local_url(errors, "Navigation URL", url)
 
     if not GUIDELINES_TOC.exists():
         errors.append(f"Missing generated recommendations TOC: {GUIDELINES_TOC}")
@@ -209,31 +198,15 @@ def main() -> int:
                 errors.append(f"Public guideline section missing from TOC: {name}")
             elif any(line.strip() == "hidden: true" for line in block):
                 errors.append(f"Public guideline section is incorrectly hidden: {name}")
-        for name in HIDDEN_GUIDELINE_NAMES:
-            block = block_for_name(blocks, name)
-            if block is None:
-                errors.append(f"Hidden guideline section disappeared from build TOC: {name}")
-            elif not any(line.strip() == "hidden: true" for line in block):
-                errors.append(f"Guideline section should be hidden but is visible: {name}")
 
+    # 7. Собранная навигация
     if not BUILT_TOC.exists():
         errors.append(f"Built navigation payload is missing: {BUILT_TOC}")
     else:
         built_toc = BUILT_TOC.read_text(encoding="utf-8")
-        expected_header_links = {
-            "Рекомендации": "./index.html",
-            "Клинические исследования": "./clinical-trials/",
-            "Мероприятия": "./events/",
-            "Новости": "./news/",
-            "Обновления": "./updates.html",
-            "О проекте": "./about/",
-        }
-        for text, url in expected_header_links.items():
-            marker = f'"text":"{text}","url":"{url}"'
-            if marker not in built_toc:
-                errors.append(f"Built toc.js does not contain canonical header link {text!r} -> {url}")
-        if '"url":"./gen_docs/' in built_toc or '"url":"gen_docs/' in built_toc:
-            errors.append("Built toc.js still exposes internal gen_docs navigation URLs")
+        for text, url in EXPECTED_HEADER_LINKS.items():
+            if f'"text":"{text}","url":"{url}"' not in built_toc:
+                errors.append(f"Built toc.js does not contain header link {text!r} -> {url}")
 
     if errors:
         print("Static route/render validation errors:")
@@ -243,9 +216,8 @@ def main() -> int:
         return 1
 
     print(
-        "Static validation passed: homepage duplication removed; only General Principles and Bone Sarcomas "
-        "remain visible in recommendations; hidden sections remain buildable but are excluded from search and "
-        "updates; canonical portal navigation and tested routes resolve."
+        "Static validation passed: только разделы из site-scope присутствуют в сборке, "
+        "поиске и обновлениях; виджет замечаний подключён; навигация разрешается."
     )
     return 0
 

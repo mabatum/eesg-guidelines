@@ -19,6 +19,7 @@ resources:
     - _assets/style/homepage-v2.css
     - _assets/style/internal-page-v2.css
     - _assets/style/section-landing-v1.css
+    - _assets/style/feedback-v1.css
   script:
     - _assets/script/search-index-v3.js
     - _assets/script/title-search-v3.js
@@ -30,3 +31,5 @@ resources:
     - _assets/script/page-nav.js
     - _assets/script/algorithm-ui.js
     - _assets/script/homepage-v2.js
+    - _assets/script/feedback-config.js
+    - _assets/script/feedback-v1.js

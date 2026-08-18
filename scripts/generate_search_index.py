@@ -8,14 +8,16 @@ CONTENT_ROOT = Path("docs/gen_docs")
 ALIASES_FILE = Path("config/search-aliases.json")
 OUTPUT = Path("docs/_assets/script/search-index-v3.js")
 
-PUBLIC_PREFIXES = {
-    "general-principles",
-    "bone-sarcomas",
-    "clinical-trials",
-    "events",
-    "news",
-    "about",
-}
+SCOPE_FILE = Path("config/site-scope.json")
+
+
+def public_prefixes() -> set[str]:
+    """Область поиска совпадает с областью сайта: config/site-scope.json."""
+    raw = json.loads(SCOPE_FILE.read_text(encoding="utf-8"))
+    return set(raw.get("publish", []))
+
+
+PUBLIC_PREFIXES = public_prefixes()
 
 H1_RE = re.compile(r"^#\s+(.+?)\s*$")
 PAREN_RE = re.compile(r"\(([^()]+)\)")
