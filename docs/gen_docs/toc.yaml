@@ -1,30 +1,6 @@
 title: "Клинические рекомендации EESG"
 href: index.md
 items:
-  - name: "Общие принципы ведения пациентов с саркомами"
-    href: "general-principles/index.md"
-    expanded: false
-    items:
-      - name: "Специализированный саркомный центр и многопрофильный консилиум"
-        href: "general-principles/sarcoma-center-and-mdt/index.md"
-      - name: "Биопсия и патоморфологическая диагностика"
-        href: "general-principles/biopsy-and-pathology/index.md"
-      - name: "Молекулярная диагностика и высокопроизводительное секвенирование"
-        href: "general-principles/molecular-diagnostics/index.md"
-      - name: "Визуализация, стадирование и оценка риска"
-        href: "general-principles/imaging-and-staging/index.md"
-      - name: "Хирургическое лечение локализованных сарком мягких тканей"
-        href: "general-principles/surgery-localized-sts/index.md"
-      - name: "Лучевая терапия локализованных сарком мягких тканей"
-        href: "general-principles/radiotherapy-localized-sts/index.md"
-      - name: "Периоперационная химиотерапия локализованных сарком мягких тканей"
-        href: "general-principles/perioperative-chemotherapy/index.md"
-      - name: "Первая линия системной терапии распространённых сарком мягких тканей"
-        href: "general-principles/systemic-therapy-advanced-sts/index.md"
-      - name: "Последующие линии системной терапии сарком мягких тканей"
-        href: "general-principles/systemic-therapy-later-lines-sts/index.md"
-      - name: "Наблюдение после лечения локализованной саркомы мягких тканей"
-        href: "general-principles/follow-up/index.md"
   - name: "Саркомы костей"
     href: "bone-sarcomas/index.md"
     expanded: false
@@ -43,6 +19,3 @@ items:
         href: "bone-sarcomas/chordoma/index.md"
       - name: "Редкие опухоли кости"
         href: "bone-sarcomas/rare-bone-tumours/index.md"
-  - name: "Правила подготовки и представления рекомендаций"
-    href: "editorial-standard/index.md"
-    hidden: true

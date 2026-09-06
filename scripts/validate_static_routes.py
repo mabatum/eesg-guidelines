@@ -24,15 +24,14 @@ HOME = STATIC_ROOT / "index.html"
 SCOPE_FILE = Path("config/site-scope.json")
 REFERENCE_PAGE = STATIC_ROOT / "bone-sarcomas/osteosarcoma-adults/index.html"
 
-PUBLIC_GUIDELINE_NAMES = (
-    "Общие принципы ведения пациентов с саркомами",
-    "Саркомы костей",
-)
+SECTION_NAMES = {
+    "general-principles": "Общие принципы ведения пациентов с саркомами",
+    "bone-sarcomas": "Саркомы костей",
+}
 
-EXPECTED_HEADER_LINKS = {
-    "Общие принципы": "./general-principles/",
-    "Саркомы костей": "./bone-sarcomas/",
-    "Обновления": "./updates.html",
+SECTION_HEADER_LABELS = {
+    "general-principles": "Общие принципы",
+    "bone-sarcomas": "Саркомы костей",
 }
 
 REQUIRED_HOME_ASSETS = (
@@ -122,7 +121,7 @@ def main() -> int:
         errors.append(f"Built homepage does not exist: {HOME}")
     else:
         home_html = HOME.read_text(encoding="utf-8")
-        for marker in ("Саркомы костей", "Общие принципы"):
+        for marker in (SECTION_NAMES.get(section, section) for section in publish):
             if marker not in home_html:
                 errors.append(f"Homepage is missing section {marker!r}")
         for asset in REQUIRED_HOME_ASSETS:
@@ -192,7 +191,7 @@ def main() -> int:
         errors.append(f"Missing generated recommendations TOC: {GUIDELINES_TOC}")
     else:
         blocks = top_level_blocks(GUIDELINES_TOC.read_text(encoding="utf-8"))
-        for name in PUBLIC_GUIDELINE_NAMES:
+        for name in (SECTION_NAMES.get(section, section) for section in publish):
             block = block_for_name(blocks, name)
             if block is None:
                 errors.append(f"Public guideline section missing from TOC: {name}")
@@ -204,9 +203,15 @@ def main() -> int:
         errors.append(f"Built navigation payload is missing: {BUILT_TOC}")
     else:
         built_toc = BUILT_TOC.read_text(encoding="utf-8")
-        for text, url in EXPECTED_HEADER_LINKS.items():
+        expected_links = {SECTION_HEADER_LABELS.get(section, section): f"./{section}/" for section in publish}
+        expected_links["Обновления"] = "./updates.html"
+        for text, url in expected_links.items():
             if f'"text":"{text}","url":"{url}"' not in built_toc:
                 errors.append(f"Built toc.js does not contain header link {text!r} -> {url}")
+
+        for section in set(SECTION_NAMES) - set(publish):
+            if f'"url":"./{section}/"' in built_toc:
+                errors.append(f"Unpublished section remains in header: {section}")
 
     if errors:
         print("Static route/render validation errors:")

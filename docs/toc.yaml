@@ -19,14 +19,11 @@ navigation:
         text: 'Саркомы костей'
         url: './bone-sarcomas/'
       - type: link
-        text: 'Общие принципы'
-        url: './general-principles/'
-      - type: link
         text: 'Обновления'
         url: './updates.html'
       - type: label
         theme: warning
-        text: 'Проект на обсуждении'
+        text: 'Тестовая версия'
     rightItems:
       - type: link
         text: 'EESG.ru'

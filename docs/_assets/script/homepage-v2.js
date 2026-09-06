@@ -82,6 +82,11 @@
         details.append(...nodes);
       }
     }
+    // A single published collection should expose its clinical destinations immediately.
+    if (grid.children.length === 1) {
+      const pages = grid.querySelector('details');
+      if (pages) pages.open = true;
+    }
     content.dataset.eesgHomeEnhanced = 'true';
   }
 
