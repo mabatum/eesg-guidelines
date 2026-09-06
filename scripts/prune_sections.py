@@ -106,14 +106,31 @@ def neutralise_links(removed: list[str]) -> None:
     if not removed:
         return
     pattern = re.compile(
-        r"\[([^\]\n]+)\]\((?:\.{1,2}/)*(?:" + "|".join(map(re.escape, removed)) + r")/[^)\s]*\)"
+        r"\[([^\]\n]+)\]\(((?:\.{1,2}/)*(?:" + "|".join(map(re.escape, removed)) + r")/[^)\s]*)\)"
     )
     touched = total = 0
     for path in list(GEN_ROOT.rglob("*.md")) + [Path("docs/index.md"), Path("docs/updates.md")]:
         if not path.exists():
             continue
         text = path.read_text(encoding="utf-8")
-        new_text, count = pattern.subn(r"\1", text)
+        count = 0
+        # Resolve links from their page: bone-sarcomas/general-principles is a
+        # published child, distinct from the removed top-level section.
+        base = path.parent if path.is_relative_to(GEN_ROOT) else GEN_ROOT
+
+        def replace_link(match: re.Match[str]) -> str:
+            nonlocal count
+            target = (base / match.group(2)).resolve()
+            try:
+                section = target.relative_to(GEN_ROOT.resolve()).parts[0]
+            except (ValueError, IndexError):
+                return match.group(0)
+            if section not in removed:
+                return match.group(0)
+            count += 1
+            return match.group(1)
+
+        new_text = pattern.sub(replace_link, text)
         if count:
             path.write_text(new_text, encoding="utf-8")
             touched += 1
