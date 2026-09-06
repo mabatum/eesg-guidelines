@@ -34,7 +34,7 @@
   ]);
 
   function patchNavigation() {
-    for (const anchor of document.querySelectorAll('a')) {
+    for (const anchor of document.querySelectorAll('.pc-desktop-navigation a, .pc-mobile-navigation a')) {
       const text = (anchor.textContent || '').replace(/\s+/g, ' ').trim();
       const target = TARGETS.get(text);
       if (!target) continue;

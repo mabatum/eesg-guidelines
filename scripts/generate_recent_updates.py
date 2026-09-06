@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from collections import Counter, defaultdict
 from datetime import datetime
@@ -9,10 +10,9 @@ DOCS_ROOT = Path("docs")
 GEN_ROOT = DOCS_ROOT / "gen_docs"
 OUTPUT = DOCS_ROOT / "updates.md"
 
-PUBLIC_RECOMMENDATION_PREFIXES = {
-    "general-principles",
-    "bone-sarcomas",
-}
+PUBLIC_RECOMMENDATION_PREFIXES = set(
+    json.loads(Path("config/site-scope.json").read_text(encoding="utf-8")).get("publish", [])
+)
 
 H1_RE = re.compile(r"^#\s+(.+?)\s*$", re.MULTILINE)
 META_RE = re.compile(
