@@ -94,6 +94,13 @@ body,
   color: var(--eesg-ink);
 }
 
+/* Diplodoc sets these variables on .yfm itself, below the page container. */
+.dc-doc-page__content .yfm {
+  --yfm-font-family-sans: var(--eesg-font-sans);
+  --yfm-font-size: 1rem;
+  --yfm-font-line-height: 1.7;
+}
+
 .dc-doc-page__content h1,
 .dc-doc-page__content h2,
 .eesg-section-card__title {
@@ -226,7 +233,7 @@ html.eesg-homepage .dc-doc-page__content {
   padding-block: 1rem 3rem;
 }
 
-html.eesg-homepage .dc-doc-page__content > p {
+html.eesg-homepage .dc-doc-page__body > p {
   max-width: 760px;
   color: var(--eesg-muted);
   font-size: 1rem;

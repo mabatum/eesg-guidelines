@@ -4,6 +4,7 @@
   "scripts": {
     "prebuild:docs": "node -e \"require('node:fs').rmSync('docs-html', {recursive: true, force: true})\"",
     "build:docs": "yfm -i ./docs -o ./docs-html --allow-custom-resources",
+    "postbuild:docs": "node scripts/version_static_assets.mjs",
     "build:pdf-input": "yfm -i ./docs -o ./docs-pdf --pdf",
     "build:pdf": "pdf-generator -i ./docs-pdf"
   },
