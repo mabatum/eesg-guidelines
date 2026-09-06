@@ -117,7 +117,7 @@
         <label class="eesg-search-input-wrap">
           <span class="eesg-search-input-icon">${icon()}</span>
           <input id="eesg-search-input" type="search" inputmode="search" autocomplete="off"
-                 placeholder="Например: лейомиосаркома, LMS, GIST, трабектедин"
+                 placeholder="Например: остеосаркома, биопсия, саркома Юинга"
                  aria-label="Поиск по рекомендациям" />
         </label>
         <div class="eesg-search-meta" id="eesg-search-meta"></div>
@@ -222,6 +222,9 @@
     target.prepend(makeTrigger());
     return true;
   }
+
+  // The homepage search entry uses the same dialog, index and focus handling.
+  document.addEventListener('eesg:open-search', openSearch);
 
   document.addEventListener('keydown', (event) => {
     const root = document.getElementById(DIALOG_ID);
