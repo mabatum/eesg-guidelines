@@ -7,6 +7,9 @@ on:
       - main
     paths:
       - .sync-trigger
+      - content-reviewed/**
+      - scripts/apply_reviewed_content.py
+      - .github/workflows/sync-wiki.yml
 
 permissions:
   contents: write
@@ -54,6 +57,9 @@ jobs:
 
       - name: Limit site to configured sections
         run: python scripts/prune_sections.py
+
+      - name: Apply reviewed clinical manuscript
+        run: python scripts/apply_reviewed_content.py
 
       - name: Normalize literature links
         run: python scripts/normalize_literature_links.py
