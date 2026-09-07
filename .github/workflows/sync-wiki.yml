@@ -9,6 +9,7 @@ on:
       - .sync-trigger
       - content-reviewed/**
       - scripts/apply_reviewed_content.py
+      - scripts/generate_homepage.py
       - .github/workflows/sync-wiki.yml
 
 permissions:
