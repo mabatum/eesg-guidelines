@@ -1,291 +1,168 @@
-/* Замечания к фрагментам текста без регистрации.
- *
- * Выделение внутри статьи -> кнопка «Замечание» -> окно с цитатой и полем
- * текста. Отправка уходит на адрес из feedback-config.js; если он не задан,
- * открывается письмо с тем же содержимым, чтобы обратная связь работала и до
- * настройки приёмника.
+/* Anonymous feedback through a published, embedded Google Form.
+ * The provider owns validation, persistence and the submission confirmation.
+ * Do not infer delivery from an iframe load, use no-cors POST, or store drafts as sent.
  */
 (() => {
   'use strict';
-
-  const CFG = Object.assign(
-    { endpoint: '', contentType: 'text/plain;charset=utf-8', mailto: '', project: 'EESG' },
-    window.EESG_FEEDBACK || {},
-  );
-
-  const CONTENT_SELECTORS = ['.dc-doc-page__main', '.dc-doc-page__content', '.yfm', 'main', 'article'];
+  const CFG = Object.assign({formUrl: '', contextEntry: '', edition: '2026.09.3'}, window.EESG_FEEDBACK || {});
   const MAX_QUOTE = 600;
   const clean = (value) => String(value || '').replace(/\s+/g, ' ').trim();
-
-  function contentRoot() {
-    for (const selector of CONTENT_SELECTORS) {
-      const node = document.querySelector(selector);
-      if (node) return node;
-    }
-    return document.body;
-  }
-
-  /* Ближайший заголовок над выделением: по нему рабочая группа находит место. */
-  function nearestHeading(node) {
-    let el = node instanceof Element ? node : node?.parentElement;
-    while (el && el !== document.body) {
-      let sibling = el.previousElementSibling;
-      while (sibling) {
-        if (/^H[1-4]$/.test(sibling.tagName)) return sibling;
-        const nested = sibling.querySelectorAll?.('h1,h2,h3,h4');
-        if (nested?.length) return nested[nested.length - 1];
-        sibling = sibling.previousElementSibling;
-      }
-      el = el.parentElement;
-    }
-    return document.querySelector('h1');
-  }
-
-  function headingInfo(range) {
-    const heading = range ? nearestHeading(range.startContainer) : document.querySelector('h1');
-    if (!heading) return { title: '', anchor: '' };
-    const id = heading.getAttribute('id') || heading.querySelector('[id]')?.id || '';
-    return { title: clean(heading.textContent), anchor: id ? `#${id}` : '' };
-  }
-
   const el = (tag, className, text) => {
     const node = document.createElement(tag);
     if (className) node.className = className;
     if (text != null) node.textContent = text;
     return node;
   };
-
-  function buildDialog({ quote, heading }) {
+  function contentRoot() {
+    for (const selector of ['.dc-doc-page__content .yfm', '.dc-doc-page__content', '.yfm', 'article', 'main']) {
+      const node = document.querySelector(selector);
+      if (node) return node;
+    }
+    return null;
+  }
+  function headingInfo(range) {
+    const root = contentRoot();
+    const headings = root ? [...root.querySelectorAll('h1,h2,h3,h4')] : [];
+    let heading = headings[0];
+    if (range) {
+      const container = range.startContainer.nodeType === Node.ELEMENT_NODE ? range.startContainer : range.startContainer.parentElement;
+      for (const candidate of headings) {
+        if (candidate.contains(container) || (candidate.compareDocumentPosition(container) & Node.DOCUMENT_POSITION_FOLLOWING)) heading = candidate;
+      }
+    }
+    const id = heading?.id || heading?.querySelector('[id]')?.id || '';
+    return {title: clean(heading?.textContent), anchor: id ? `#${id}` : ''};
+  }
+  function contextText({quote, heading}) {
+    const page = new URL(location.href);
+    page.search = '';
+    page.hash = heading.anchor;
+    return [
+      'EESG · КР «Саркомы костей», 2025, ID 532_5',
+      `Веб-редакция: ${CFG.edition}`,
+      `Страница: ${clean(document.querySelector('h1')?.textContent || document.title)}`,
+      `Раздел: ${heading.title || 'Вся страница'}`,
+      `Ссылка: ${page.href}`,
+      quote ? `Цитата:\n${quote}` : 'Общее замечание к странице',
+    ].join('\n');
+  }
+  function formAddress(context) {
+    const url = new URL(CFG.formUrl);
+    if (url.protocol !== 'https:' || url.hostname !== 'docs.google.com' || !/^\/forms\/d\/e\/[^/]+\/viewform$/.test(url.pathname)) throw new Error('Invalid form URL');
+    if (!/^entry\.\d+$/.test(CFG.contextEntry)) throw new Error('Missing prefill field');
+    url.searchParams.set('embedded', 'true');
+    url.searchParams.set('usp', 'pp_url');
+    url.searchParams.set(CFG.contextEntry, context);
+    return url;
+  }
+  let active = null;
+  let selectionButton = null;
+  const hideSelection = () => { selectionButton?.remove(); selectionButton = null; };
+  function closeDialog() {
+    if (!active) return;
+    const {overlay, returnFocus, abort, overflow} = active;
+    abort.abort();
+    overlay.remove();
+    document.body.style.overflow = overflow;
+    active = null;
+    returnFocus?.focus?.();
+  }
+  function openDialog(payload) {
+    if (active) closeDialog();
+    hideSelection();
+    const returnFocus = document.activeElement;
+    const abort = new AbortController();
     const overlay = el('div', 'eesg-fb-overlay');
-    const dialog = el('div', 'eesg-fb-dialog');
+    const dialog = el('section', 'eesg-fb-dialog');
     dialog.setAttribute('role', 'dialog');
     dialog.setAttribute('aria-modal', 'true');
-
-    dialog.append(el('h2', null, quote ? 'Замечание к фрагменту' : 'Замечание к странице'));
-    dialog.append(
-      el(
-        'p',
-        'eesg-fb-hint',
-        'Замечание уходит рабочей группе вместе с цитатой и адресом страницы. Регистрация не нужна, имя и контакт — по желанию.',
-      ),
-    );
-    if (quote) dialog.append(el('blockquote', 'eesg-fb-quote', quote));
-
-    const commentField = el('div', 'eesg-fb-field');
-    const commentLabel = el('label', null, 'Что не так или что предложить');
-    const comment = el('textarea');
-    comment.required = true;
-    comment.placeholder =
-      'Например: доза приведена по протоколу исследования, но в нашей практике применяется другая; или: положение противоречит источнику под номером 4.';
-    comment.id = 'eesg-fb-comment';
-    commentLabel.setAttribute('for', comment.id);
-    commentField.append(commentLabel, comment);
-
-    const row = el('div', 'eesg-fb-row');
-    const nameField = el('div', 'eesg-fb-field');
-    const nameLabel = el('label', null, 'Имя и место работы — по желанию');
-    const name = el('input');
-    name.type = 'text';
-    name.id = 'eesg-fb-name';
-    name.autocomplete = 'name';
-    nameLabel.setAttribute('for', name.id);
-    nameField.append(nameLabel, name);
-
-    const contactField = el('div', 'eesg-fb-field');
-    const contactLabel = el('label', null, 'Почта для ответа — по желанию');
-    const contact = el('input');
-    contact.type = 'email';
-    contact.id = 'eesg-fb-contact';
-    contact.autocomplete = 'email';
-    contactLabel.setAttribute('for', contact.id);
-    contactField.append(contactLabel, contact);
-    row.append(nameField, contactField);
-
-    const actions = el('div', 'eesg-fb-actions');
-    const status = el('span', 'eesg-fb-status');
-    const cancel = el('button', 'eesg-fb-cancel', 'Отмена');
+    dialog.setAttribute('aria-labelledby', 'eesg-fb-title');
+    const header = el('div', 'eesg-fb-header');
+    const title = el('h2', '', payload.quote ? 'Замечание к фрагменту' : 'Замечание к странице');
+    title.id = 'eesg-fb-title';
+    const cancel = el('button', 'eesg-fb-cancel', 'Закрыть');
     cancel.type = 'button';
-    const send = el('button', 'eesg-fb-send', 'Отправить');
-    send.type = 'button';
-    actions.append(status, cancel, send);
-
-    dialog.append(commentField, row, actions);
-    overlay.append(dialog);
-
-    return { overlay, dialog, comment, name, contact, status, cancel, send, heading, quote };
-  }
-
-  function payloadOf(parts) {
-    return {
-      project: CFG.project,
-      page_title: clean(document.title),
-      page_url: window.location.href.split('#')[0] + (parts.heading.anchor || ''),
-      section: parts.heading.title,
-      quote: parts.quote || '',
-      comment: clean(parts.comment.value),
-      author: clean(parts.name.value),
-      contact: clean(parts.contact.value),
-      sent_at: new Date().toISOString(),
-      user_agent: navigator.userAgent,
-    };
-  }
-
-  function mailtoFallback(data) {
-    if (!CFG.mailto) return false;
-    const body = [
-      `Страница: ${data.page_title}`,
-      `Адрес: ${data.page_url}`,
-      data.section ? `Раздел: ${data.section}` : '',
-      data.quote ? `\nЦитата:\n${data.quote}` : '',
-      `\nЗамечание:\n${data.comment}`,
-      data.author ? `\nАвтор: ${data.author}` : '',
-      data.contact ? `Контакт: ${data.contact}` : '',
-    ]
-      .filter(Boolean)
-      .join('\n');
-    window.location.href =
-      `mailto:${CFG.mailto}?subject=${encodeURIComponent('Замечание к рекомендациям EESG')}` +
-      `&body=${encodeURIComponent(body)}`;
-    return true;
-  }
-
-  let active = null;
-
-  function close(parts) {
-    parts?.overlay?.remove();
-    if (active === parts) active = null;
-  }
-
-  async function submit(parts) {
-    const data = payloadOf(parts);
-    if (!data.comment) {
-      parts.status.dataset.kind = 'error';
-      parts.status.textContent = 'Напишите замечание.';
-      parts.comment.focus();
-      return;
-    }
-
-    parts.send.disabled = true;
-    parts.status.dataset.kind = '';
-    parts.status.textContent = 'Отправляем…';
-
-    if (!CFG.endpoint) {
-      parts.status.textContent = 'Открываем письмо…';
-      if (!mailtoFallback(data)) {
-        parts.status.dataset.kind = 'error';
-        parts.status.textContent = 'Приём замечаний ещё не настроен.';
-        parts.send.disabled = false;
-        return;
-      }
-      window.setTimeout(() => close(parts), 600);
-      return;
-    }
-
+    header.append(title, cancel);
+    dialog.append(header, el('p', 'eesg-fb-hint', 'Без регистрации. Замечание получит редактор; имя и контакт можно не указывать. Ссылка и выбранный фрагмент уже добавлены в форму.'));
+    const context = contextText(payload);
+    if (payload.quote) dialog.append(el('blockquote', 'eesg-fb-quote', payload.quote));
     try {
-      const response = await fetch(CFG.endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': CFG.contentType },
-        body: JSON.stringify(data),
-      });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      parts.status.dataset.kind = 'ok';
-      parts.status.textContent = 'Спасибо, замечание отправлено.';
-      window.setTimeout(() => close(parts), 1200);
-    } catch (error) {
-      parts.status.dataset.kind = 'error';
-      parts.status.textContent = 'Не отправилось. Открыть письмо?';
-      parts.send.textContent = 'Письмом';
-      parts.send.disabled = false;
-      parts.send.onclick = () => mailtoFallback(data);
+      const url = formAddress(context);
+      const iframe = el('iframe', 'eesg-fb-frame');
+      iframe.title = 'Отправить замечание к рекомендациям EESG';
+      iframe.src = url.href;
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      dialog.append(iframe);
+      const footer = el('p', 'eesg-fb-hint eesg-fb-fallback');
+      const link = el('a', '', 'Открыть эту форму в отдельной вкладке');
+      url.searchParams.delete('embedded');
+      link.href = url.href;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      footer.append(link);
+      dialog.append(footer);
+    } catch {
+      const status = el('p', 'eesg-fb-unavailable', 'Приём замечаний временно недоступен. Форма ещё не подключена; замечание не отправлено.');
+      status.setAttribute('role', 'status');
+      dialog.append(status);
     }
-  }
-
-  function openDialog({ quote, heading }) {
-    if (active) close(active);
-    const parts = buildDialog({ quote, heading });
-    active = parts;
-    parts.cancel.addEventListener('click', () => close(parts));
-    parts.send.addEventListener('click', () => submit(parts));
-    parts.overlay.addEventListener('mousedown', (event) => {
-      if (event.target === parts.overlay) close(parts);
-    });
-    document.addEventListener('keydown', function onKey(event) {
-      if (event.key === 'Escape') {
-        close(parts);
-        document.removeEventListener('keydown', onKey);
+    overlay.append(dialog);
+    active = {overlay, returnFocus, abort, overflow: document.body.style.overflow};
+    document.body.style.overflow = 'hidden';
+    document.body.append(overlay);
+    cancel.addEventListener('click', closeDialog, {signal: abort.signal});
+    overlay.addEventListener('click', event => { if (event.target === overlay) closeDialog(); }, {signal: abort.signal});
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeDialog();
+      if (event.key === 'Tab') {
+        const nodes = [...dialog.querySelectorAll('button,a[href],iframe')];
+        const first = nodes[0], last = nodes[nodes.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
       }
-    });
-    document.body.append(parts.overlay);
-    parts.comment.focus();
+    }, {signal: abort.signal});
+    cancel.focus();
   }
-
-  /* ---- кнопка у выделения ---- */
-
-  let selectButton = null;
-
-  function hideSelectButton() {
-    selectButton?.remove();
-    selectButton = null;
-  }
-
-  function showSelectButton(rect, payload) {
-    hideSelectButton();
-    selectButton = el('button', 'eesg-fb-select', 'Замечание');
-    selectButton.type = 'button';
-    const top = window.scrollY + rect.top - 44;
-    selectButton.style.top = `${Math.max(window.scrollY + 8, top)}px`;
-    selectButton.style.left = `${Math.max(8, window.scrollX + rect.left)}px`;
-    selectButton.addEventListener('mousedown', (event) => event.preventDefault());
-    selectButton.addEventListener('click', () => {
-      hideSelectButton();
-      openDialog(payload);
-    });
-    document.body.append(selectButton);
-  }
-
-  function onSelectionSettled() {
+  function onSelection() {
+    if (active) return;
     const selection = window.getSelection();
-    if (!selection || selection.isCollapsed || selection.rangeCount === 0) {
-      hideSelectButton();
-      return;
-    }
+    if (!selection || selection.isCollapsed || !selection.rangeCount) return hideSelection();
     const range = selection.getRangeAt(0);
-    if (!contentRoot().contains(range.commonAncestorContainer)) {
-      hideSelectButton();
-      return;
-    }
+    const root = contentRoot();
+    if (!root?.contains(range.commonAncestorContainer)) return hideSelection();
     let quote = clean(selection.toString());
-    if (quote.length < 8) {
-      hideSelectButton();
-      return;
-    }
+    if (quote.length < 8) return hideSelection();
     if (quote.length > MAX_QUOTE) quote = `${quote.slice(0, MAX_QUOTE)}…`;
     const rect = range.getBoundingClientRect();
-    if (!rect || (!rect.width && !rect.height)) {
-      hideSelectButton();
-      return;
-    }
-    showSelectButton(rect, { quote, heading: headingInfo(range) });
+    if (!rect.width && !rect.height) return hideSelection();
+    const payload = {quote, heading: headingInfo(range)};
+    hideSelection();
+    selectionButton = el('button', 'eesg-fb-select', 'Замечание');
+    selectionButton.type = 'button';
+    selectionButton.style.top = `${Math.max(scrollY + 8, scrollY + rect.top - 44)}px`;
+    selectionButton.style.left = `${Math.min(Math.max(8, rect.left + scrollX), scrollX + innerWidth - 130)}px`;
+    selectionButton.addEventListener('mousedown', event => event.preventDefault());
+    selectionButton.addEventListener('click', () => openDialog(payload));
+    document.body.append(selectionButton);
   }
-
   function init() {
-    document.addEventListener('mouseup', () => window.setTimeout(onSelectionSettled, 10));
-    document.addEventListener('touchend', () => window.setTimeout(onSelectionSettled, 250));
-    document.addEventListener('selectionchange', () => window.setTimeout(onSelectionSettled, 120));
-    document.addEventListener('scroll', hideSelectButton, { passive: true });
-    document.addEventListener('mousedown', (event) => {
-      if (selectButton && !selectButton.contains(event.target)) hideSelectButton();
-    });
-
-    const fab = el('button', 'eesg-fb-fab', 'Замечание к странице');
+    if (document.querySelector('.eesg-fb-fab')) return;
+    let selectionTimer;
+    const deferSelection = () => { clearTimeout(selectionTimer); selectionTimer = setTimeout(onSelection, 160); };
+    for (const event of ['mouseup','touchend','selectionchange']) document.addEventListener(event, deferSelection);
+    document.addEventListener('scroll', hideSelection, {passive: true});
+    const fab = el('button', 'eesg-fb-fab', 'Оставить замечание');
     fab.type = 'button';
-    fab.addEventListener('click', () => openDialog({ quote: '', heading: headingInfo(null) }));
+    fab.addEventListener('click', () => openDialog({quote: '', heading: headingInfo(null)}));
     document.body.append(fab);
+    document.addEventListener('click', event => {
+      const link = event.target.closest?.('a[href]');
+      if (link && new URL(link.href).hash === '#feedback') {
+        event.preventDefault(); openDialog({quote: '', heading: headingInfo(null)});
+      }
+    });
+    if (location.hash === '#feedback') openDialog({quote: '', heading: headingInfo(null)});
   }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();

@@ -146,3 +146,20 @@
 @media print {
   .eesg-fb-fab, .eesg-fb-select, .eesg-fb-overlay { display: none !important; }
 }
+
+.eesg-fb-dialog { width: min(760px, 100%); padding: 18px; }
+.eesg-fb-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.eesg-fb-header h2 { margin: 0; }
+.eesg-fb-header button { font: inherit; font-size: 14px; padding: 8px 12px; border: 1px solid #cad6db; border-radius: 6px; cursor: pointer; }
+.eesg-fb-hint { font-size: 14px; }
+.eesg-fb-frame { display: block; width: 100%; height: min(650px, 66dvh); border: 0; background: #fff; border-radius: 8px; }
+.eesg-fb-fallback { margin: 12px 0 0; }
+.eesg-fb-unavailable { padding: 16px; font-size: 16px; line-height: 1.5; }
+.eesg-fb-quote { max-height: 85px; }
+.eesg-fb-fab:focus-visible, .eesg-fb-select:focus-visible, .eesg-fb-dialog button:focus-visible, .eesg-fb-dialog a:focus-visible { outline: 3px solid #d48224; outline-offset: 3px; }
+@media (max-width: 560px) {
+  .eesg-fb-overlay { padding: 6px; }
+  .eesg-fb-dialog { padding: 12px; max-height: calc(100dvh - 12px); }
+  .eesg-fb-frame { height: 65dvh; }
+  .eesg-fb-fab { font-size: 14px; }
+}

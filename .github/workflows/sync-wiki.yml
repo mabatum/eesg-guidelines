@@ -1,12 +1,23 @@
-name: EESG Site Closed
+name: Publish EESG bone guidelines
 
 on:
   workflow_dispatch:
+    inputs:
+      sync_wiki:
+        description: 'Refresh navigation from Wiki before applying the reviewed bone manuscript'
+        type: boolean
+        default: false
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - .github/workflows/sync-wiki.yml
+      - 'content-reviewed/**'
+      - 'docs/**'
+      - 'scripts/**'
+      - 'config/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'requirements.txt'
+      - '.github/workflows/sync-wiki.yml'
 
 permissions:
   contents: read
@@ -18,33 +29,42 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy-closed:
+  publish:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Prepare closed site
-        run: |
-          mkdir -p site-closed
-          cat > site-closed/404.html <<'EOF'
-          <!doctype html>
-          <html lang="ru">
-          <head>
-            <meta charset="utf-8">
-            <meta name="robots" content="noindex, nofollow, noarchive">
-            <title>Not Found</title>
-          </head>
-          <body></body>
-          </html>
-          EOF
-          touch site-closed/.nojekyll
-
-      - name: Upload closed Pages artifact
-        uses: actions/upload-pages-artifact@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          path: './site-closed'
-
-      - name: Deploy closed site
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Optional Wiki refresh
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.sync_wiki }}
+        env:
+          WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
+          ORG_ID: bpfl6jh90pruinc9ks8c
+        run: |
+          pip install -r requirements.txt
+          python3 scripts/export_wiki_neutral.py
+      - name: Prepare reviewed bone content and navigation
+        run: npm run prepare:docs
+      - name: Build site
+        run: npm run build:docs
+      - name: Validate routes, scope and source
+        run: |
+          python3 scripts/validate_static_routes.py
+          python3 scripts/validate_clinical_source.py
+          touch docs-html/.nojekyll
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs-html
+      - name: Publish to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

@@ -6,7 +6,8 @@
     "build:docs": "yfm -i ./docs -o ./docs-html --allow-custom-resources",
     "postbuild:docs": "node scripts/version_static_assets.mjs",
     "build:pdf-input": "yfm -i ./docs -o ./docs-pdf --pdf",
-    "build:pdf": "pdf-generator -i ./docs-pdf"
+    "build:pdf": "pdf-generator -i ./docs-pdf",
+    "prepare:docs": "python3 scripts/prune_sections.py && python3 scripts/apply_reviewed_content.py && python3 scripts/generate_homepage.py && python3 scripts/generate_search_index.py && python3 scripts/generate_recent_updates.py && python3 scripts/validate_export.py"
   },
   "dependencies": {
     "@diplodoc/cli": "5.50.6",

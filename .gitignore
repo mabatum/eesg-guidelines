@@ -1,0 +1,7 @@
+node_modules/
+docs-html/
+docs-pdf/
+__pycache__/
+*.pyc
+.env
+.env.*

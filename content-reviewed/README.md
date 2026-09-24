@@ -1,11 +1,20 @@
-# Reviewed clinical content
+# Reviewed bone guideline content
 
-The Russian bone-tumour manuscript in this directory is the reviewed source for the test site. It is applied **after** the Yandex Wiki export and scope pruning, and **before** normalization, indexing, validation and rendering.
+Edition **2026.09.3**, dated 24 September 2026, is based on the supplied approved
+clinical recommendations **Саркомы костей**, 2025, adults, ID **532_5**.
+It supersedes edition 2026.09.2 for the eight existing bone-section routes.
 
-Edit these files to update the reviewed edition. `docs/gen_docs/bone-sarcomas` is the generated publishing copy. The overlay deliberately contains only the eight existing bone-section routes. Wiki remains the source of navigation and of any other sections enabled in the future; its bone text does not overwrite this edition.
+Edit `content-reviewed/bone-sarcomas`; `docs/gen_docs/bone-sarcomas` is generated.
+`apply_reviewed_content.py` must run after any optional Wiki export and scope pruning.
+The default publication uses the committed navigation and this reviewed source,
+so a temporary Wiki outage does not prevent publication.
 
-Run `python scripts/apply_reviewed_content.py` after an export. Changes to the reviewed manuscript, its application script or this workflow trigger publication. Keep status, evidence cutoff and citations current. This is an editorial draft for expert discussion, not a claim of institutional guideline approval.
+Only bone pages are exposed. Scope pruning removes other sections from the build,
+search and updates, including direct URLs. Historical material remains in git/Wiki.
 
-Edition 2026.09.2 is based on the three supplied source documents: the edited clinical recommendations, the edited medical-treatment review, and RUSSCO 2025 (pages 393–419). It replaces the earlier literature-review style with clinical indications, diagnostic workup, treatment calendars, local treatment and follow-up. Conflicting claims and doses were checked against primary studies, protocol calendars and pathology standards.
+Original source: `docs/_assets/sources/kr532-5-2025.pdf` (75 PDF pages, duplicate title page;
+printed page n corresponds to PDF page n+1 for the numbered body).
+Content citations use printed page numbers with exact PDF page-fragment links.
 
-The source-to-edit audit for this edition is recorded in `research/bone-source-revision-2026-09-07.md`. Earlier research and source verification remain in `research/bone-review-2026-09-06/report-source.md`. User-provided source documents and downloaded articles are not committed.
+Editorial ambiguities and the coverage map are recorded in
+`research/bone-source-revision-2026-09-24.md`.

@@ -37,7 +37,7 @@ navigation:
       - text: 'О EESG'
         url: 'https://eesg.ru/about'
       - text: 'Обратная связь'
-        url: 'mailto:md.batov@gmail.com'
+        url: '#feedback'
 
 items:
   - name: 'Клинические рекомендации'
