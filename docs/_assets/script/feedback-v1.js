@@ -14,16 +14,17 @@
     return node;
   };
   function contentRoot() {
-    for (const selector of ['.dc-doc-page__content .yfm', '.dc-doc-page__content', '.yfm', 'article', 'main']) {
+    for (const selector of ['.dc-doc-page__body.yfm', '.dc-doc-page__content', '.yfm', 'article', 'main']) {
       const node = document.querySelector(selector);
       if (node) return node;
     }
     return null;
   }
   function headingInfo(range) {
+    if (!range) return {title: 'Вся страница', anchor: ''};
     const root = contentRoot();
     const headings = root ? [...root.querySelectorAll('h1,h2,h3,h4')] : [];
-    let heading = headings[0];
+    let heading;
     if (range) {
       const container = range.startContainer.nodeType === Node.ELEMENT_NODE ? range.startContainer : range.startContainer.parentElement;
       for (const candidate of headings) {
@@ -31,7 +32,9 @@
       }
     }
     const id = heading?.id || heading?.querySelector('[id]')?.id || '';
-    return {title: clean(heading?.textContent), anchor: id ? `#${id}` : ''};
+    const headingLabel = heading?.cloneNode(true);
+    headingLabel?.querySelectorAll('[aria-hidden="true"],.visually-hidden').forEach(node => node.remove());
+    return {title: clean(headingLabel?.textContent), anchor: id ? `#${id}` : ''};
   }
   function contextText({quote, heading}) {
     const page = new URL(location.href);
