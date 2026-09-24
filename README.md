@@ -18,8 +18,10 @@ it is never allowed to replace the reviewed bone manuscript.
 
 ## Feedback
 
-The on-page feedback dialog accepts remarks without GitHub login.
-Responses are collected through an embedded form and are visible only to its owner.
+The anonymous feedback dialog is implemented. Form activation is pending owner Google sign-in.
+Until a real published URL and prefill ID are configured, the dialog explicitly states that
+feedback is unavailable and has NOT been sent. After activation, responses are collected
+through an embedded form and are visible only to its owner.
 The form receives the page, section, source edition and selected quotation.
 Configure its published URL and prefill field IDs in `docs/_assets/script/feedback-config.js`.
 No access tokens or private response-sheet URLs are included in the public site.

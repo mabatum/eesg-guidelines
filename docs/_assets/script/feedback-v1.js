@@ -83,7 +83,7 @@
     const cancel = el('button', 'eesg-fb-cancel', 'Закрыть');
     cancel.type = 'button';
     header.append(title, cancel);
-    dialog.append(header, el('p', 'eesg-fb-hint', 'Без регистрации. Замечание получит редактор; имя и контакт можно не указывать. Ссылка и выбранный фрагмент уже добавлены в форму.'));
+    dialog.append(header, el('p', 'eesg-fb-hint', 'Без регистрации. Замечание получит редактор; имя и контакт можно не указывать. К замечанию будут приложены ссылка и выбранный фрагмент.'));
     const context = contextText(payload);
     if (payload.quote) dialog.append(el('blockquote', 'eesg-fb-quote', payload.quote));
     try {
