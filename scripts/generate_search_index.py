@@ -20,6 +20,8 @@ def public_prefixes() -> set[str]:
 PUBLIC_PREFIXES = public_prefixes()
 
 H1_RE = re.compile(r"^#\s+(.+?)\s*$")
+SECTION_RE = re.compile(r"^#{2,6}\s+(.+?)\s*#*\s*$")
+FENCE_RE = re.compile(r"^\s{0,3}(`{3,}|~{3,})")
 PAREN_RE = re.compile(r"\(([^()]+)\)")
 ACRONYM_RE = re.compile(r"^[A-Za-zА-Яа-яЁё0-9+./-]{2,12}$")
 
@@ -32,6 +34,29 @@ def extract_title(path: Path) -> str | None:
             title = re.sub(r"\s+\{#[^}]+\}\s*$", "", title).strip()
             return title or None
     return None
+
+
+def section_titles(path: Path) -> list[str]:
+    """Index section labels only; prose and fenced examples remain excluded."""
+    result: list[str] = []
+    fence: str | None = None
+    for line in path.read_text(encoding="utf-8").splitlines():
+        marker = FENCE_RE.match(line)
+        if marker:
+            token = marker.group(1)
+            if fence is None:
+                fence = token
+            elif token[0] == fence[0] and len(token) >= len(fence):
+                fence = None
+            continue
+        if fence is not None:
+            continue
+        match = SECTION_RE.match(line)
+        if match:
+            title = re.sub(r"\s+\{#[^}]+\}\s*$", "", match.group(1)).strip()
+            if title:
+                result.append(title)
+    return result
 
 
 def page_url(path: Path) -> str:
@@ -118,7 +143,13 @@ def main() -> None:
             continue
         url = page_url(path)
         known_urls.add(url)
-        aliases = dedupe(automatic_aliases(title) + manual_aliases.get(url, []))
+        sections = section_titles(path)
+        aliases = dedupe(
+            automatic_aliases(title)
+            + sections
+            + [alias for section in sections for alias in automatic_aliases(section)]
+            + manual_aliases.get(url, [])
+        )
         record = {
             "title": title,
             "url": url,
@@ -141,12 +172,12 @@ def main() -> None:
     payload = json.dumps(records, ensure_ascii=False, separators=(",", ":"))
     alias_count = sum(len(item.get("aliases", [])) for item in records)
     OUTPUT.write_text(
-        "/* Generated from public page titles, breadcrumbs and curated aliases only. No body text is indexed. */\n"
+        "/* Generated from public page and section titles, breadcrumbs and curated aliases only. No body text is indexed. */\n"
         f"window.EESG_SEARCH_INDEX={payload};\n",
         encoding="utf-8",
     )
     print(
-        f"Generated public title/alias search index with {len(records)} entries and "
+        f"Generated public page/section search index with {len(records)} entries and "
         f"{alias_count} aliases: {OUTPUT}"
     )
 
