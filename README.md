@@ -18,10 +18,9 @@ it is never allowed to replace the reviewed bone manuscript.
 
 ## Feedback
 
-The anonymous feedback dialog is implemented. Form activation is pending owner Google sign-in.
-Until a real published URL and prefill ID are configured, the dialog explicitly states that
-feedback is unavailable and has NOT been sent. After activation, responses are collected
-through an embedded form and are visible only to its owner.
+Readers can submit feedback anonymously through the embedded Google Form without a
+Google or GitHub account. Responses are saved in the owner's private Google Sheet.
+The provider validates the submission and shows confirmation only after it is saved.
 The form receives the page, section, source edition and selected quotation.
-Configure its published URL and prefill field IDs in `docs/_assets/script/feedback-config.js`.
+Configure its published URL and context prefill field in `docs/_assets/script/feedback-config.js`.
 No access tokens or private response-sheet URLs are included in the public site.
