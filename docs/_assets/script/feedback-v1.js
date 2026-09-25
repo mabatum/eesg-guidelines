@@ -86,7 +86,9 @@
     const cancel = el('button', 'eesg-fb-cancel', 'Закрыть');
     cancel.type = 'button';
     header.append(title, cancel);
-    dialog.append(header, el('p', 'eesg-fb-hint', 'Без регистрации. Замечание получит редактор; имя и контакт можно не указывать. К замечанию будут приложены ссылка и выбранный фрагмент.'));
+    const hint = 'Без регистрации. Замечание получит редактор; имя и контакт можно не указывать. ' +
+      (payload.quote ? 'К замечанию будут приложены ссылка и выбранный фрагмент.' : 'К замечанию будет приложена ссылка на эту страницу.');
+    dialog.append(header, el('p', 'eesg-fb-hint', hint));
     const context = contextText(payload);
     if (payload.quote) dialog.append(el('blockquote', 'eesg-fb-quote', payload.quote));
     try {
@@ -134,7 +136,7 @@
     const root = contentRoot();
     if (!root?.contains(range.commonAncestorContainer)) return hideSelection();
     let quote = clean(selection.toString());
-    if (quote.length < 8) return hideSelection();
+    if (!quote) return hideSelection();
     if (quote.length > MAX_QUOTE) quote = `${quote.slice(0, MAX_QUOTE)}…`;
     const rect = range.getBoundingClientRect();
     if (!rect.width && !rect.height) return hideSelection();
