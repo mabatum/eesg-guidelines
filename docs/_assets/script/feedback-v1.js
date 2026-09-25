@@ -1,5 +1,6 @@
-/* Anonymous feedback through a published, embedded Google Form.
- * The provider owns validation, persistence and the submission confirmation.
+/* Anonymous feedback with hidden page context, submitted to Google Forms.
+ * A normal HTML form POST displays the provider's response in an iframe.
+ * The provider owns persistence and the submission confirmation.
  * Do not infer delivery from an iframe load, use no-cors POST, or store drafts as sent.
  */
 (() => {
@@ -52,7 +53,8 @@
   function formAddress(context) {
     const url = new URL(CFG.formUrl);
     if (url.protocol !== 'https:' || url.hostname !== 'docs.google.com' || !/^\/forms\/d\/e\/[^/]+\/viewform$/.test(url.pathname)) throw new Error('Invalid form URL');
-    if (!/^entry\.\d+$/.test(CFG.contextEntry)) throw new Error('Missing prefill field');
+    const fields = [CFG.contextEntry, CFG.commentEntry, CFG.nameEntry, CFG.contactEntry];
+    if (fields.some(field => !/^entry\.\d+$/.test(field)) || new Set(fields).size !== fields.length) throw new Error('Invalid form fields');
     url.searchParams.set('embedded', 'true');
     url.searchParams.set('usp', 'pp_url');
     url.searchParams.set(CFG.contextEntry, context);
@@ -93,19 +95,81 @@
     if (payload.quote) dialog.append(el('blockquote', 'eesg-fb-quote', payload.quote));
     try {
       const url = formAddress(context);
+      const form = el('form', 'eesg-fb-form');
+      const action = new URL(url);
+      action.pathname = action.pathname.replace(/viewform$/, 'formResponse');
+      action.search = '?embedded=true';
+      form.action = action.href;
+      form.method = 'POST';
+      form.acceptCharset = 'UTF-8';
+      form.target = 'eesg-fb-response';
+      function hidden(name, value) {
+        const input = el('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        form.append(input);
+      }
+      hidden(CFG.contextEntry, context);
+      hidden('fvv', '1');
+      hidden('pageHistory', '0');
+      function field(tag, id, name, labelText) {
+        const wrapper = el('div', 'eesg-fb-field');
+        const label = el('label', '', labelText);
+        label.htmlFor = id;
+        const input = el(tag);
+        input.id = id;
+        input.name = name;
+        wrapper.append(label, input);
+        return {wrapper, input};
+      }
+      const comment = field('textarea', 'eesg-fb-comment', CFG.commentEntry, 'Ваше замечание');
+      comment.input.required = true;
+      comment.input.rows = 5;
+      comment.input.addEventListener('input', () => comment.input.setCustomValidity(''), {signal: abort.signal});
+      const name = field('input', 'eesg-fb-name', CFG.nameEntry, 'Имя и организация — необязательно');
+      const contact = field('input', 'eesg-fb-contact', CFG.contactEntry, 'Контакт для ответа — необязательно');
+      const row = el('div', 'eesg-fb-row');
+      row.append(name.wrapper, contact.wrapper);
+      const actions = el('div', 'eesg-fb-actions');
+      const send = el('button', 'eesg-fb-send', 'Отправить замечание');
+      send.type = 'submit';
+      actions.append(send);
+      form.append(comment.wrapper, row, actions);
+      dialog.append(form);
+
+      const result = el('div', 'eesg-fb-result');
+      result.hidden = true;
+      const resultTitle = el('h3', '', 'Результат отправки');
+      resultTitle.tabIndex = -1;
       const iframe = el('iframe', 'eesg-fb-frame');
-      iframe.title = 'Отправить замечание к рекомендациям EESG';
-      iframe.src = url.href;
+      iframe.name = form.target;
+      iframe.title = 'Подтверждение отправки от Google Forms';
       iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-      dialog.append(iframe);
+      result.append(resultTitle, iframe);
       const footer = el('p', 'eesg-fb-hint eesg-fb-fallback');
-      const link = el('a', '', 'Открыть эту форму в отдельной вкладке');
+      const link = el('a', '', 'Открыть форму отдельно');
       url.searchParams.delete('embedded');
       link.href = url.href;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
-      footer.append(link);
-      dialog.append(footer);
+      footer.append(document.createTextNode('Если подтверждение не появилось: '), link);
+      result.append(footer);
+      dialog.append(result);
+      let submitted = false;
+      form.addEventListener('submit', event => {
+        if (submitted) { event.preventDefault(); return; }
+        comment.input.setCustomValidity(clean(comment.input.value) ? '' : 'Введите текст замечания.');
+        if (!form.reportValidity()) { event.preventDefault(); return; }
+        // Keep a recovery link with the user's text; never claim success locally.
+        for (const input of [comment.input, name.input, contact.input]) url.searchParams.set(input.name, input.value);
+        link.href = url.href;
+        submitted = true;
+        send.disabled = true;
+        form.hidden = true;
+        result.hidden = false;
+        resultTitle.focus();
+      }, {signal: abort.signal});
     } catch {
       const status = el('p', 'eesg-fb-unavailable', 'Приём замечаний временно недоступен. Форма ещё не подключена; замечание не отправлено.');
       status.setAttribute('role', 'status');
@@ -120,13 +184,14 @@
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') closeDialog();
       if (event.key === 'Tab') {
-        const nodes = [...dialog.querySelectorAll('button,a[href],iframe')];
+        const nodes = [...dialog.querySelectorAll('button,a[href],iframe,input:not([type="hidden"]),textarea')]
+          .filter(node => !node.disabled && node.getClientRects().length);
         const first = nodes[0], last = nodes[nodes.length - 1];
         if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
         else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
       }
     }, {signal: abort.signal});
-    cancel.focus();
+    (dialog.querySelector('textarea') || cancel).focus();
   }
   function onSelection() {
     if (active) return;
