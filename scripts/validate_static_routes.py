@@ -42,9 +42,12 @@ REQUIRED_HOME_ASSETS = (
     "_assets/style/feedback-v1.css",
 )
 
+SCRIPT_DIR = Path("docs/_assets/script")
+
 INDEX_RE = re.compile(r"window\.EESG_SEARCH_INDEX=(\[.*\]);\s*$", re.DOTALL)
 MD_LINK_RE = re.compile(r"\[[^\]]+\]\((?P<url>[^)]+)\)")
 TOC_URL_RE = re.compile(r"^\s*url:\s*['\"]?(?P<url>[^'\"\s]+)['\"]?\s*$", re.MULTILINE)
+SCRIPT_ROUTE_RE = re.compile(r"""new\s+URL\(\s*['"](?P<url>[^'"]+)['"]\s*,\s*SITE_ROOT""")
 
 
 def load_scope() -> tuple[list[str], list[str]]:
@@ -212,6 +215,19 @@ def main() -> int:
         for section in set(SECTION_NAMES) - set(publish):
             if f'"url":"./{section}/"' in built_toc:
                 errors.append(f"Unpublished section remains in header: {section}")
+
+    # 8. Маршруты, которые фронтенд строит от корня сайта
+    #    Скрипт может подставить ссылку на раздел, которого нет в сборке, и
+    #    такая ссылка не видна ни в toc.yaml, ни в поисковом указателе.
+    #    Проверяется путь; фрагмент (#...) здесь не проверить — заголовки
+    #    страниц собираются уже в браузере.
+    if SCRIPT_DIR.exists():
+        for script in sorted(SCRIPT_DIR.glob("*.js")):
+            for match in SCRIPT_ROUTE_RE.finditer(script.read_text(encoding="utf-8")):
+                url = urlsplit(match.group("url")).path
+                if not url or url in {".", "./", "../", "../../"}:
+                    continue
+                validate_local_url(errors, f"Route in {script.name}", url)
 
     if errors:
         print("Static route/render validation errors:")
