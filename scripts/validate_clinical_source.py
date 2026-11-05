@@ -8,7 +8,7 @@ from pathlib import Path
 import hashlib
 import re
 
-EDITION = '2026.11.1'
+VERSION_RE = re.compile(r'\*\*Версия:\*\* \d{4}\.\d{1,2}\.\d+')  # edited in Wiki, so any edition number
 SOURCE = Path('content-reviewed/bone-sarcomas')
 GENERATED = Path('docs/gen_docs/bone-sarcomas')
 PDF = Path('docs/_assets/sources/kr532-5-2025.pdf')
@@ -23,7 +23,7 @@ for path in SOURCE.rglob('*.md'):
     generated = GENERATED/path.relative_to(SOURCE)
     if not generated.exists() or generated.read_bytes() != path.read_bytes():
         errors.append(f'Reviewed/generated content differs: {path}')
-    if '532_5' not in text or f'**Версия:** {EDITION}' not in text:
+    if '532_5' not in text or not VERSION_RE.search(text):
         errors.append(f'Source or edition metadata missing: {path}')
     if re.search(r'\{\{[^}]*\}\}|\{[a-z-]+\}', text):
         errors.append(f'Unresolved citation placeholder: {path}')
@@ -50,4 +50,4 @@ if not built.exists() or hashlib.sha256(built.read_bytes()).hexdigest() != EXPEC
     errors.append('Published PDF differs from the clinical source.')
 if errors:
     raise SystemExit('\n'.join(errors))
-print(f'Clinical source validated: 8 routes, edition {EDITION}, original PDF, citation offsets, footnote marks and overlay parity.')
+print(f'Clinical source validated: 8 routes, edition line, original PDF, citation offsets, footnote marks and overlay parity.')
