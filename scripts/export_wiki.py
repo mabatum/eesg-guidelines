@@ -5,6 +5,7 @@ import os
 import posixpath
 import re
 import shutil
+import time
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -102,8 +103,20 @@ def authenticated_session() -> requests.Session:
     )
 
 
+def get_with_retry(s: requests.Session, url: str, **kwargs) -> requests.Response:
+    """Wiki answers 429 when a token makes many requests in a row; wait and retry."""
+    for attempt in range(6):
+        response = s.get(url, **kwargs)
+        if response.status_code != 429 and response.status_code < 500:
+            return response
+        delay = float(response.headers.get("Retry-After") or 2 ** attempt)
+        print(f"WARNING Wiki API HTTP {response.status_code}, retrying in {delay:.0f} s: {url}")
+        time.sleep(min(delay, 60))
+    return response
+
+
 def checked_get(s: requests.Session, url: str, **kwargs) -> requests.Response:
-    response = s.get(url, **kwargs)
+    response = get_with_retry(s, url, **kwargs)
     if not response.ok:
         raise SystemExit(
             f"Yandex Wiki API request failed: HTTP {response.status_code} "

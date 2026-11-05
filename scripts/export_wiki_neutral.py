@@ -69,7 +69,8 @@ def moved_route_internal_link(current_slug: str, raw_url: str, suffix: str = "")
 
 def tolerant_get_page(session, slug: str) -> dict:
     for attempt in range(1, 4):
-        response = session.get(
+        response = export_wiki.get_with_retry(
+            session,
             f"{export_wiki.API_BASE}/pages",
             params={"slug": slug, "fields": "content,attributes,breadcrumbs"},
             timeout=30,
