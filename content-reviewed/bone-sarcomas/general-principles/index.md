@@ -293,20 +293,6 @@
 
 **График наблюдения не проверялся в сравнительных исследованиях; интервалы различаются между руководствами.**
 
-## Сопоставление с действующими руководствами
-
-| Источник | Положение |
-|---|---|
-| ESMO [[11]](https://doi.org/10.1016/j.annonc.2021.08.1995) | направление в специализированный центр до биопсии; биопсия выполняется в центре, где будет операция |
-| Британское руководство [[12]](https://doi.org/10.1038/s41416-024-02868-4) | направление до биопсии и до фиксации патологического перелома |
-| RUSSCO [[13]](https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf) | приводит TNM 8-го издания, объём обследования и календарь наблюдения |
-| GEIS [[14]](https://doi.org/10.1007/s12094-024-03602-5) | при саркоме Юинга рутинная двусторонняя трепанобиопсия костного мозга при отрицательном результате современного обследования скелета не требуется |
-| Детская онкологическая группа [[15]](https://doi.org/10.6004/jnccn.2024.7063) | требования к получению и обработке биопсийного материала при остеосаркоме и саркоме Юинга |
-| ASCO [[16]](https://doi.org/10.1200/JCO-24-02782) | сохранение фертильности обсуждается до начала гонадотоксичного лечения |
-| ASCO [[17]](https://doi.org/10.1200/JCO.23.00933) | гериатрическая оценка перед системной терапией у пожилых |
-
-> Различия касаются объёма визуализации при наблюдении и показаний к исследованию костного мозга при саркоме Юинга.
-
 ## Итоги и рекомендации
 
 **Маршрутизация.** Рекомендуется направлять пациента с подозрением на первичную злокачественную опухоль кости в специализированный саркомный центр до биопсии и до любого вмешательства на кости. Тактику определяет консилиум с участием онкоортопеда, онколога и при необходимости радиотерапевта. [[1]](https://doi.org/10.2106/00004623-199605000-00004) [[2, с. 46–50]](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf#page=47)
@@ -327,6 +313,19 @@
 
 **Наблюдение.** Каждые 3 месяца в первые 2 года, затем каждые 6 месяцев до 5 лет; минимальный объём - КТ органов грудной клетки. [[2, с. 45–46]](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf#page=46)
 
+## Мировая практика
+
+| Источник | Положение |
+|---|---|
+| ESMO [[11]](https://doi.org/10.1016/j.annonc.2021.08.1995) | направление в специализированный центр до биопсии; биопсия выполняется в центре, где будет операция |
+| Британское руководство [[12]](https://doi.org/10.1038/s41416-024-02868-4) | направление до биопсии и до фиксации патологического перелома |
+| GEIS [[13]](https://doi.org/10.1007/s12094-024-03602-5) | при саркоме Юинга рутинная двусторонняя трепанобиопсия костного мозга при отрицательном результате современного обследования скелета не требуется |
+| Детская онкологическая группа [[14]](https://doi.org/10.6004/jnccn.2024.7063) | требования к получению и обработке биопсийного материала при остеосаркоме и саркоме Юинга |
+| ASCO [[15]](https://doi.org/10.1200/JCO-24-02782) | сохранение фертильности обсуждается до начала гонадотоксичного лечения |
+| ASCO [[16]](https://doi.org/10.1200/JCO.23.00933) | гериатрическая оценка перед системной терапией у пожилых |
+
+> Различия касаются объёма визуализации при наблюдении и показаний к исследованию костного мозга при саркоме Юинга.
+
 **‡** Лекарственная опция не входит в клинические рекомендации Минздрава России «Саркомы костей», 2025.
 
 ## Список литературы
@@ -343,8 +342,7 @@
 10. eviQ. Methotrexate toxicity: sarcoma. Protocol ID 3303. [протокол](https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/3303-methotrexate-toxicity-sarcoma)
 11. Strauss SJ, Frezza AM, Abecassis N, и соавт. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline for diagnosis, treatment and follow-up. *Ann Oncol*. 2021;32(12):1520-1536. [DOI 10.1016/j.annonc.2021.08.1995](https://doi.org/10.1016/j.annonc.2021.08.1995) - руководство
 12. Gerrand C, Amary F, Anwar HA, и соавт. UK guidelines for the management of bone sarcomas. *Br J Cancer*. 2025;132(1):32-48. [DOI 10.1038/s41416-024-02868-4](https://doi.org/10.1038/s41416-024-02868-4) - руководство
-13. Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419. [руководство](https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf)
-14. Mata Fernandez C, Sebio A, Valverde Morales C, и соавт. Clinical practice guidelines for the treatment of Ewing sarcoma (Spanish Group for Research on Sarcomas). *Clin Transl Oncol*. 2025;27(3):824-836. [DOI 10.1007/s12094-024-03602-5](https://doi.org/10.1007/s12094-024-03602-5) - руководство
-15. Dietz MS, Beird HC, Bahig H, и соавт. Optimizing Ewing sarcoma and osteosarcoma biopsy acquisition: a Children's Oncology Group Bone Tumor Committee consensus statement. *J Natl Compr Canc Netw*. 2025;23(1):e247063. [DOI 10.6004/jnccn.2024.7063](https://doi.org/10.6004/jnccn.2024.7063) - руководство
-16. Su HI, Lacchetti C, Letourneau J, и соавт. Fertility preservation in people with cancer: ASCO guideline update. *J Clin Oncol*. 2025;43(12):1488-1515. [DOI 10.1200/JCO-24-02782](https://doi.org/10.1200/JCO-24-02782) - руководство
-17. Dale W, Klepin HD, Williams GR, и соавт. Practical assessment and management of vulnerabilities in older patients receiving systemic cancer therapy: ASCO guideline update. *J Clin Oncol*. 2023;41(26):4293-4312. [DOI 10.1200/JCO.23.00933](https://doi.org/10.1200/JCO.23.00933) - руководство
+13. Mata Fernandez C, Sebio A, Valverde Morales C, и соавт. Clinical practice guidelines for the treatment of Ewing sarcoma (Spanish Group for Research on Sarcomas). *Clin Transl Oncol*. 2025;27(3):824-836. [DOI 10.1007/s12094-024-03602-5](https://doi.org/10.1007/s12094-024-03602-5) - руководство
+14. Dietz MS, Beird HC, Bahig H, и соавт. Optimizing Ewing sarcoma and osteosarcoma biopsy acquisition: a Children's Oncology Group Bone Tumor Committee consensus statement. *J Natl Compr Canc Netw*. 2025;23(1):e247063. [DOI 10.6004/jnccn.2024.7063](https://doi.org/10.6004/jnccn.2024.7063) - руководство
+15. Su HI, Lacchetti C, Letourneau J, и соавт. Fertility preservation in people with cancer: ASCO guideline update. *J Clin Oncol*. 2025;43(12):1488-1515. [DOI 10.1200/JCO-24-02782](https://doi.org/10.1200/JCO-24-02782) - руководство
+16. Dale W, Klepin HD, Williams GR, и соавт. Practical assessment and management of vulnerabilities in older patients receiving systemic cancer therapy: ASCO guideline update. *J Clin Oncol*. 2023;41(26):4293-4312. [DOI 10.1200/JCO.23.00933](https://doi.org/10.1200/JCO.23.00933) - руководство
