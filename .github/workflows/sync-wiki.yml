@@ -19,6 +19,9 @@ on:
       - 'package-lock.json'
       - 'requirements.txt'
       - '.github/workflows/sync-wiki.yml'
+  schedule:
+    # The bone text is edited in Wiki; pick up the edits every 30 minutes.
+    - cron: '*/30 * * * *'
 
 permissions:
   contents: read
@@ -54,6 +57,19 @@ jobs:
         run: |
           pip install -r requirements.txt
           python3 scripts/export_wiki_neutral.py
+      - name: Pull bone pages from Wiki
+        env:
+          WIKI_TOKEN: ${{ secrets.WIKI_TOKEN }}
+          ORG_ID: bpfl6jh90pruinc9ks8c
+        run: |
+          pip install -r requirements.txt
+          if ! python3 scripts/pull_wiki_bones.py; then
+            if [ "${{ github.event_name }}" = push ]; then
+              echo "::warning::Wiki is unavailable; building the bone pages committed in content-reviewed."
+            else
+              exit 1
+            fi
+          fi
       - name: Prepare reviewed bone content and navigation
         run: npm run prepare:docs
       - name: Build site
