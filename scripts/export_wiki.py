@@ -81,7 +81,8 @@ def authenticated_session() -> requests.Session:
     attempts: list[str] = []
     for org_header in ("X-Org-Id", "X-Cloud-Org-Id"):
         s = make_session(org_header)
-        response = s.get(
+        response = get_with_retry(
+            s,
             f"{API_BASE}/pages",
             params={"slug": ROOT_SLUG},
             timeout=30,
