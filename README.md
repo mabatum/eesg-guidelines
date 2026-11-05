@@ -15,7 +15,9 @@ starting point and are not updated after Wiki edits.
 The original PDF is in `docs/_assets/sources/kr532-5-2025.pdf`.
 Soft tissue sections are opened page by page as they are merged with the guidelines «Саркомы мягких тканей»
 (ID 515_3), «Забрюшинные неорганные саркомы» (ID 618_3) and «Рак тела матки и саркомы матки» (ID 460_4);
-their PDFs are in `docs/_assets/sources`. Other sections remain excluded from the build and search.
+their PDFs are in `docs/_assets/sources`. Merge decisions: `research/soft-merge-2026-11-06.md`.
+GIST has its own guideline, which is not merged yet, so its page is hidden. Other sections remain
+excluded from the build and search.
 
 ## Build and publish
 
