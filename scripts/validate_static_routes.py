@@ -27,11 +27,15 @@ REFERENCE_PAGE = STATIC_ROOT / "bone-sarcomas/osteosarcoma-adults/index.html"
 SECTION_NAMES = {
     "general-principles": "Общие принципы ведения пациентов с саркомами",
     "bone-sarcomas": "Саркомы костей",
+    "soft-tissue-sarcomas": "Саркомы мягких тканей",
+    "specific-tumor-groups": "Отдельные нозологические группы",
 }
 
 SECTION_HEADER_LABELS = {
-    "general-principles": "Общие принципы",
+    "general-principles": "Общие принципы СМТ",
     "bone-sarcomas": "Саркомы костей",
+    "soft-tissue-sarcomas": "Саркомы мягких тканей",
+    "specific-tumor-groups": "Отдельные группы",
 }
 
 REQUIRED_HOME_ASSETS = (

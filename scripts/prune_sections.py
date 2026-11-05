@@ -18,13 +18,14 @@ GUIDELINES_TOC = GEN_ROOT / "toc.yaml"
 SCOPE_FILE = Path("config/site-scope.json")
 
 
-def load_scope() -> tuple[list[str], list[str]]:
+def load_scope() -> tuple[list[str], list[str], list[str]]:
     raw = json.loads(SCOPE_FILE.read_text(encoding="utf-8"))
     publish = [str(name) for name in raw.get("publish", [])]
     hidden = [str(name) for name in raw.get("keep_hidden", [])]
+    pages = [str(path).strip("/") for path in raw.get("hide_pages", [])]
     if not publish:
         raise SystemExit(f"Не задан ни один публикуемый раздел: {SCOPE_FILE}")
-    return publish, hidden
+    return publish, hidden, pages
 
 
 def top_level_dirs() -> list[str]:
@@ -95,9 +96,33 @@ def prune_toc(publish: list[str], hidden: list[str]) -> None:
     print(f"Оглавление: оставлено {len(kept)}, убрано {len(dropped)} — {', '.join(sorted(set(dropped)))}")
 
 
+def drop_toc_pages(pages: list[str]) -> None:
+    """Убирает из оглавления страницы раздела вместе с их дочерними страницами."""
+    lines = GUIDELINES_TOC.read_text(encoding="utf-8").splitlines()
+    kept: list[str] = []
+    skip_indent: int | None = None
+    for i, line in enumerate(lines):
+        indent = len(line) - len(line.lstrip())
+        if skip_indent is not None and line.strip() and indent > skip_indent:
+            continue
+        skip_indent = None
+        item = re.match(r"(\s*)- name: ", line)
+        href = re.search(r'href:\s*"?([\w./-]+)"?', lines[i + 1]) if item and i + 1 < len(lines) else None
+        if href and href.group(1) in {page + "/index.md" for page in pages}:
+            skip_indent = len(item.group(1))
+            continue
+        kept.append(line)
+    # A parent whose only children were hidden must not keep an empty items list.
+    kept = [line for i, line in enumerate(kept)
+            if not (line.strip() == "items:" and (i + 1 == len(kept)
+                    or len(kept[i + 1]) - len(kept[i + 1].lstrip()) <= len(line) - len(line.lstrip())))]
+    GUIDELINES_TOC.write_text("\n".join(kept).rstrip() + "\n", encoding="utf-8")
+
+
 def drop_directories(removed: list[str]) -> None:
     for name in removed:
-        shutil.rmtree(GEN_ROOT / name)
+        if (GEN_ROOT / name).is_dir():  # a hidden page may sit inside another hidden page
+            shutil.rmtree(GEN_ROOT / name)
     print(f"Удалено каталогов: {len(removed)} — {', '.join(removed)}")
 
 
@@ -105,9 +130,7 @@ def neutralise_links(removed: list[str]) -> None:
     """[текст](../../section/...) -> текст, чтобы не осталось битых ссылок."""
     if not removed:
         return
-    pattern = re.compile(
-        r"\[([^\]\n]+)\]\(((?:\.{1,2}/)*(?:" + "|".join(map(re.escape, removed)) + r")/[^)\s]*)\)"
-    )
+    pattern = re.compile(r"\[([^\]\n]+)\]\(((?:\.{1,2}/)*[\w./-]+\.md(?:#[^)\s]*)?)\)")
     touched = total = 0
     for path in list(GEN_ROOT.rglob("*.md")) + [Path("docs/index.md"), Path("docs/updates.md")]:
         if not path.exists():
@@ -120,12 +143,12 @@ def neutralise_links(removed: list[str]) -> None:
 
         def replace_link(match: re.Match[str]) -> str:
             nonlocal count
-            target = (base / match.group(2)).resolve()
+            target = (base / match.group(2).split("#")[0]).resolve()
             try:
-                section = target.relative_to(GEN_ROOT.resolve()).parts[0]
-            except (ValueError, IndexError):
+                relative = target.relative_to(GEN_ROOT.resolve()).as_posix()
+            except ValueError:
                 return match.group(0)
-            if section not in removed:
+            if not any(relative == name or relative.startswith(name + "/") for name in removed):
                 return match.group(0)
             count += 1
             return match.group(1)
@@ -139,17 +162,19 @@ def neutralise_links(removed: list[str]) -> None:
 
 
 def main() -> None:
-    publish, hidden = load_scope()
+    publish, hidden, pages = load_scope()
     present = top_level_dirs()
     removed = [name for name in present if name not in publish and name not in hidden]
 
     missing = [name for name in publish if name not in present]
     if missing:
         raise SystemExit("Публикуемые разделы отсутствуют в выгрузке: " + ", ".join(missing))
+    pages = [page for page in pages if page.split("/")[0] in publish and (GEN_ROOT / page).is_dir()]
 
     prune_toc(publish, hidden)
-    neutralise_links(removed)
-    drop_directories(removed)
+    drop_toc_pages(pages)
+    neutralise_links(removed + pages)
+    drop_directories(removed + pages)
     print("Публикуются разделы: " + ", ".join(publish))
 
 

@@ -13,12 +13,16 @@ Every build pulls these pages with `scripts/pull_wiki_bones.py` into `content-re
 so the copy in git is a snapshot. The marker sources in `content-src/bone-sarcomas` are the 2026.11.1
 starting point and are not updated after Wiki edits.
 The original PDF is in `docs/_assets/sources/kr532-5-2025.pdf`.
-Only `bone-sarcomas` is published; other sections remain excluded from the build and search.
+Soft tissue sections are opened page by page as they are merged with the guidelines «Саркомы мягких тканей»
+(ID 515_3), «Забрюшинные неорганные саркомы» (ID 618_3) and «Рак тела матки и саркомы матки» (ID 460_4);
+their PDFs are in `docs/_assets/sources`. Other sections remain excluded from the build and search.
 
 ## Build and publish
 
-Install with `npm ci`, then run `npm run prepare:docs`, `npm run build:docs`, and
-`python3 scripts/validate_static_routes.py`. The GitHub Pages workflow publishes
+Install with `npm ci`. With `WIKI_TOKEN` and `ORG_ID` set, run `python3 scripts/export_wiki_neutral.py`
+and `python3 scripts/pull_wiki_bones.py`, then `npm run prepare:docs`, `npm run build:docs`, and
+`python3 scripts/validate_static_routes.py`. The site shows the sections listed in `config/site-scope.json`;
+`hide_pages` there keeps single pages of a published section off the site until they are reviewed. The GitHub Pages workflow publishes
 only after these checks pass. It runs on push, on manual start and every 30 minutes, so Wiki edits
 reach the site within about half an hour. If a pulled page fails a check, the site keeps the last
 published version. The full Wiki export of navigation is still an optional manual step.
