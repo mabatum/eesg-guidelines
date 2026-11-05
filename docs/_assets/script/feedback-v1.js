@@ -5,7 +5,7 @@
  */
 (() => {
   'use strict';
-  const CFG = Object.assign({formUrl: '', contextEntry: '', edition: '2026.09.3'}, window.EESG_FEEDBACK || {});
+  const CFG = Object.assign({formUrl: '', contextEntry: '', edition: '2026.11.1'}, window.EESG_FEEDBACK || {});
   const MAX_QUOTE = 600;
   const clean = (value) => String(value || '').replace(/\s+/g, ' ').trim();
   const el = (tag, className, text) => {
@@ -42,7 +42,7 @@
     page.search = '';
     page.hash = heading.anchor;
     return [
-      'EESG · КР «Саркомы костей», 2025, ID 532_5',
+      'EESG · Клинические рекомендации «Саркомы костей»',
       `Веб-редакция: ${CFG.edition}`,
       `Страница: ${clean(document.querySelector('h1')?.textContent || document.title)}`,
       `Раздел: ${heading.title || 'Вся страница'}`,

@@ -1,0 +1,52 @@
+{
+ "chawla": {
+  "cite": "Chawla S, Blay JY, Rutkowski P, и соавт. Denosumab in patients with giant-cell tumour of bone: a multicentre, open-label, phase 2 study. *Lancet Oncol*. 2019;20(12):1719-1729.",
+  "doi": "10.1016/S1470-2045(19)30663-1"
+ },
+ "errani": {
+  "cite": "Errani C, Tsukamoto S, Leone G, и соавт. Denosumab may increase the risk of local recurrence in patients with giant-cell tumor of bone treated with curettage. *J Bone Joint Surg Am*. 2018;100(6):496-504.",
+  "doi": "10.2106/JBJS.17.00057"
+ },
+ "jiang": {
+  "cite": "Jiang CY, Zhao L, Schuetze SM, Chugh R. Giant cell tumor of bone: effect of longer dosing intervals of denosumab on tumor control and bone-related complications. *Oncologist*. 2022;27(7):595-599.",
+  "doi": "10.1093/oncolo/oyac066"
+ },
+ "discontinuation": {
+  "cite": "Gonzalez Perez A, Redondo A, Valverde C, и соавт. Do unresectable giant cell tumors of bone treated with denosumab progress after discontinuation of treatment? A multicentre retrospective study. *Cancer Rep (Hoboken)*. 2025;8(3):e70117.",
+  "doi": "10.1002/cnr2.70117"
+ },
+ "lung-observation": {
+  "cite": "Tsukamoto S, Ciani G, Mavrogenis AF, и соавт. Outcome of lung metastases due to bone giant cell tumor initially managed with observation. *J Orthop Surg Res*. 2020;15(1):510.",
+  "doi": "10.1186/s13018-020-02038-1"
+ },
+ "g34w-amary": {
+  "cite": "Amary F, Berisha F, Ye H, и соавт. H3F3A (Histone 3.3) G34W immunohistochemistry: a reliable marker defining benign and malignant giant cell tumor of bone. *Am J Surg Pathol*. 2017;41(8):1059-1068.",
+  "doi": "10.1097/PAS.0000000000000859"
+ },
+ "g34w-yamamoto": {
+  "cite": "Yamamoto H, Iwasaki T, Yamada Y, и соавт. Diagnostic utility of histone H3.3 G34W, G34R, and G34V mutant-specific antibodies for giant cell tumors of bone. *Hum Pathol*. 2018;73:41-50.",
+  "doi": "10.1016/j.humpath.2017.11.020"
+ },
+ "xgeva": {
+  "cite": "European Medicines Agency. Xgeva (деносумаб): информация о препарате.",
+  "url": "https://www.ema.europa.eu/en/documents/product-information/xgeva-epar-product-information_en.pdf",
+  "kind": "инструкция"
+ },
+ "russco": {
+  "cite": "Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419.",
+  "url": "https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf",
+  "kind": "руководство"
+ },
+ "uk-guidelines": {
+  "cite": "Gerrand C, Amary F, Anwar HA, и соавт. UK guidelines for the management of bone sarcomas. *Br J Cancer*. 2025;132(1):32-48.",
+  "doi": "10.1038/s41416-024-02868-4",
+  "kind": "руководство"
+ },
+ "kr532": {
+  "cite": "Ассоциация онкологов России, Восточно-Европейская группа по изучению сарком, Российское общество клинической онкологии. **Саркомы костей. Клинические рекомендации.** Взрослые; C40, C41, D48.0; ID 532_5. Минздрав России; 2025.",
+  "url": "https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf",
+  "kind": "клинические рекомендации Минздрава России",
+  "page_offset": 1,
+  "tail": "[Полный документ (PDF)](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf) · [Рубрикатор Минздрава России](https://cr.minzdrav.gov.ru/preview-cr/532_5)"
+ }
+}

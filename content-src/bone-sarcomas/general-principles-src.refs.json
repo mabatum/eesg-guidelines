@@ -1,0 +1,86 @@
+{
+ "wang": {
+  "cite": "Wang L, Motoi T, Khanin R, и соавт. Identification of a novel, recurrent HEY1-NCOA2 fusion in mesenchymal chondrosarcoma based on a genome-wide screen of exon-level expression data. *Genes Chromosomes Cancer*. 2012;51(2):127-139.",
+  "doi": "10.1002/gcc.20937"
+ },
+ "amary": {
+  "cite": "Amary F, Berisha F, Ye H, и соавт. H3F3A (Histone 3.3) G34W immunohistochemistry: a reliable marker defining benign and malignant giant cell tumor of bone. *Am J Surg Pathol*. 2017;41(8):1059-1068.",
+  "doi": "10.1097/PAS.0000000000000859"
+ },
+ "iccr-dataset": {
+  "cite": "Bovee JVMG, Bloem JL, Flanagan AM, и соавт. Dataset for the reporting of primary tumour in bone: recommendations from the International Collaboration on Cancer Reporting. *Histopathology*. 2023;82(4):531-540.",
+  "doi": "10.1111/his.14849",
+  "kind": "стандарт заключения"
+ },
+ "iccr-guide": {
+  "cite": "International Collaboration on Cancer Reporting. Primary tumour in bone: histopathology reporting guide, 1-е издание.",
+  "url": "https://www.iccr-cancer.org/wp-content/uploads/2022/02/ICCR-Bone-Resection-1st-edn-v1-bookmark.pdf",
+  "kind": "стандарт заключения"
+ },
+ "eviq-map": {
+  "cite": "eviQ. Osteosarcoma MAP (methotrexate, doxorubicin, cisplatin). Protocol ID 1901.",
+  "url": "https://www.eviq.org.au/medical-oncology/sarcoma/bone-sarcoma/1901-osteosarcoma-map-methotrexate-doxorubicin",
+  "kind": "протокол"
+ },
+ "eviq-vdc": {
+  "cite": "eviQ. Ewing sarcoma VDC (vincristine, doxorubicin, cyclophosphamide). Protocol ID 1916.",
+  "url": "https://www.eviq.org.au/medical-oncology/sarcoma/bone-sarcoma/1916-ewing-sarcoma-vdc-vincristine-doxorubicin",
+  "kind": "протокол"
+ },
+ "eviq-mtx": {
+  "cite": "eviQ. Methotrexate toxicity: sarcoma. Protocol ID 3303.",
+  "url": "https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/3303-methotrexate-toxicity-sarcoma",
+  "kind": "протокол"
+ },
+ "mtx-consensus": {
+  "cite": "Bielack SS, Kuhne T, Hecker-Nolting S, и соавт. A European consensus recommendation on the management of delayed methotrexate elimination: supportive measures, leucovorin rescue and glucarpidase treatment. *J Cancer Res Clin Oncol*. 2024;150(9):427.",
+  "doi": "10.1007/s00432-024-05945-6",
+  "kind": "протокол"
+ },
+ "cog-biopsy": {
+  "cite": "Dietz MS, Beird HC, Bahig H, и соавт. Optimizing Ewing sarcoma and osteosarcoma biopsy acquisition: a Children's Oncology Group Bone Tumor Committee consensus statement. *J Natl Compr Canc Netw*. 2025;23(1):e247063.",
+  "doi": "10.6004/jnccn.2024.7063",
+  "kind": "руководство"
+ },
+ "mankin": {
+  "cite": "Mankin HJ, Mankin CJ, Simon MA. The hazards of the biopsy, revisited. *J Bone Joint Surg Am*. 1996;78(5):656-663.",
+  "doi": "10.2106/00004623-199605000-00004"
+ },
+ "russco": {
+  "cite": "Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419.",
+  "url": "https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf",
+  "kind": "руководство"
+ },
+ "esmo": {
+  "cite": "Strauss SJ, Frezza AM, Abecassis N, и соавт. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline for diagnosis, treatment and follow-up. *Ann Oncol*. 2021;32(12):1520-1536.",
+  "doi": "10.1016/j.annonc.2021.08.1995",
+  "kind": "руководство"
+ },
+ "uk-guidelines": {
+  "cite": "Gerrand C, Amary F, Anwar HA, и соавт. UK guidelines for the management of bone sarcomas. *Br J Cancer*. 2025;132(1):32-48.",
+  "doi": "10.1038/s41416-024-02868-4",
+  "kind": "руководство"
+ },
+ "geis-ewing": {
+  "cite": "Mata Fernandez C, Sebio A, Valverde Morales C, и соавт. Clinical practice guidelines for the treatment of Ewing sarcoma (Spanish Group for Research on Sarcomas). *Clin Transl Oncol*. 2025;27(3):824-836.",
+  "doi": "10.1007/s12094-024-03602-5",
+  "kind": "руководство"
+ },
+ "asco-fertility": {
+  "cite": "Su HI, Lacchetti C, Letourneau J, и соавт. Fertility preservation in people with cancer: ASCO guideline update. *J Clin Oncol*. 2025;43(12):1488-1515.",
+  "doi": "10.1200/JCO-24-02782",
+  "kind": "руководство"
+ },
+ "asco-geriatric": {
+  "cite": "Dale W, Klepin HD, Williams GR, и соавт. Practical assessment and management of vulnerabilities in older patients receiving systemic cancer therapy: ASCO guideline update. *J Clin Oncol*. 2023;41(26):4293-4312.",
+  "doi": "10.1200/JCO.23.00933",
+  "kind": "руководство"
+ },
+ "kr532": {
+  "cite": "Ассоциация онкологов России, Восточно-Европейская группа по изучению сарком, Российское общество клинической онкологии. **Саркомы костей. Клинические рекомендации.** Взрослые; C40, C41, D48.0; ID 532_5. Минздрав России; 2025.",
+  "url": "https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf",
+  "kind": "клинические рекомендации Минздрава России",
+  "page_offset": 1,
+  "tail": "[Полный документ (PDF)](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf) · [Рубрикатор Минздрава России](https://cr.minzdrav.gov.ru/preview-cr/532_5)"
+ }
+}

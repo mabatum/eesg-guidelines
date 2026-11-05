@@ -1,0 +1,73 @@
+{
+ "upsb-coss": {
+  "cite": "Bielack SS, Hecker-Nolting S, Kevric M, и соавт. Undifferentiated pleomorphic sarcoma of bone treated in the German-speaking countries: a report from the Cooperative Osteosarcoma Study Group. *J Cancer Res Clin Oncol*. 2026;152(1):15.",
+  "doi": "10.1007/s00432-025-06405-5"
+ },
+ "euro-boss-rare": {
+  "cite": "Palmerini E, Ferrari S, Bielack S, и соавт. Outcome of rare primary malignant bone sarcoma treated with multimodal therapy: results from the EURO-B.O.S.S. study. *Cancer*. 2023;129(24):3952-3961.",
+  "doi": "10.1002/cncr.34964"
+ },
+ "lms-bone": {
+  "cite": "Bellan E, Righi A, Gambarotti M, и соавт. Primary leiomyosarcoma of bone: a clinicopathologic and immunohistochemical study of 142 cases. *Pathologica*. 2025;117(1):22-31.",
+  "doi": "10.32074/1591-951X-N1251"
+ },
+ "lms04": {
+  "cite": "Pautier P, Italiano A, Piperno-Neumann S, и соавт. Doxorubicin-trabectedin with trabectedin maintenance in leiomyosarcoma. *N Engl J Med*. 2024;391(9):789-799.",
+  "doi": "10.1056/NEJMoa2403394"
+ },
+ "angiosarcoma-bone": {
+  "cite": "Palmerini E, Leithner A, Windhager R, и соавт. Angiosarcoma of bone: a retrospective study of the European Musculoskeletal Oncology Society. *Sci Rep*. 2020;10(1):10163.",
+  "doi": "10.1038/s41598-020-66579-5"
+ },
+ "angiotax": {
+  "cite": "Penel N, Bui BN, Bay JO, и соавт. Phase II trial of weekly paclitaxel for unresectable angiosarcoma: the ANGIOTAX study. *J Clin Oncol*. 2008;26(32):5269-5274.",
+  "doi": "10.1200/JCO.2008.17.3146"
+ },
+ "ehe-consensus": {
+  "cite": "Stacchiotti S, Miah AB, Frezza AM, и соавт. Epithelioid hemangioendothelioma, an ultra-rare cancer: a consensus paper from the community of experts. *ESMO Open*. 2021;6(3):100170.",
+  "doi": "10.1016/j.esmoop.2021.100170",
+  "kind": "руководство"
+ },
+ "sirolimus-ehe": {
+  "cite": "Stacchiotti S, Miah AB, Frezza AM, и соавт. Activity of sirolimus in patients with progressive epithelioid hemangioendothelioma: a case-series analysis within the Italian Rare Cancer Network. *Cancer*. 2021;127(4):569-576.",
+  "doi": "10.1002/cncr.33247"
+ },
+ "adamantinoma": {
+  "cite": "Schutgens EM, Picci P, Baumhoer D, и соавт. Surgical outcome and oncological survival of osteofibrous dysplasia-like and classic adamantinomas: an international multicenter study of 318 cases. *J Bone Joint Surg Am*. 2020;102(19):1703-1713.",
+  "doi": "10.2106/JBJS.19.01056"
+ },
+ "bone-ss": {
+  "cite": "Righi A, Gambarotti M, Sbaraglia M, и соавт. Primary synovial sarcoma of bone: a retrospective analysis of 25 patients. *Histopathology*. 2022;80(4):686-697.",
+  "doi": "10.1111/his.14602"
+ },
+ "ultra-rare-round-cell": {
+  "cite": "Palmerini E, Gambarotti M, Italiano A, и соавт. A global collaborative study of CIC-rearranged, BCOR::CCNB3-rearranged and other ultra-rare unclassified undifferentiated small round cell sarcomas. *Eur J Cancer*. 2023;183:11-23.",
+  "doi": "10.1016/j.ejca.2023.01.003"
+ },
+ "mdm2": {
+  "cite": "Dujardin F, Binh MB, Bouvier C, и соавт. MDM2 and CDK4 immunohistochemistry is a valuable tool in the differential diagnosis of low-grade osteosarcomas and other primary fibro-osseous lesions of the bone. *Mod Pathol*. 2011;24(5):624-637.",
+  "doi": "10.1038/modpathol.2010.229"
+ },
+ "esmo": {
+  "cite": "Strauss SJ, Frezza AM, Abecassis N, и соавт. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline for diagnosis, treatment and follow-up. *Ann Oncol*. 2021;32(12):1520-1536.",
+  "doi": "10.1016/j.annonc.2021.08.1995",
+  "kind": "руководство"
+ },
+ "uk-guidelines": {
+  "cite": "Gerrand C, Amary F, Anwar HA, и соавт. UK guidelines for the management of bone sarcomas. *Br J Cancer*. 2025;132(1):32-48.",
+  "doi": "10.1038/s41416-024-02868-4",
+  "kind": "руководство"
+ },
+ "russco": {
+  "cite": "Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419.",
+  "url": "https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf",
+  "kind": "руководство"
+ },
+ "kr532": {
+  "cite": "Ассоциация онкологов России, Восточно-Европейская группа по изучению сарком, Российское общество клинической онкологии. **Саркомы костей. Клинические рекомендации.** Взрослые; C40, C41, D48.0; ID 532_5. Минздрав России; 2025.",
+  "url": "https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf",
+  "kind": "клинические рекомендации Минздрава России",
+  "page_offset": 1,
+  "tail": "[Полный документ (PDF)](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf) · [Рубрикатор Минздрава России](https://cr.minzdrav.gov.ru/preview-cr/532_5)"
+ }
+}

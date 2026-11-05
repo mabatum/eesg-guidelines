@@ -1,0 +1,31 @@
+{
+ "mankin": {
+  "cite": "Mankin HJ, Mankin CJ, Simon MA. The hazards of the biopsy, revisited. *J Bone Joint Surg Am*. 1996;78(5):656-663.",
+  "doi": "10.2106/00004623-199605000-00004"
+ },
+ "whelan-england": {
+  "cite": "Whelan J, McTiernan A, Cooper N, и соавт. Incidence and survival of malignant bone sarcomas in England 1979-2007. *Int J Cancer*. 2012;131(4):E508-E517.",
+  "doi": "10.1002/ijc.26426"
+ },
+ "rarecare": {
+  "cite": "Stiller CA, Trama A, Serraino D, и соавт. Descriptive epidemiology of sarcomas in Europe: report from the RARECARE project. *Eur J Cancer*. 2013;49(3):684-695.",
+  "doi": "10.1016/j.ejca.2012.09.011"
+ },
+ "russco": {
+  "cite": "Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419.",
+  "url": "https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf",
+  "kind": "руководство"
+ },
+ "esmo": {
+  "cite": "Strauss SJ, Frezza AM, Abecassis N, и соавт. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline for diagnosis, treatment and follow-up. *Ann Oncol*. 2021;32(12):1520-1536.",
+  "doi": "10.1016/j.annonc.2021.08.1995",
+  "kind": "руководство"
+ },
+ "kr532": {
+  "cite": "Ассоциация онкологов России, Восточно-Европейская группа по изучению сарком, Российское общество клинической онкологии. **Саркомы костей. Клинические рекомендации.** Взрослые; C40, C41, D48.0; ID 532_5. Минздрав России; 2025.",
+  "url": "https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf",
+  "kind": "клинические рекомендации Минздрава России",
+  "page_offset": 1,
+  "tail": "[Полный документ (PDF)](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf) · [Рубрикатор Минздрава России](https://cr.minzdrav.gov.ru/preview-cr/532_5)"
+ }
+}

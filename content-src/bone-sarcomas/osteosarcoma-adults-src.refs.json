@@ -1,0 +1,143 @@
+{
+ "cole": {
+  "cite": "Cole S, Gianferante DM, Zhu B, Mirabello L. Osteosarcoma: a Surveillance, Epidemiology, and End Results program-based analysis from 1975 to 2017. *Cancer*. 2022;128(11):2107-2118.",
+  "doi": "10.1002/cncr.34163"
+ },
+ "pinieux": {
+  "cite": "de Pinieux G, Karanian M, Le Loarer F, и соавт. Nationwide incidence of sarcomas and connective tissue tumors of intermediate malignancy over four years using an expert pathology review network. *PLoS One*. 2021;16(2):e0246958.",
+  "doi": "10.1371/journal.pone.0246958"
+ },
+ "miller": {
+  "cite": "Miller BJ, Cram P, Lynch CF, Buckwalter JA. Risk factors for metastatic disease at presentation with osteosarcoma: an analysis of the SEER database. *J Bone Joint Surg Am*. 2013;95(13):e89.",
+  "doi": "10.2106/JBJS.L.01189"
+ },
+ "smeland": {
+  "cite": "Smeland S, Bielack SS, Whelan J, и соавт. Survival and prognosis with osteosarcoma: outcomes in more than 2000 patients in the EURAMOS-1 cohort. *Eur J Cancer*. 2019;109:36-50.",
+  "doi": "10.1016/j.ejca.2018.11.027"
+ },
+ "whelan": {
+  "cite": "Whelan JS, Bielack SS, Marina N, и соавт. EURAMOS-1, an international randomised study for osteosarcoma: results from pre-randomisation treatment. *Ann Oncol*. 2015;26(2):407-414.",
+  "doi": "10.1093/annonc/mdu526"
+ },
+ "marina": {
+  "cite": "Marina NM, Smeland S, Bielack SS, и соавт. Comparison of MAPIE versus MAP in patients with a poor response to preoperative chemotherapy for newly diagnosed high-grade osteosarcoma (EURAMOS-1): an open-label, international, randomised controlled trial. *Lancet Oncol*. 2016;17(10):1396-1408.",
+  "doi": "10.1016/S1470-2045(16)30214-5"
+ },
+ "bielack-ifn": {
+  "cite": "Bielack SS, Smeland S, Whelan JS, и соавт. Methotrexate, doxorubicin, and cisplatin (MAP) plus maintenance pegylated interferon alfa-2b versus MAP alone in patients with resectable high-grade osteosarcoma and good histologic response to preoperative MAP: first results of the EURAMOS-1 good response randomized controlled trial. *J Clin Oncol*. 2015;33(20):2279-2287.",
+  "doi": "10.1200/JCO.2014.60.0734"
+ },
+ "hiraga": {
+  "cite": "Hiraga H, Ozaki T, Kawai A, и соавт. Neoadjuvant and adjuvant chemotherapy with or without ifosfamide for poor responders with osteosarcoma: JCOG0905. *J Clin Oncol*. 2025.",
+  "doi": "10.1200/JCO-24-01281"
+ },
+ "kelley": {
+  "cite": "Kelley LM, Schlegel M, Hecker-Nolting S, и соавт. Pathological fracture and prognosis of high-grade osteosarcoma of the extremities: an analysis of 2,847 consecutive Cooperative Osteosarcoma Study Group (COSS) patients. *J Clin Oncol*. 2020;38(8):823-833.",
+  "doi": "10.1200/JCO.19.00827"
+ },
+ "mankin": {
+  "cite": "Mankin HJ, Mankin CJ, Simon MA. The hazards of the biopsy, revisited. *J Bone Joint Surg Am*. 1996;78(5):656-663.",
+  "doi": "10.2106/00004623-199605000-00004"
+ },
+ "kager": {
+  "cite": "Kager L, Zoubek A, Kastner U, и соавт. Skip metastases in osteosarcoma: experience of the Cooperative Osteosarcoma Study Group. *J Clin Oncol*. 2006;24(10):1535-1541.",
+  "doi": "10.1200/JCO.2005.04.2978"
+ },
+ "mialou": {
+  "cite": "Mialou V, Philip T, Kalifa C, и соавт. Metastatic osteosarcoma at diagnosis: prognostic factors and long-term outcome. *Cancer*. 2005;104(5):1100-1109.",
+  "doi": "10.1002/cncr.21263"
+ },
+ "dujardin": {
+  "cite": "Dujardin F, Binh MB, Bouvier C, и соавт. MDM2 and CDK4 immunohistochemistry is a valuable tool in the differential diagnosis of low-grade osteosarcomas and other primary fibro-osseous lesions of the bone. *Mod Pathol*. 2011;24(5):624-637.",
+  "doi": "10.1038/modpathol.2010.229"
+ },
+ "imran": {
+  "cite": "Imran H, Enders F, Krailo M, и соавт. Effect of time to resumption of chemotherapy after definitive surgery on prognosis for non-metastatic osteosarcoma. *J Bone Joint Surg Am*. 2009;91(3):604-612.",
+  "doi": "10.2106/JBJS.H.00449"
+ },
+ "meyers": {
+  "cite": "Meyers PA, Schwartz CL, Krailo MD, и соавт. Osteosarcoma: the addition of muramyl tripeptide to chemotherapy improves overall survival. *J Clin Oncol*. 2008;26(4):633-638.",
+  "doi": "10.1200/JCO.2008.14.0095"
+ },
+ "davis": {
+  "cite": "Davis LE, Bolejack V, Ryan CW, и соавт. Randomized double-blind phase II study of regorafenib in patients with metastatic osteosarcoma. *J Clin Oncol*. 2019;37(16):1424-1431.",
+  "doi": "10.1200/JCO.18.02374"
+ },
+ "duffaud": {
+  "cite": "Duffaud F, Mir O, Boudou-Rouquette P, и соавт. Efficacy and safety of regorafenib in adult patients with metastatic osteosarcoma: a non-comparative, randomised, double-blind, placebo-controlled, phase 2 study. *Lancet Oncol*. 2019;20(1):120-133.",
+  "doi": "10.1016/S1470-2045(18)30742-3"
+ },
+ "italiano": {
+  "cite": "Italiano A, Mir O, Mathoulin-Pelissier S, и соавт. Cabozantinib in patients with advanced Ewing sarcoma or osteosarcoma (CABONE): a multicentre, single-arm, phase 2 trial. *Lancet Oncol*. 2020;21(3):446-455.",
+  "doi": "10.1016/S1470-2045(19)30825-3"
+ },
+ "grignani": {
+  "cite": "Grignani G, Palmerini E, Ferraresi V, и соавт. Sorafenib and everolimus for patients with unresectable high-grade osteosarcoma progressing after standard treatment: a non-randomised phase 2 clinical trial. *Lancet Oncol*. 2015;16(1):98-107.",
+  "doi": "10.1016/S1470-2045(14)71136-2"
+ },
+ "gaspar": {
+  "cite": "Gaspar N, Campbell-Hewson Q, Melcon SG, и соавт. Lenvatinib plus ifosfamide and etoposide in children and young adults with relapsed osteosarcoma: the OLIE phase 2 randomized clinical trial. *JAMA Oncol*. 2024;10(12):1645-1653.",
+  "doi": "10.1001/jamaoncol.2024.4381"
+ },
+ "boye": {
+  "cite": "Boye K, Longhi A, Guren T, и соавт. Pembrolizumab in advanced osteosarcoma: results of a single-arm, open-label, phase 2 trial. *Cancer Immunol Immunother*. 2021;70(9):2617-2624.",
+  "doi": "10.1007/s00262-021-02876-w"
+ },
+ "iccr": {
+  "cite": "Bovee JVMG, Bloem JL, Flanagan AM, и соавт. Dataset for the reporting of primary tumour in bone: recommendations from the International Collaboration on Cancer Reporting. *Histopathology*. 2023;82(4):531-540.",
+  "doi": "10.1111/his.14849",
+  "kind": "стандарт заключения"
+ },
+ "eviq-map": {
+  "cite": "eviQ. Osteosarcoma MAP (methotrexate, doxorubicin, cisplatin). Protocol ID 1901.",
+  "url": "https://www.eviq.org.au/medical-oncology/sarcoma/bone-sarcoma/1901-osteosarcoma-map-methotrexate-doxorubicin",
+  "kind": "протокол"
+ },
+ "eviq-mtx": {
+  "cite": "eviQ. Methotrexate toxicity: sarcoma. Protocol ID 3303.",
+  "url": "https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/3303-methotrexate-toxicity-sarcoma",
+  "kind": "протокол"
+ },
+ "mepact": {
+  "cite": "European Medicines Agency. Mepact (мифамуртид): информация о препарате.",
+  "url": "https://www.ema.europa.eu/en/medicines/human/EPAR/mepact",
+  "kind": "инструкция"
+ },
+ "esmo": {
+  "cite": "Strauss SJ, Frezza AM, Abecassis N, и соавт. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline for diagnosis, treatment and follow-up. *Ann Oncol*. 2021;32(12):1520-1536.",
+  "doi": "10.1016/j.annonc.2021.08.1995",
+  "kind": "руководство"
+ },
+ "russco": {
+  "cite": "Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419.",
+  "url": "https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf",
+  "kind": "руководство"
+ },
+ "whelan-england": {
+  "cite": "Whelan J, McTiernan A, Cooper N, и соавт. Incidence and survival of malignant bone sarcomas in England 1979-2007. *Int J Cancer*. 2012;131(4):E508-E517.",
+  "doi": "10.1002/ijc.26426"
+ },
+ "rarecare": {
+  "cite": "Stiller CA, Trama A, Serraino D, и соавт. Descriptive epidemiology of sarcomas in Europe: report from the RARECARE project. *Eur J Cancer*. 2013;49(3):684-695.",
+  "doi": "10.1016/j.ejca.2012.09.011"
+ },
+ "mirabello": {
+  "cite": "Mirabello L, Troisi RJ, Savage SA. Osteosarcoma incidence and survival rates from 1973 to 2004: data from the Surveillance, Epidemiology, and End Results Program. *Cancer*. 2009;115(7):1531-1543.",
+  "doi": "10.1002/cncr.24121"
+ },
+ "parosteal": {
+  "cite": "Ruengwanichayakun P, Gambarotti M, Frisoni T, и соавт. Parosteal osteosarcoma: a monocentric retrospective analysis of 195 patients. *Hum Pathol*. 2019;91:11-18.",
+  "doi": "10.1016/j.humpath.2019.05.009"
+ },
+ "periosteal": {
+  "cite": "Grimer RJ, Bielack S, Flege S, и соавт. Periosteal osteosarcoma - a European review of outcome. *Eur J Cancer*. 2005;41(18):2806-2811.",
+  "doi": "10.1016/j.ejca.2005.04.052"
+ },
+ "kr532": {
+  "cite": "Ассоциация онкологов России, Восточно-Европейская группа по изучению сарком, Российское общество клинической онкологии. **Саркомы костей. Клинические рекомендации.** Взрослые; C40, C41, D48.0; ID 532_5. Минздрав России; 2025.",
+  "url": "https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf",
+  "kind": "клинические рекомендации Минздрава России",
+  "page_offset": 1,
+  "tail": "[Полный документ (PDF)](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf) · [Рубрикатор Минздрава России](https://cr.minzdrav.gov.ru/preview-cr/532_5)"
+ }
+}

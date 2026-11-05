@@ -1,0 +1,96 @@
+{
+ "cash": {
+  "cite": "Cash T, Krailo M, Buxton A, и соавт. Long-term outcomes in patients with localized Ewing sarcoma treated with interval-compressed chemotherapy on AEWS0031. *J Clin Oncol*. 2023;41(29):4655-4661.",
+  "doi": "10.1200/JCO.23.00053"
+ },
+ "ee2012": {
+  "cite": "Brennan B, Kirton L, Marec-Berard P, и соавт. Comparison of two chemotherapy regimens in patients with newly diagnosed Ewing sarcoma (EE2012): an open-label, randomised, phase 3 trial. *Lancet*. 2022;400(10362):1513-1521.",
+  "doi": "10.1016/S0140-6736(22)01790-1"
+ },
+ "lu": {
+  "cite": "Lu E, Perkins P, Lewis M, и соавт. Feasibility of treating adults with Ewing or Ewing-like sarcoma with interval-compressed vincristine, doxorubicin, and cyclophosphamide alternating with ifosfamide and etoposide. *Oncologist*. 2020;25(2):150-155.",
+  "doi": "10.1634/theoncologist.2019-0532"
+ },
+ "palmerini": {
+  "cite": "Palmerini E, Gambarotti M, Italiano A, и соавт. A global collaborative study of CIC-rearranged, BCOR::CCNB3-rearranged and other ultra-rare unclassified undifferentiated small round cell sarcomas. *Eur J Cancer*. 2023;183:11-23.",
+  "doi": "10.1016/j.ejca.2023.01.003"
+ },
+ "whelan-bumel": {
+  "cite": "Whelan J, Le Deley MC, Dirksen U, и соавт. High-dose chemotherapy and blood autologous stem-cell rescue compared with standard chemotherapy in localized high-risk Ewing sarcoma: results of Euro-E.W.I.N.G.99 and Ewing-2008. *J Clin Oncol*. 2018;36(31):3110-3119.",
+  "doi": "10.1200/JCO.2018.78.2516"
+ },
+ "dirksen": {
+  "cite": "Dirksen U, Brennan B, Le Deley MC, и соавт. High-dose chemotherapy compared with standard chemotherapy and lung radiation in Ewing sarcoma with pulmonary metastases: results of the European Ewing tumour working initiative of national groups, 99-R2pulm. *J Clin Oncol*. 2019;37(34):3192-3202.",
+  "doi": "10.1200/JCO.19.00915"
+ },
+ "casey": {
+  "cite": "Casey DL, Alektiar KM, Gerber NK, Wolden SL. Whole lung irradiation for adults with pulmonary metastases from Ewing sarcoma. *Int J Radiat Oncol Biol Phys*. 2014;89(5):1069-1075.",
+  "doi": "10.1016/j.ijrobp.2014.04.036"
+ },
+ "reecur-abstract": {
+  "cite": "McCabe MG, Kirton L, Khan M, и соавт. Phase III assessment of topotecan and cyclophosphamide and high-dose ifosfamide in rEECur: an international randomized controlled trial of chemotherapy for recurrent and primary refractory Ewing sarcoma. *J Clin Oncol*. 2022;40(17_suppl):LBA2.",
+  "doi": "10.1200/JCO.2022.40.17_suppl.LBA2",
+  "kind": "конференционный тезис"
+ },
+ "reecur-trial": {
+  "cite": "University of Birmingham, Cancer Research UK Clinical Trials Unit. rEECur: international randomised controlled trial of chemotherapy for recurrent and primary refractory Ewing sarcoma.",
+  "url": "https://www.birmingham.ac.uk/research/crctu/trials/reecur",
+  "kind": "протокол"
+ },
+ "vit": {
+  "cite": "Xu J, Xie L, Sun X, и соавт. Longer versus shorter schedules of vincristine, irinotecan, and temozolomide for relapsed or refractory Ewing sarcoma: a randomized controlled phase 2 trial. *Clin Cancer Res*. 2023;29(9):1671-1679.",
+  "doi": "10.1158/1078-0432.CCR-22-3546"
+ },
+ "cabone": {
+  "cite": "Italiano A, Mir O, Mathoulin-Pelissier S, и соавт. Cabozantinib in patients with advanced Ewing sarcoma or osteosarcoma (CABONE): a multicentre, single-arm, phase 2 trial. *Lancet Oncol*. 2020;21(3):446-455.",
+  "doi": "10.1016/S1470-2045(19)30825-3"
+ },
+ "regobone-ewing": {
+  "cite": "Duffaud F, Blay JY, Le Cesne A, и соавт. Regorafenib in patients with advanced Ewing sarcoma: results of a non-comparative, randomised, double-blind, placebo-controlled, multicentre phase 2 study. *Br J Cancer*. 2023;129(7):1940-1948.",
+  "doi": "10.1038/s41416-023-02413-9"
+ },
+ "ganitumab": {
+  "cite": "DuBois SG, Krailo MD, Glade-Bender J, и соавт. Randomized phase 3 trial of ganitumab with interval-compressed chemotherapy for patients with newly diagnosed metastatic Ewing sarcoma: a report from the Children's Oncology Group. *J Clin Oncol*. 2023;41(13):2098-2107.",
+  "doi": "10.1200/JCO.22.01815"
+ },
+ "zoledronic": {
+  "cite": "Brennan B, Kirton L, Marec-Berard P, и соавт. Addition of zoledronic acid to consolidation chemotherapy in Ewing sarcoma: EURO EWING 2012 (EE2012). *Br J Cancer*. 2026;134(1):1-9.",
+  "doi": "10.1038/s41416-026-03367-4"
+ },
+ "sarc037": {
+  "cite": "Grohar PJ, Kim S, Ludwig JA, и соавт. Trabectedin and low-dose irinotecan to target EWS::FLI1 in Ewing sarcoma: a phase 1/2 trial. *Nat Med*. 2026.",
+  "doi": "10.1038/s41591-026-04340-7"
+ },
+ "eviq-vdcie": {
+  "cite": "eviQ. Ewing sarcoma VDC/IE overview. Protocol ID 3464.",
+  "url": "https://www.eviq.org.au/medical-oncology/sarcoma/bone-sarcoma/3464-ewing-sarcoma-vdc-ie-overview",
+  "kind": "протокол"
+ },
+ "eviq-vdc": {
+  "cite": "eviQ. Ewing sarcoma VDC (vincristine, doxorubicin, cyclophosphamide). Protocol ID 1916.",
+  "url": "https://www.eviq.org.au/medical-oncology/sarcoma/bone-sarcoma/1916-ewing-sarcoma-vdc-vincristine-doxorubicin",
+  "kind": "протокол"
+ },
+ "russco": {
+  "cite": "Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419.",
+  "url": "https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf",
+  "kind": "руководство"
+ },
+ "geis": {
+  "cite": "Mata Fernandez C, Sebio A, Valverde Morales C, и соавт. Clinical practice guidelines for the treatment of Ewing sarcoma (Spanish Group for Research on Sarcomas). *Clin Transl Oncol*. 2025;27(3):824-836.",
+  "doi": "10.1007/s12094-024-03602-5",
+  "kind": "руководство"
+ },
+ "esmo": {
+  "cite": "Strauss SJ, Frezza AM, Abecassis N, и соавт. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline for diagnosis, treatment and follow-up. *Ann Oncol*. 2021;32(12):1520-1536.",
+  "doi": "10.1016/j.annonc.2021.08.1995",
+  "kind": "руководство"
+ },
+ "kr532": {
+  "cite": "Ассоциация онкологов России, Восточно-Европейская группа по изучению сарком, Российское общество клинической онкологии. **Саркомы костей. Клинические рекомендации.** Взрослые; C40, C41, D48.0; ID 532_5. Минздрав России; 2025.",
+  "url": "https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf",
+  "kind": "клинические рекомендации Минздрава России",
+  "page_offset": 1,
+  "tail": "[Полный документ (PDF)](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf) · [Рубрикатор Минздрава России](https://cr.minzdrav.gov.ru/preview-cr/532_5)"
+ }
+}

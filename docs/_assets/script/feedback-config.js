@@ -5,5 +5,5 @@ window.EESG_FEEDBACK = {
   commentEntry: 'entry.259027716',
   nameEntry: 'entry.1774864559',
   contactEntry: 'entry.116560147',
-  edition: '2026.09.3',
+  edition: '2026.11.1',
 };

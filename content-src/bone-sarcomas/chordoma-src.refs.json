@@ -1,0 +1,78 @@
+{
+ "brachyury": {
+  "cite": "Vujovic S, Henderson S, Presneau N, и соавт. Brachyury, a crucial regulator of notochordal development, is a novel biomarker for chordomas. *J Pathol*. 2006;209(2):157-165.",
+  "doi": "10.1002/path.1969"
+ },
+ "poorly-diff": {
+  "cite": "Shih AR, Cote GM, Chebib I, и соавт. Clinicopathologic characteristics of poorly differentiated chordoma. *Mod Pathol*. 2018;31(8):1237-1245.",
+  "doi": "10.1038/s41379-018-0002-1"
+ },
+ "carbon-ion": {
+  "cite": "Imai R, Kamada T, Araki N; Working Group for Bone and Soft Tissue Sarcomas. Carbon ion radiation therapy for unresectable sacral chordoma: an analysis of 188 cases. *Int J Radiat Oncol Biol Phys*. 2016;95(1):322-327.",
+  "doi": "10.1016/j.ijrobp.2016.02.012"
+ },
+ "imatinib": {
+  "cite": "Stacchiotti S, Longhi A, Ferraresi V, и соавт. Phase II study of imatinib in advanced chordoma. *J Clin Oncol*. 2012;30(9):914-920.",
+  "doi": "10.1200/JCO.2011.35.3656"
+ },
+ "imatinib-everolimus": {
+  "cite": "Stacchiotti S, Morosi C, Lo Vullo S, и соавт. Imatinib and everolimus in patients with progressing advanced chordoma: a phase 2 clinical study. *Cancer*. 2018;124(20):4056-4063.",
+  "doi": "10.1002/cncr.31685"
+ },
+ "sorafenib": {
+  "cite": "Bompas E, Le Cesne A, Tresch-Bruneel E, и соавт. Sorafenib in patients with locally advanced and metastatic chordomas: a phase II trial of the French Sarcoma Group. *Ann Oncol*. 2015;26(10):2168-2173.",
+  "doi": "10.1093/annonc/mdv300"
+ },
+ "lapatinib": {
+  "cite": "Stacchiotti S, Tamborini E, Lo Vullo S, и соавт. Phase II study on lapatinib in advanced EGFR-positive chordoma. *Ann Oncol*. 2013;24(7):1931-1936.",
+  "doi": "10.1093/annonc/mdt117"
+ },
+ "dasatinib": {
+  "cite": "Schuetze SM, Bolejack V, Choy E, и соавт. Phase 2 study of dasatinib in patients with alveolar soft part sarcoma, chondrosarcoma, chordoma, epithelioid sarcoma, or solitary fibrous tumor. *Cancer*. 2017;123(1):90-97.",
+  "doi": "10.1002/cncr.30379"
+ },
+ "regorafenib": {
+  "cite": "Le Cesne A, Chevreau C, Perrin C, и соавт. Regorafenib in patients with relapsed advanced or metastatic chordoma: results of a non-comparative, randomised, double-blind, placebo-controlled, multicentre phase II study. *ESMO Open*. 2023;8(4):101569.",
+  "doi": "10.1016/j.esmoop.2023.101569"
+ },
+ "pembrolizumab": {
+  "cite": "Blay JY, Chevret S, Le Cesne A, и соавт. Pembrolizumab in patients with rare and ultra-rare sarcomas (AcSe Pembrolizumab): analysis of a subgroup from a non-randomised, open-label, phase 2, basket study. *Lancet Oncol*. 2023;24(8):892-902.",
+  "doi": "10.1016/S1470-2045(23)00282-6"
+ },
+ "pemetrexed": {
+  "cite": "Kesari S, Wang F, Juarez T, и соавт. Pilot study of high-dose pemetrexed in patients with progressive chordoma. *Clin Cancer Res*. 2024;30(9):1729-1735.",
+  "doi": "10.1158/1078-0432.CCR-23-2317"
+ },
+ "afatinib": {
+  "cite": "Lipplaa A, Bovee JVMG, Gelderblom H, и соавт. A phase 2, single-arm, European multicentre trial evaluating the efficacy of afatinib as first-line systemic treatment in advanced chordoma. *J Clin Oncol*. 2024;42(16_suppl):11517.",
+  "doi": "10.1200/JCO.2024.42.16_suppl.11517",
+  "kind": "конференционный тезис"
+ },
+ "consensus-global": {
+  "cite": "Stacchiotti S, Sommer J; Chordoma Global Consensus Group. Building a global consensus approach to chordoma: a position paper from the medical and patient community. *Lancet Oncol*. 2015;16(2):e71-e83.",
+  "doi": "10.1016/S1470-2045(14)71190-8",
+  "kind": "руководство"
+ },
+ "consensus-recurrent": {
+  "cite": "Stacchiotti S, Gronchi A, Fossati P, и соавт. Best practices for the management of local-regional recurrent chordoma: a position paper by the Chordoma Global Consensus Group. *Ann Oncol*. 2017;28(6):1230-1242.",
+  "doi": "10.1093/annonc/mdx054",
+  "kind": "руководство"
+ },
+ "esmo": {
+  "cite": "Strauss SJ, Frezza AM, Abecassis N, и соавт. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline for diagnosis, treatment and follow-up. *Ann Oncol*. 2021;32(12):1520-1536.",
+  "doi": "10.1016/j.annonc.2021.08.1995",
+  "kind": "руководство"
+ },
+ "russco": {
+  "cite": "Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419.",
+  "url": "https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf",
+  "kind": "руководство"
+ },
+ "kr532": {
+  "cite": "Ассоциация онкологов России, Восточно-Европейская группа по изучению сарком, Российское общество клинической онкологии. **Саркомы костей. Клинические рекомендации.** Взрослые; C40, C41, D48.0; ID 532_5. Минздрав России; 2025.",
+  "url": "https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf",
+  "kind": "клинические рекомендации Минздрава России",
+  "page_offset": 1,
+  "tail": "[Полный документ (PDF)](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf) · [Рубрикатор Минздрава России](https://cr.minzdrav.gov.ru/preview-cr/532_5)"
+ }
+}

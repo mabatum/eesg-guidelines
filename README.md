@@ -4,7 +4,10 @@ Clinical guideline website at https://mabatum.github.io/eesg-guidelines/.
 
 ## Clinical source
 
-Edition 2026.09.3 adapts the user-supplied **Саркомы костей**, 2025, ID 532_5, for adults.
+Edition 2026.11.1 merges the Russian Ministry of Health guideline **Саркомы костей**, 2025, ID 532_5,
+with the EESG evidence revision of September 2026 (primary studies cited by DOI). Every guideline
+statement cites its printed page; drug options outside the guideline are marked ‡, off-label use †.
+Merge decisions: `research/bone-merge-2026-11-06.md`. Marker sources: `content-src/bone-sarcomas`.
 The authoritative editable manuscript is `content-reviewed/bone-sarcomas`.
 The original PDF is in `docs/_assets/sources/kr532-5-2025.pdf`.
 Only `bone-sarcomas` is published; other sections remain excluded from the build and search.

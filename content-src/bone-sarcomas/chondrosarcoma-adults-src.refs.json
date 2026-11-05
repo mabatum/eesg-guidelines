@@ -1,0 +1,82 @@
+{
+ "deckers": {
+  "cite": "Deckers C, Schreuder BHW, Hannink G, и соавт. Midterm MRI follow-up of untreated enchondroma and atypical cartilaginous tumors in the long bones. *Cancers (Basel)*. 2021;13(16):4093.",
+  "doi": "10.3390/cancers13164093"
+ },
+ "sambri": {
+  "cite": "Sambri A, Parisi SC, Zucchini R, и соавт. Grade 2 central chondrosarcoma treated by intralesional curettage: observation or surgery? *Bone Joint J*. 2025;107-B(9):1010-1017.",
+  "doi": "10.1302/0301-620X.107B9.BJJ-2024-1378.R1"
+ },
+ "hompland": {
+  "cite": "Hompland I, Ferrari S, Bielack S, и соавт. Outcome in dedifferentiated chondrosarcoma for patients treated with multimodal therapy: results from the EURO-B.O.S.S. study. *Eur J Cancer*. 2021;151:150-158.",
+  "doi": "10.1016/j.ejca.2021.04.017"
+ },
+ "italiano": {
+  "cite": "Italiano A, Mir O, Cioffi A, и соавт. Advanced chondrosarcomas: role of chemotherapy and survival. *Ann Oncol*. 2013;24(11):2916-2922.",
+  "doi": "10.1093/annonc/mdt374"
+ },
+ "isg-mcs": {
+  "cite": "Baldi GG, Ibrahim T, Palmerini E, и соавт. Activity of chemotherapy in mesenchymal chondrosarcoma: a multicentre retrospective analysis within the Italian Sarcoma Group. *ESMO Open*. 2026;11(1):106080.",
+  "doi": "10.1016/j.esmoop.2026.106080"
+ },
+ "chow": {
+  "cite": "Chow W, Frankel P, Ruel C, и соавт. Results of a prospective phase 2 study of pazopanib in patients with surgically unresectable or metastatic chondrosarcoma. *Cancer*. 2020;126(1):105-111.",
+  "doi": "10.1002/cncr.32515"
+ },
+ "regobone-cs": {
+  "cite": "Duffaud F, Italiano A, Bompas E, и соавт. Efficacy and safety of regorafenib in patients with metastatic or locally advanced chondrosarcoma: results of a non-comparative, randomised, double-blind, placebo-controlled, multicentre phase 2 study. *Eur J Cancer*. 2021;150:108-118.",
+  "doi": "10.1016/j.ejca.2021.03.039"
+ },
+ "nakayama": {
+  "cite": "Nakayama R, Kobayashi E, Susa M, и соавт. What factors are associated with treatment outcomes of Japanese patients with clear cell chondrosarcoma? *Clin Orthop Relat Res*. 2020;478(9):2100-2110.",
+  "doi": "10.1097/CORR.0000000000001266"
+ },
+ "dasatinib": {
+  "cite": "Schuetze SM, Bolejack V, Choy E, и соавт. Phase 2 study of dasatinib in patients with alveolar soft part sarcoma, chondrosarcoma, chordoma, epithelioid sarcoma, or solitary fibrous tumor. *Cancer*. 2017;123(1):90-97.",
+  "doi": "10.1002/cncr.30379"
+ },
+ "ivosidenib": {
+  "cite": "Tap WD, Villalobos VM, Cote GM, и соавт. Phase I study of the mutant IDH1 inhibitor ivosidenib: long-term safety and clinical activity in patients with advanced chondrosarcoma. *Clin Cancer Res*. 2025;31(9):1683-1691.",
+  "doi": "10.1158/1078-0432.CCR-24-4128"
+ },
+ "idh-dd": {
+  "cite": "Chen S, Fritchie K, Wei S, и соавт. Diagnostic utility of IDH1/2 mutations to distinguish dedifferentiated chondrosarcoma from undifferentiated pleomorphic sarcoma of bone. *Hum Pathol*. 2017;65:239-246.",
+  "doi": "10.1016/j.humpath.2017.05.015"
+ },
+ "heyncoa2": {
+  "cite": "Wang L, Motoi T, Khanin R, и соавт. Identification of a novel, recurrent HEY1-NCOA2 fusion in mesenchymal chondrosarcoma based on a genome-wide screen of exon-level expression data. *Genes Chromosomes Cancer*. 2012;51(2):127-139.",
+  "doi": "10.1002/gcc.20937"
+ },
+ "ozekibart": {
+  "cite": "Gelderblom H, Bhadri VA, Chawla SP, и соавт. The tetravalent death receptor 5 agonist ozekibart (INBRX-109) in conventional chondrosarcoma: ChonDRAgon. *J Clin Oncol*. 2026;44(16_suppl):11504.",
+  "doi": "10.1200/JCO.2026.44.16_suppl.11504",
+  "kind": "конференционный тезис"
+ },
+ "chonquer": {
+  "cite": "ClinicalTrials.gov. CHONQUER: ivosidenib in previously treated IDH1-mutant conventional chondrosarcoma. NCT06127407.",
+  "url": "https://clinicaltrials.gov/study/NCT06127407",
+  "kind": "протокол"
+ },
+ "russco": {
+  "cite": "Валиев А. К., Тарарыкова А. А., Тепляков В. В. и соавт. Первичные злокачественные опухоли костей. Практические рекомендации RUSSCO. *Злокачественные опухоли*. 2025;15(3s2):393-419.",
+  "url": "https://rosoncoweb.ru/standarts/RUSSCO/2025/2025-1-2-14.pdf",
+  "kind": "руководство"
+ },
+ "esmo": {
+  "cite": "Strauss SJ, Frezza AM, Abecassis N, и соавт. Bone sarcomas: ESMO-EURACAN-GENTURIS-ERN PaedCan Clinical Practice Guideline for diagnosis, treatment and follow-up. *Ann Oncol*. 2021;32(12):1520-1536.",
+  "doi": "10.1016/j.annonc.2021.08.1995",
+  "kind": "руководство"
+ },
+ "uk-guidelines": {
+  "cite": "Gerrand C, Amary F, Anwar HA, и соавт. UK guidelines for the management of bone sarcomas. *Br J Cancer*. 2025;132(1):32-48.",
+  "doi": "10.1038/s41416-024-02868-4",
+  "kind": "руководство"
+ },
+ "kr532": {
+  "cite": "Ассоциация онкологов России, Восточно-Европейская группа по изучению сарком, Российское общество клинической онкологии. **Саркомы костей. Клинические рекомендации.** Взрослые; C40, C41, D48.0; ID 532_5. Минздрав России; 2025.",
+  "url": "https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf",
+  "kind": "клинические рекомендации Минздрава России",
+  "page_offset": 1,
+  "tail": "[Полный документ (PDF)](https://mabatum.github.io/eesg-guidelines/_assets/sources/kr532-5-2025.pdf) · [Рубрикатор Минздрава России](https://cr.minzdrav.gov.ru/preview-cr/532_5)"
+ }
+}

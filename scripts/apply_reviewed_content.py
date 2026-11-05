@@ -26,7 +26,7 @@ def main() -> None:
     for relative in sorted(EXPECTED):
         source = SOURCE / relative
         text = source.read_text(encoding="utf-8")
-        if not text.startswith("# ") or "## Литература" not in text:
+        if not text.startswith("# ") or not any(h in text for h in ("## Список литературы", "## Литература")):
             raise SystemExit(f"Missing title or bibliography: {source}")
     for relative in sorted(EXPECTED):
         destination = DESTINATION / relative
