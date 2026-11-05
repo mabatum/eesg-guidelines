@@ -69,6 +69,8 @@ class Page:
         self.sec = 0
         self.blk = 0
         self.sec_title = ""
+        self.h2_title = ""
+        self.sub_title = ""
         self.html: list[str] = []
         self.outline: list[dict] = []
         self.tables: list[dict] = []
@@ -111,15 +113,24 @@ class Page:
 
     # ---------- blocks ----------
     def heading(self, level: int, title: str) -> None:
-        self.sec += 1
-        self.blk = 0
+        # Section numbers change only at h2; an h3 is a block inside its h2
+        # section, as the interface expects when it builds the path of a remark.
+        text = plain(title)
         if level == 2:
+            self.sec += 1
+            self.blk = 0
             self.h2 += 1
-        self.sec_title = plain(title)
-        bid = f"{self.slug}.{self.sec}.0"
+            self.h2_title = text
+            self.sub_title = ""
+            bid = f"{self.slug}.{self.sec}.0"
+            self.sec_title = text
+        else:
+            bid = self.bid()
+            self.sub_title = text
+            self.sec_title = (self.h2_title + " › " + text) if self.h2_title else text
         self.html.append(f'<h{level} data-b="{bid}" id="h_{bid}">{self.inline(title)}</h{level}>')
-        self.outline.append({"id": bid, "t": self.sec_title, "l": level})
-        self.search.append([bid, self.slug, self.sec_title, "h", self.sec_title])
+        self.outline.append({"id": bid, "t": text, "l": level})
+        self.search.append([bid, self.slug, self.sec_title, "h", text])
 
     def para(self, md: str) -> None:
         bid = self.bid()
@@ -160,7 +171,7 @@ class Page:
             self.search.append([rid, self.slug, self.sec_title, "row", " · ".join(plain(c) for c in r)])
         out.append("</tbody></table></div></div>")
         self.html.append("".join(out))
-        self.tables.append({"id": bid, "t": self.sec_title or self.nav, "sub": heads[0] if heads else ""})
+        self.tables.append({"id": bid, "t": self.sub_title or self.h2_title or self.nav, "sub": heads[0] if heads else ""})
 
 
 def split_row(line: str) -> list[str]:

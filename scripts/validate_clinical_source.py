@@ -14,7 +14,7 @@ GENERATED = Path('docs/gen_docs/bone-sarcomas')
 PDF = Path('docs/_assets/sources/kr532-5-2025.pdf')
 EXPECTED_SHA256 = '9eb35acb923d54a0d27878e925fd21eed6781966ec5b4bdc0a8d6c11710e4f3f'
 DAGGER = '**†** Применение вне инструкции'
-NOT_IN_KR = '**‡** Препарат или режим не входит в клинические рекомендации Минздрава России'
+NOT_IN_KR = '**‡** Лекарственная опция не входит в клинические рекомендации Минздрава России'
 errors = []
 if not PDF.exists() or hashlib.sha256(PDF.read_bytes()).hexdigest() != EXPECTED_SHA256:
     errors.append('Original clinical recommendation PDF is missing or changed.')
