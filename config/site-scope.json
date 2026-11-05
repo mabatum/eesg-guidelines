@@ -3,8 +3,11 @@
   "publish": [
     "bone-sarcomas",
     "general-principles",
-    "soft-tissue-sarcomas"
+    "soft-tissue-sarcomas",
+    "specific-tumor-groups"
   ],
   "keep_hidden": [],
-  "hide_pages": []
+  "hide_pages": [
+    "specific-tumor-groups/gist"
+  ]
 }

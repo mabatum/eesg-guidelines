@@ -25,6 +25,9 @@ navigation:
         text: 'Саркомы мягких тканей'
         url: './soft-tissue-sarcomas/'
       - type: link
+        text: 'Отдельные группы'
+        url: './specific-tumor-groups/'
+      - type: link
         text: 'Обновления'
         url: './updates.html'
       - type: link
