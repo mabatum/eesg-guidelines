@@ -91,7 +91,7 @@ def page_list(pages: list[tuple[str, str]]) -> list[str]:
     lines = []
     for name, href in pages:
         hint = HINTS.get(href.removesuffix("/index.md"), "")
-        lines.append(f"- [{name}]({href})" + (f" — {hint}" if hint else ""))
+        lines.append(f"- [{name}]({href})" + (f" - {hint}" if hint else ""))
     return lines
 
 

@@ -34,7 +34,7 @@ navigation:
         target: _blank
       - type: controls
   footer:
-    copyright: 'EESG — Восточно-Европейская группа по изучению сарком'
+    copyright: 'EESG - Восточно-Европейская группа по изучению сарком'
     withDivider: true
     menuItems:
       - text: 'О EESG'
