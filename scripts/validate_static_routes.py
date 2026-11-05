@@ -145,7 +145,7 @@ def main() -> int:
 
     # 3. Убранные разделы не должны существовать в сборке
     for entry in sorted(p.name for p in STATIC_ROOT.iterdir() if p.is_dir()):
-        if entry.startswith("_") or entry in allowed:
+        if entry.startswith("_") or entry in allowed or entry == "new":  # new: second reading interface
             continue
         errors.append(f"Section outside site scope is present in the build: {entry}")
 

@@ -21,6 +21,9 @@ navigation:
       - type: link
         text: 'Обновления'
         url: './updates.html'
+      - type: link
+        text: 'Новый интерфейс'
+        url: './new/'
       - type: label
         theme: warning
         text: 'Тестовая версия'
