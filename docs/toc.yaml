@@ -22,6 +22,9 @@ navigation:
         text: 'Общие принципы СМТ'
         url: './general-principles/'
       - type: link
+        text: 'Саркомы мягких тканей'
+        url: './soft-tissue-sarcomas/'
+      - type: link
         text: 'Обновления'
         url: './updates.html'
       - type: link

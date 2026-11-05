@@ -2,7 +2,8 @@
   "_comment": "Разделы вики, публикуемые на сайте, в порядке показа на главной. Остальные ветки не выгружаются: ни в навигацию, ни в сборку. Ссылки на них в оставшемся тексте превращаются в обычный текст.",
   "publish": [
     "bone-sarcomas",
-    "general-principles"
+    "general-principles",
+    "soft-tissue-sarcomas"
   ],
   "keep_hidden": [],
   "hide_pages": []
