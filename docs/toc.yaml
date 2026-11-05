@@ -19,6 +19,9 @@ navigation:
         text: 'Саркомы костей'
         url: './bone-sarcomas/'
       - type: link
+        text: 'Общие принципы СМТ'
+        url: './general-principles/'
+      - type: link
         text: 'Обновления'
         url: './updates.html'
       - type: link

@@ -6,6 +6,7 @@ import posixpath
 import re
 import shutil
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
@@ -17,6 +18,7 @@ WIKI_TOKEN = os.environ.get("WIKI_TOKEN")
 ORG_ID = os.environ.get("ORG_ID")
 OUTPUT_DIR = Path(os.environ.get("OUTPUT_DIR", "docs/gen_docs"))
 DEFAULT_PUBLICATION_STATUS = os.environ.get("PUBLICATION_STATUS", "Тестовая версия")
+MOSCOW = ZoneInfo("Europe/Moscow")
 
 MARKDOWN_LINK_RE = re.compile(
     r"(?P<prefix>\]\()"
@@ -273,7 +275,8 @@ def format_modified_date(value: str | None) -> str | None:
     if not value:
         return None
     try:
-        return datetime.fromisoformat(value.replace("Z", "+00:00")).strftime("%d.%m.%Y")
+        # Wiki stores UTC; readers are in Moscow, so an edit at 01:00 shows today's date.
+        return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(MOSCOW).strftime("%d.%m.%Y")
     except ValueError:
         return None
 
