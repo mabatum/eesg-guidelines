@@ -31,10 +31,10 @@ SECTION_NAMES = {
     "specific-tumor-groups": "Отдельные нозологические группы",
 }
 
-SECTION_HEADER_LABELS = {
-    "general-principles": "Общие принципы СМТ",
+SECTION_HEADER_LABELS = {  # soft tissue sections sit in the «Саркомы мягких тканей» dropdown
+    "general-principles": "Общие принципы",
     "bone-sarcomas": "Саркомы костей",
-    "soft-tissue-sarcomas": "Саркомы мягких тканей",
+    "soft-tissue-sarcomas": "Гистологические подтипы",
     "specific-tumor-groups": "Отдельные группы",
 }
 

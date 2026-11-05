@@ -18,15 +18,18 @@ navigation:
       - type: link
         text: 'Саркомы костей'
         url: './bone-sarcomas/'
-      - type: link
-        text: 'Общие принципы СМТ'
-        url: './general-principles/'
-      - type: link
+      - type: dropdown
         text: 'Саркомы мягких тканей'
-        url: './soft-tissue-sarcomas/'
-      - type: link
-        text: 'Отдельные группы'
-        url: './specific-tumor-groups/'
+        items:
+          - type: link
+            text: 'Общие принципы'
+            url: './general-principles/'
+          - type: link
+            text: 'Гистологические подтипы'
+            url: './soft-tissue-sarcomas/'
+          - type: link
+            text: 'Отдельные группы'
+            url: './specific-tumor-groups/'
       - type: link
         text: 'Обновления'
         url: './updates.html'
