@@ -792,11 +792,114 @@ const state = {
 /* ================= platform capabilities ================= */
 const C = window.claude;
 const use = n => (C && typeof C.use === 'function') ? Promise.resolve(C.use(n)).catch(() => null) : Promise.resolve(null);
-const dbReady = use('db').then(db => { state.db = db; return db; });
+const dbReady = use('db').then(db => { if (db) state.db = db; return db; });
 use('downloads').then(d => { state.downloads = d; });
 const safeCall = fn => { try { return Promise.resolve(fn()).catch(() => null); } catch (e) { return Promise.resolve(null); } };
+/* ---------- editor without a server: remarks come from the Google Sheet export ---------- */
+const LOCAL_ED = !C && /(^|[?&])editor(=|&|$)/.test(location.search);
+function makeLocalDb() {
+  const KEY = 'eesg.editorRemarks', EKEY = 'eesg.editorState';
+  let rows = [], listeners = [];
+  try { rows = JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { rows = []; }
+  const st = () => { try { return JSON.parse(localStorage.getItem(EKEY) || '{}'); } catch (e) { return {}; } };
+  const saveSt = v => { try { localStorage.setItem(EKEY, JSON.stringify(v)); } catch (e) { /* storage unavailable */ } };
+  const view = () => { const s = st(); return rows.filter(r => !(s[r.id] || {}).deleted).map(r => Object.assign({}, r, s[r.id] || {})).sort((a, b) => String(b.createdAt).localeCompare(String(a.createdAt))); };
+  const emit = () => { const docs = view().map(r => ({ id: r.id, data: () => r })); listeners.forEach(cb => { try { cb({ docs }); } catch (e) { /* ignore */ } }); };
+  const coll = {
+    orderBy() { return coll; }, limit() { return coll; },
+    onSnapshot(cb) { listeners.push(cb); setTimeout(emit, 0); return () => { listeners = listeners.filter(x => x !== cb); }; },
+    doc(id) { return {
+      async update(patch) { const s = st(); s[id] = Object.assign(s[id] || {}, patch); saveSt(s); emit(); },
+      async delete() { const s = st(); s[id] = Object.assign(s[id] || {}, { deleted: true }); saveSt(s); emit(); }
+    }; },
+    async add() { throw { code: 'invalid_argument' }; }
+  };
+  return {
+    collection: () => coll,
+    importRows(list) { rows = list; try { localStorage.setItem(KEY, JSON.stringify(rows)); } catch (e) { /* storage unavailable */ } emit(); },
+    count: () => rows.length
+  };
+}
+function parseCsv(text) {
+  const rows = []; let row = [], cell = '', q = false;
+  text = text.replace(/^﻿/, '');
+  const delim = (text.split('\n')[0].match(/;/g) || []).length > (text.split('\n')[0].match(/,/g) || []).length ? ';' : ',';
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) { if (ch === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += ch; }
+    else if (ch === '"') q = true;
+    else if (ch === delim) { row.push(cell); cell = ''; }
+    else if (ch === '\n') { row.push(cell.replace(/\r$/, '')); rows.push(row); row = []; cell = ''; }
+    else cell += ch;
+  }
+  if (cell || row.length) { row.push(cell.replace(/\r$/, '')); rows.push(row); }
+  return rows.filter(r => r.some(c => c.trim()));
+}
+function hashStr(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(36); }
+function sheetDate(v) {
+  const m = String(v || '').match(/(\d{1,2})\.(\d{1,2})\.(\d{4})[ ,T]+(\d{1,2}):(\d{2})(?::(\d{2}))?/);
+  if (m) return new Date(+m[3], +m[2] - 1, +m[1], +m[4], +m[5], +(m[6] || 0)).toISOString();
+  const d = new Date(v); return isNaN(d) ? new Date(0).toISOString() : d.toISOString();
+}
+function remarksFromSheet(text) {
+  const rows = parseCsv(text);
+  if (rows.length < 2) return [];
+  const head = rows[0].map(h => norm(h));
+  const data = rows.slice(1);
+  let ci = data[0].findIndex((c, i) => data.some(r => /(^|\n)Страница:/.test(r[i] || '')));
+  if (ci < 0) ci = head.findIndex(h => h.includes('контекст'));
+  const find = (re, not) => head.findIndex((h, i) => i !== ci && re.test(h) && !(not && not.test(h)));
+  let ti = find(/отметка времени|timestamp|дата/); if (ti < 0) ti = 0;
+  let mi = find(/замечан|коммент|comment/, /контекст/); if (mi < 0) mi = ci + 1;
+  const ni = find(/имя|name/), ki = find(/контакт|связ|contact|почт/);
+  const KIND_BY_L = Object.fromEntries(KINDS.map(([k, l]) => [l, k]));
+  const SCOPE_BY_L = { 'фрагмент': 'fragment', 'блок': 'block', 'страница': 'page' };
+  const titles = new Map(DATA.pages.map(p => [norm(p.title), p.slug]));
+  const out = [];
+  for (const r of data) {
+    const ctxt = r[ci] || '';
+    const text = (r[mi] || '').trim();
+    if (!ctxt && !text) continue;
+    const get = k => { const m = ctxt.match(new RegExp('(?:^|\\n)' + k + ':[ \\t]*([^\\n]*)')); return m ? m[1].trim() : ''; };
+    const qm = ctxt.match(/(?:^|\n)Цитата:[ \t]*\n([\s\S]*)$/);
+    const link = get('Ссылка'), block = get('Блок');
+    let page = '';
+    let m = link.match(/\/new\/[^#]*#([\w-]+)/);
+    if (m && PAGES.has(m[1])) page = m[1];
+    if (!page && (m = link.match(/\/bone-sarcomas\/([\w-]+)\//)) && PAGES.has(m[1])) page = m[1];
+    if (!page && /\/bone-sarcomas\/?(?:index\.html)?(?:#|$)/.test(link)) page = HOME;
+    if (!page && block) page = block.split('.')[0];
+    if (!page) page = titles.get(norm(get('Страница'))) || HOME;
+    const quote = qm ? qm[1].trim() : '';
+    let scope = SCOPE_BY_L[get('Привязка')] || (quote ? 'fragment' : 'page');
+    if (scope !== 'page' && !quote && !block) scope = 'page';
+    const when = sheetDate(r[ti]);
+    out.push({
+      id: 'x' + hashStr(when + '|' + text + '|' + ctxt), page, pageTitle: get('Страница'), sec: get('Раздел'),
+      block: block || null, scope, quote, pre: '', post: '', kind: KIND_BY_L[get('Тип')] || 'other', text,
+      fix: get('Своя формулировка'), src: get('Источник'), who: ni >= 0 ? (r[ni] || '').trim() : '', contact: ki >= 0 ? (r[ki] || '').trim() : '',
+      status: 'new', note: '', edition: (get('Веб-редакция') || (ctxt.match(/редакция ([\d.]+)/) || [])[1] || ''), createdAt: when, updatedAt: when
+    });
+  }
+  return out;
+}
+function importSheet(file) {
+  if (!file || !state.db || !state.db.importRows) return;
+  const rd = new FileReader();
+  rd.onload = () => {
+    const list = remarksFromSheet(String(rd.result || ''));
+    if (!list.length) { toast('В файле не нашлось замечаний'); return; }
+    state.db.importRows(list);
+    toast('Загружено замечаний: ' + list.length);
+  };
+  rd.onerror = () => toast('Не получилось прочитать файл');
+  rd.readAsText(file, 'utf-8');
+}
+if (LOCAL_ED) state.db = makeLocalDb();
 (async function initCaps() {
-  const user = await use('user');
+  await Promise.resolve(); // let the rest of the script define its state first
+  const user = LOCAL_ED ? null : await use('user');
+  if (LOCAL_ED) state.canEdit = true;
   if (user) {
     const [own, edit, id] = await Promise.all([
       safeCall(() => user.isOwner()), safeCall(() => user.canEdit()), safeCall(() => user.id())
@@ -804,7 +907,7 @@ const safeCall = fn => { try { return Promise.resolve(fn()).catch(() => null); }
     state.canEdit = !!(own || edit);
     state.uid = id || null;
   }
-  const db = await dbReady;
+  const db = LOCAL_ED ? state.db : await dbReady;
   if (state.canEdit && db) {
     document.body.classList.add('can-edit');
     el.edBtn.hidden = false;
@@ -1483,6 +1586,7 @@ function contextText(p, ctx, kind, fix, src) {
     'Ссылка: ' + link
   ];
   if (ctx.block) lines.push('Блок: ' + ctx.block);
+  lines.push('Привязка: ' + ({ fragment: 'фрагмент', block: 'блок', page: 'страница' }[ctx.scope] || 'страница'));
   if (kind) lines.push('Тип: ' + kind);
   if (fix) lines.push('Своя формулировка: ' + fix);
   if (src) lines.push('Источник: ' + src);
@@ -1785,6 +1889,7 @@ function renderInbox() {
         <label class="vh" for="ibQ">Поиск по замечаниям</label><input id="ibQ" type="search" placeholder="Поиск по замечаниям" value="${esc(state.inbox.q)}">
       </div>
       <div class="inbox-row">
+        ${LOCAL_ED ? '<label class="btn small primary" for="ibLoad">Загрузить выгрузку таблицы (CSV)</label><input id="ibLoad" type="file" accept=".csv,text/csv" hidden>' : ''}
         <button class="btn small" type="button" id="ibCsv">Скачать CSV</button>
         <button class="btn small" type="button" id="ibCopy">Скопировать списком</button>
       </div>
@@ -1794,6 +1899,7 @@ function renderInbox() {
   $('#ibPage').addEventListener('change', e => { state.inbox.page = e.target.value; renderInboxList(); });
   $('#ibQ').addEventListener('input', e => { state.inbox.q = e.target.value; renderInboxList(); });
   $('#ibCsv').addEventListener('click', exportCsv);
+  const ld = $('#ibLoad'); if (ld) ld.addEventListener('change', e => { importSheet(e.target.files && e.target.files[0]); e.target.value = ''; });
   $('#ibCopy').addEventListener('click', copyList);
   renderInboxList();
 }
@@ -1818,7 +1924,7 @@ function renderInboxList() {
   let body;
   if (!state.loaded && !state.remarksError) body = '<p class="empty">Загружаю замечания…</p>';
   else if (state.remarksError) body = '<p class="empty">Замечания сейчас недоступны. Обновите страницу чуть позже.</p>';
-  else if (!all.length) body = '<p class="empty">Замечаний пока нет.</p>';
+  else if (!all.length) body = LOCAL_ED ? '<p class="empty">Замечаний пока нет. Скачайте таблицу ответов формы в формате CSV и загрузите её кнопкой выше.</p>' : '<p class="empty">Замечаний пока нет.</p>';
   else if (!list.length) body = '<p class="empty">Под эти условия ничего не подходит.</p>';
   else body = `<ol class="rm-list inbox">${list.map(r => cardHTML(r, true)).join('')}</ol>`;
   $('#ibList').innerHTML = body;
@@ -1840,7 +1946,16 @@ function exportCsv() {
   ])).map(a => a.map(csvCell).join(';'));
   const csv = '﻿' + lines.join('\r\n');
   const name = 'eesg-zamechaniya-' + new Date().toISOString().slice(0, 10) + '.csv';
-  if (!state.downloads) { copyText(csv.slice(1), 'Скачивание здесь недоступно, таблица скопирована'); return; }
+  if (!state.downloads) {
+    try {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      a.download = name; document.body.appendChild(a); a.click();
+      setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+      toast('Файл сохранён');
+    } catch (e) { copyText(csv.slice(1), 'Скачивание здесь недоступно, таблица скопирована'); }
+    return;
+  }
   Promise.resolve(state.downloads.save({ filename: name, data: csv })).then(res => {
     if (res && res.status === 'saved') toast('Файл сохранён');
   }).catch(err => {
