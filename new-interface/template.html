@@ -242,6 +242,15 @@ body.editing .sec-rm { display: inline-flex; }
 .doc p { margin: 0 0 14px; }
 .doc ul, .doc ol { margin: 0 0 16px; padding-left: 1.4em; }
 .doc li { margin: 0 0 6px; }
+.doc .kids { margin: 20px 0 10px; }
+.doc .kids-h { margin: 0 0 8px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.doc .kids-list { list-style: none; margin: 0; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--paper); }
+.doc .kids-list li { margin: 0; }
+.doc .kids-list li + li { border-top: 1px solid var(--line); }
+.doc .kids-list a { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 10px 14px 10px 16px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 16px; line-height: 1.3; }
+.doc .kids-list a:hover { background: var(--paper-2); color: var(--link); }
+.doc .kids-list a > span { flex: 1 1 auto; min-width: 0; }
+.doc .kids-list svg { width: 18px; height: 18px; color: var(--ink-3); flex: none; }
 .doc a.int, .doc a.ext { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
 .doc strong { font-weight: 700; }
 .doc [data-b], .doc [data-r] { scroll-margin-top: calc(var(--top-h) + var(--sec-h) + 24px); }
@@ -1044,7 +1053,7 @@ function render(slug) {
   const p = PAGES.get(slug);
   let body = p.html;
   if (slug === HOME) body = homeCards() + howtoHTML() + body;
-  el.doc.innerHTML = (slug === HOME ? homeHead(p) : pageHead(p)) + body + footHTML();
+  el.doc.innerHTML = (slug === HOME ? homeHead(p) : pageHead(p) + kidsHTML(p)) + body + footHTML();
   decorate();
   renderNav();
   el.secbar.hidden = false;
@@ -1082,6 +1091,18 @@ function crumbsHTML(p) {
   for (let q = p.parent && PAGES.get(p.parent); q; q = q.parent && PAGES.get(q.parent)) chain.unshift(q);
   chain.unshift(PAGES.get(HOME));
   return chain.map(q => `<a href="#${q.slug}" data-go="${q.slug}">${esc(q.nav)}</a><span aria-hidden="true">/</span>`).join('');
+}
+function kidsOf(p) { return [...PAGES.values()].filter(q => q.parent === p.slug); }
+function kidsHTML(p) {
+  const kids = kidsOf(p);
+  if (!kids.length) return '';
+  // a page whose first section already lists its subpages needs no second list
+  const at = Math.min(...kids.map(q => { const i = p.html.indexOf(`data-go="${q.slug}"`); return i < 0 ? Infinity : i; }));
+  const h2 = [...p.html.matchAll(/<h2/g)].map(m => m.index);
+  if (at < (h2[1] ?? Infinity)) return '';
+  return `<nav class="kids" aria-label="В этом разделе"><p class="kids-h">В этом разделе</p><ul class="kids-list">` +
+    kids.map(q => `<li><a href="#${q.slug}" data-go="${q.slug}"><span>${esc(q.nav)}</span><b class="nav-c" data-c="${q.slug}"></b>${ICON.chev}</a></li>`).join('') +
+    '</ul></nav>';
 }
 function pageHead(p) {
   return `<header class="doc-h">
@@ -1155,10 +1176,13 @@ function decorate() {
 }
 
 /* ---------- outline / side rail ---------- */
-function outlineHTML(p) {
+function outlineHTML(p, withKids) {
+  const kids = withKids ? kidsOf(p) : [];
+  const kd = kids.map(q => `<li><a href="#${q.slug}" data-go="${q.slug}">${esc(q.nav)}</a></li>`).join('');
   const ol = p.outline.map(o => `<li><a class="l${o.l}" href="#${o.id}" data-anchor="${o.id}">${esc(o.t)}</a></li>`).join('');
   const tb = p.tables.map(t => `<li><a href="#${t.id}" data-anchor="${t.id}">${ICON.table}<span>${esc(t.t)}${t.sub ? `<small>${esc(t.sub)}</small>` : ''}</span></a></li>`).join('');
-  return `<div class="rail-h"><h2>На странице</h2></div><ul class="ol-list">${ol}</ul>` +
+  return (kd ? `<div class="rail-h"><h2>В этом разделе</h2></div><ul class="ol-list">${kd}</ul>` : '') +
+    `<div class="rail-h"><h2>На странице</h2></div><ul class="ol-list">${ol}</ul>` +
     (tb ? `<div class="rail-h"><h2>Таблицы</h2></div><ul class="tb-list">${tb}</ul>` : '');
 }
 function renderSide() {
@@ -1167,7 +1191,7 @@ function renderSide() {
   if (state.editor) renderRail(el.railR); else el.railR.innerHTML = outlineHTML(p);
   if (!el.listPanel.hidden) {
     if (el.listPanel.dataset.mode === 'remarks' && state.editor) renderRail(el.listBody);
-    else el.listBody.innerHTML = outlineHTML(p);
+    else el.listBody.innerHTML = outlineHTML(p, true);
   }
   updateSpy();
 }
@@ -1186,7 +1210,7 @@ function openList(mode) {
   if (!p) return;
   el.listPanel.dataset.mode = mode;
   el.lTitle.textContent = mode === 'remarks' ? 'Замечания на странице' : 'Содержание страницы';
-  if (mode === 'remarks') renderRail(el.listBody); else el.listBody.innerHTML = outlineHTML(p);
+  if (mode === 'remarks') renderRail(el.listBody); else el.listBody.innerHTML = outlineHTML(p, true);
   openPanel(el.listPanel);
   updateSpy();
 }
