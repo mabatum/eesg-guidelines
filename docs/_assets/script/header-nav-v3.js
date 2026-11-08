@@ -24,13 +24,12 @@
   }
 
   const SITE_ROOT = detectSiteRoot();
+  // Только разделы, которые есть в сборке: пункт шапки, ведущий на
+  // неопубликованный раздел, превращается в 404. Маршруты проверяет
+  // scripts/validate_static_routes.py — запись возвращают вместе с разделом.
   const TARGETS = new Map([
     ['Рекомендации', new URL('index.html', SITE_ROOT).href],
-    ['Клинические исследования', new URL('clinical-trials/', SITE_ROOT).href],
-    ['Мероприятия', new URL('events/', SITE_ROOT).href],
-    ['Новости', new URL('news/', SITE_ROOT).href],
     ['Обновления', new URL('updates.html', SITE_ROOT).href],
-    ['О проекте', new URL('about/', SITE_ROOT).href],
   ]);
 
   function patchNavigation() {
