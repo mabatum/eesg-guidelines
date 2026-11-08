@@ -18,7 +18,8 @@ Soft tissue sections are opened page by page as they are merged with the guideli
 their PDFs are in `docs/_assets/sources`. Merge decisions: `research/soft-merge-2026-11-06.md`.
 The new reading interface at `/new/` shows every published section: `scripts/build_new_interface.py` reads
 `docs/gen_docs` after `npm run prepare:docs`, in the order of its `toc.yaml`.
-GIST has its own guideline, which is not merged yet, so its page is hidden. Other sections remain
+GIST is built on its own guideline «Гастроинтестинальные стромальные опухоли» (ID 551_3, 2024; PDF in
+`docs/_assets/sources/kr551-3-2024.pdf`). Other sections remain
 excluded from the build and search.
 
 ## Build and publish

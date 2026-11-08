@@ -7,7 +7,5 @@
     "specific-tumor-groups"
   ],
   "keep_hidden": [],
-  "hide_pages": [
-    "specific-tumor-groups/gist"
-  ]
+  "hide_pages": []
 }
