@@ -13,8 +13,11 @@ SOURCE = Path('content-reviewed/bone-sarcomas')
 GENERATED = Path('docs/gen_docs/bone-sarcomas')
 PDF = Path('docs/_assets/sources/kr532-5-2025.pdf')
 EXPECTED_SHA256 = '9eb35acb923d54a0d27878e925fd21eed6781966ec5b4bdc0a8d6c11710e4f3f'
-MARK = re.compile(r'‡†|[†‡§¶]')
-NOTE = re.compile(r'^\*\*(‡†|[†‡§¶])\*\*\s*(.+)$', re.M)
+# Drug marks (the crosses † ‡ were replaced on 08.11.2026): # off-label, ◊ not in the
+# guideline, ◊# not in the guideline and not for this indication, § not registered,
+# ¶ not in ЖНВЛП. «#» counts only right after a word, never in links or «#».
+MARK = re.compile(r'◊#|◊|§|¶|(?<=[^\s#*\[(/«])#(?![\w=/#»-])')
+NOTE = re.compile(r'^\*\*(◊#|◊|#|§|¶)\*\*\s*(.+)$', re.M)
 # Options outside the guideline carry the procedure the working group requires
 PHRASE = 'может быть рассмотрено врачебной комиссией регионального центра и онкологическим консилиумом федерального центра (НМИЦ) высшего уровня'
 errors = []
@@ -39,7 +42,9 @@ for path in SOURCE.rglob('*.md'):
     notes = dict(NOTE.findall(body))
     for mark in sorted(set(MARK.findall(NOTE.sub('', body))) - set(notes)):
         errors.append(f'Mark {mark} used without its footnote: {path}')
-    for mark in ('‡', '‡†', '§'):
+    if re.search('[†‡]', body):
+        errors.append(f'Old cross mark † or ‡ left in text (now # and ◊): {path}')
+    for mark in ('◊', '◊#', '§'):
         if mark in notes and PHRASE not in notes[mark]:
             errors.append(f'Footnote {mark} lacks the medical commission phrase: {path}')
     if '—' in text:

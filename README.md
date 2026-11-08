@@ -7,9 +7,9 @@ Clinical guideline website at https://mabatum.github.io/eesg-guidelines/.
 Edition 2026.11.2 rests on the Russian Ministry of Health guidelines and the RUSSCO 2025 practice
 guidelines, cited by printed page; EESG additions from primary studies (cited by DOI), ESMO, ASCO and
 UpToDate are labelled «Предлагается», guideline and RUSSCO positions «Рекомендуется». Departures are
-counted from the Ministry guideline of the page: † off-label use (the guideline marks the drug «#»),
-‡ not in the guideline but registered in Russia for the indication, ‡† registered but not for the
-indication, § not registered; ¶ marks any drug outside the ЖНВЛП list. The ‡, ‡† and § footnotes carry
+counted from the Ministry guideline of the page: # off-label use (the guideline marks the drug «#»),
+◊ not in the guideline but registered in Russia for the indication, ◊# registered but not for the
+indication, § not registered; ¶ marks any drug outside the ЖНВЛП list. The ◊, ◊# and § footnotes carry
 the phrase about the regional medical commission and the NMIC federal consilium.
 Decisions: `research/edition-2026-11-2.md`; bone merge: `research/bone-merge-2026-11-06.md`.
 All published text is edited in Yandex Wiki. Every build exports it (`scripts/export_wiki_neutral.py`);
