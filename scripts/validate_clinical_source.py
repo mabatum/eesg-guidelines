@@ -13,8 +13,10 @@ SOURCE = Path('content-reviewed/bone-sarcomas')
 GENERATED = Path('docs/gen_docs/bone-sarcomas')
 PDF = Path('docs/_assets/sources/kr532-5-2025.pdf')
 EXPECTED_SHA256 = '9eb35acb923d54a0d27878e925fd21eed6781966ec5b4bdc0a8d6c11710e4f3f'
-DAGGER = '**†** Применение вне инструкции'
-NOT_IN_KR = '**‡** Лекарственная опция не входит в клинические рекомендации Минздрава России'
+MARK = re.compile(r'‡†|[†‡§¶]')
+NOTE = re.compile(r'^\*\*(‡†|[†‡§¶])\*\*\s*(.+)$', re.M)
+# Options outside the guideline carry the procedure the working group requires
+PHRASE = 'может быть рассмотрено врачебной комиссией регионального центра и онкологическим консилиумом федерального центра (НМИЦ) высшего уровня'
 errors = []
 if not PDF.exists() or hashlib.sha256(PDF.read_bytes()).hexdigest() != EXPECTED_SHA256:
     errors.append('Original clinical recommendation PDF is missing or changed.')
@@ -34,10 +36,12 @@ for path in SOURCE.rglob('*.md'):
         if int(actual) != int(printed) + 1:
             errors.append(f'Printed/PDF page mismatch: {path}: {printed}/{actual}')
     body = text.split('## Список литературы')[0]
-    if '†' in body.replace(DAGGER, '') and DAGGER not in text:
-        errors.append(f'Off-label mark † used without its footnote: {path}')
-    if '‡' in body.replace(NOT_IN_KR, '') and NOT_IN_KR not in text:
-        errors.append(f'Mark ‡ used without its footnote: {path}')
+    notes = dict(NOTE.findall(body))
+    for mark in sorted(set(MARK.findall(NOTE.sub('', body))) - set(notes)):
+        errors.append(f'Mark {mark} used without its footnote: {path}')
+    for mark in ('‡', '‡†', '§'):
+        if mark in notes and PHRASE not in notes[mark]:
+            errors.append(f'Footnote {mark} lacks the medical commission phrase: {path}')
     if '—' in text:
         errors.append(f'Long dash in text (house style uses a hyphen): {path}')
     for doi in re.findall(r'https://doi\.org/(\S+?)\)', text):
