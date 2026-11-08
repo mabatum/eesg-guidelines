@@ -297,6 +297,7 @@ body.editing .page-rm { display: block; }
 .lbl { display: inline-block; vertical-align: 2px; margin-right: 6px; padding: 2px 8px 3px; border-radius: 999px; font-size: 12.5px; line-height: 1.2; font-weight: 700; letter-spacing: .02em; }
 .lbl-r { color: var(--navy); background: color-mix(in srgb, var(--navy) 12%, var(--paper)); }
 .lbl-p { color: #8a4b00; background: color-mix(in srgb, #e8a33d 22%, var(--paper)); }
+:root[data-theme="dark"] .lbl-p { color: #f2c27a; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .lbl-p { color: #f2c27a; } }
 .ed-note { background: var(--note-bg); border-left: 3px solid var(--note-line); padding: 12px 14px; border-radius: 0 8px 8px 0; font-size: 16px; }
 .doc p.fn, .doc p.fine { font-size: 14px; color: var(--ink-2); line-height: 1.5; }
@@ -608,6 +609,7 @@ details.more[open] summary svg { transform: rotate(90deg); }
 .f-frame { display: block; width: 100%; height: 200px; border: 1px solid var(--line); border-radius: 10px; background: #fff; margin: 4px 0 10px; }
 .f-done .f-note a { color: var(--link); }
 </style>
+<script>try { const t = JSON.parse(localStorage.getItem('eesg.theme')); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) { /* storage unavailable */ }</script>
 
 <div class="top" id="top">
   <button class="icon-btn only-narrow" id="navBtn" type="button" aria-label="Разделы"></button>
@@ -619,6 +621,7 @@ details.more[open] summary svg { transform: rotate(90deg); }
   <span class="top-sp"></span>
   <span class="ed-label">Режим редактора</span>
   <button class="icon-btn only-narrow" id="searchBtn" type="button" aria-label="Поиск"></button>
+  <button class="icon-btn" id="themeBtn" type="button"></button>
   <button class="ed-btn" id="edBtn" type="button" aria-pressed="false" hidden title="Показать замечания в тексте"><span class="ed-ico"></span><span class="ed-btn-t">Замечания</span><span class="cnt" id="edCnt"></span></button>
 </div>
 
@@ -753,6 +756,8 @@ const ICON = {
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>',
   select: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M4 12h16M4 17h7"/><path d="M17 4v6M15 4h4M15 10h4" /></svg>',
   block: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2" stroke-dasharray="3 2.5"/><path d="M8 10h8M8 14h5"/></svg>',
+  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>',
+  moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M19.5 14.6A8 8 0 0 1 9.4 4.5a8 8 0 1 0 10.1 10.1Z"/></svg>',
   page: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.8h8l4.2 4.2V20a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3.8a1 1 0 0 1 1-1Z"/><path d="M13.6 3v4.6h4.6"/></svg>'
 };
 
@@ -782,6 +787,24 @@ const el = {
 /* static icons */
 $('#navBtn').innerHTML = ICON.menu;
 $('#searchBtn').innerHTML = ICON.searchBtn;
+
+/* light and dark theme: the system setting until the reader picks one */
+const mqDark = matchMedia('(prefers-color-scheme: dark)');
+const themeNow = () => document.documentElement.getAttribute('data-theme') || (mqDark.matches ? 'dark' : 'light');
+function paintThemeBtn() {
+  const dark = themeNow() === 'dark', t = dark ? 'Светлая тема' : 'Тёмная тема';
+  $('#themeBtn').innerHTML = dark ? ICON.sun : ICON.moon;
+  $('#themeBtn').setAttribute('aria-label', t);
+  $('#themeBtn').title = t;
+}
+$('#themeBtn').addEventListener('click', () => {
+  const next = themeNow() === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  store.set('theme', next);
+  paintThemeBtn();
+});
+mqDark.addEventListener('change', paintThemeBtn);
+paintThemeBtn();
 $('.ed-ico', el.edBtn).outerHTML = ICON.remark;
 $('#ovClose').innerHTML = ICON.close;
 $$('[data-close]').forEach(b => { if (!b.textContent.trim()) b.innerHTML = ICON.close; });
@@ -1077,7 +1100,7 @@ function homeHead(p) {
   return `<header class="home-h doc-h">
     <p class="eyebrow">Восточно-Европейская группа по изучению сарком</p>
     <h1>${esc(p.title)}</h1>
-    <p class="home-sub">Диагностика, лечение и наблюдение взрослых больных саркомами костей и мягких тканей</p>
+    <p class="home-sub">Диагностика, лечение и наблюдение взрослых пациентов с саркомами костей и мягких тканей</p>
     ${metaHTML(p)}
     <div class="home-search"><div class="sfield big" id="homeField"></div></div>
     <div class="quick"><span>Например:</span>${chips.map(c => `<button type="button" data-q="${esc(c)}">${esc(c)}</button>`).join('')}</div>
