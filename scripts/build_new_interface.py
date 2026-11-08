@@ -52,8 +52,8 @@ LINK_RE = re.compile(r"\[((?:\[[^\]]*\]|[^\[\]])+)\]\(((?:[^()\s]|\([^()\s]*\))+
 CITE_RE = re.compile(r"^\[(\d+)(?:, с\. [\d–-]+)?\]$")
 MARK_RE = re.compile(r"‡†|[†‡§¶]")
 NOTE_RE = re.compile(r"^\*\*(‡†|[†‡§¶])\*\*\s*(.+)$", re.S)
-LABEL_RE = re.compile(r"^<strong>(Рекомендуется|Предлагается)(?::\s*|\s+)")
-LABEL_CLASS = {"Рекомендуется": "lbl-r", "Предлагается": "lbl-p"}
+LABEL_RE = re.compile(r"^<strong>(?:\[(Рекомендуется|Предлагается)\]\s*|(Рекомендуется|Рекомендуются|Предлагается|Предлагаются)\s+)")
+LABEL_CLASS = {"Рекомендуется": "lbl-r", "Рекомендуются": "lbl-r", "Предлагается": "lbl-p", "Предлагаются": "lbl-p"}
 
 LEGEND = """## Как читать пометки
 
@@ -217,7 +217,9 @@ class Page:
         body = self.inline(md)
         label = LABEL_RE.match(body)
         if label:
-            word = label.group(1)
+            # a tag [Рекомендуется] is replaced by the label; a statement that opens with the
+            # verb keeps its wording and the verb itself becomes the label
+            word = label.group(1) or label.group(2)
             body = f'<strong><span class="lbl {LABEL_CLASS[word]}">{word}</span> ' + body[label.end():]
         self.html.append(f'<p data-b="{bid}"{cls}>{body}</p>')
         self.search.append([bid, self.slug, self.sec_title, "p", plain(md)])
