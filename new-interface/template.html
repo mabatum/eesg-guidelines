@@ -42,22 +42,6 @@
   --top-h: 60px;
   --sec-h: 44px;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #0C1620; --paper-2: #111E2A; --paper-3: #1A2a38;
-    --ink: #E3EAF0; --ink-2: #A5B5C2; --ink-3: #7F91A1; --line: #233341;
-    --navy: #A9CCEB; --link: #86C0EC; --link-h: #B8DBF6; --focus: #6CB1EA;
-    --btn-bg: #A9CCEB; --btn-fg: #04192B;
-    --mark: #F0B04A; --mark-bg: rgba(240, 176, 74, .18); --mark-strong: rgba(240, 176, 74, .38);
-    --new: #F2B85A; --new-bg: #382810; --work: #91BAF0; --work-bg: #172A42;
-    --ok: #74CDA0; --ok-bg: #133227; --rej: #96A3AE; --rej-bg: #1D2833;
-    --note-bg: #2A2112; --note-line: #8E6A2C;
-    --tip-bg: #E3EAF0; --tip-fg: #0C1620; --scrim: rgba(0, 0, 0, .55);
-    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 6px 20px rgba(0, 0, 0, .35);
-    --shadow-lg: 0 2px 6px rgba(0, 0, 0, .35), 0 18px 48px rgba(0, 0, 0, .5);
-    color-scheme: dark;
-  }
-}
 :root[data-theme="dark"] {
   --paper: #0C1620; --paper-2: #111E2A; --paper-3: #1A2a38;
   --ink: #E3EAF0; --ink-2: #A5B5C2; --ink-3: #7F91A1; --line: #233341;
@@ -298,7 +282,6 @@ body.editing .page-rm { display: block; }
 .lbl-r { color: var(--navy); background: color-mix(in srgb, var(--navy) 12%, var(--paper)); }
 .lbl-p { color: #8a4b00; background: color-mix(in srgb, #e8a33d 22%, var(--paper)); }
 :root[data-theme="dark"] .lbl-p { color: #f2c27a; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .lbl-p { color: #f2c27a; } }
 .ed-note { background: var(--note-bg); border-left: 3px solid var(--note-line); padding: 12px 14px; border-radius: 0 8px 8px 0; font-size: 16px; }
 .doc p.fn, .doc p.fine { font-size: 14px; color: var(--ink-2); line-height: 1.5; }
 .doc ol.refs { font-size: 15px; line-height: 1.5; }
@@ -575,7 +558,6 @@ details.more[open] summary svg { transform: rotate(90deg); }
 .f-note { font-size: 13px; color: var(--ink-3); margin: 6px 0 0; }
 .f-err { color: #B3261E; font-size: 13.5px; margin: 6px 0 0; }
 :root[data-theme="dark"] .f-err { color: #F2B8B5; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .f-err { color: #F2B8B5; } }
 .f-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
 .f-actions .btn.primary { height: 42px; padding: 0 20px; font-size: 15px; }
 .f-status { font-size: 13.5px; color: var(--ink-2); }
@@ -788,9 +770,8 @@ const el = {
 $('#navBtn').innerHTML = ICON.menu;
 $('#searchBtn').innerHTML = ICON.searchBtn;
 
-/* light and dark theme: the system setting until the reader picks one */
-const mqDark = matchMedia('(prefers-color-scheme: dark)');
-const themeNow = () => document.documentElement.getAttribute('data-theme') || (mqDark.matches ? 'dark' : 'light');
+/* light theme by default; dark only when the reader picks it */
+const themeNow = () => document.documentElement.getAttribute('data-theme') || 'light';
 function paintThemeBtn() {
   const dark = themeNow() === 'dark', t = dark ? 'Светлая тема' : 'Тёмная тема';
   $('#themeBtn').innerHTML = dark ? ICON.sun : ICON.moon;
@@ -803,7 +784,6 @@ $('#themeBtn').addEventListener('click', () => {
   store.set('theme', next);
   paintThemeBtn();
 });
-mqDark.addEventListener('change', paintThemeBtn);
 paintThemeBtn();
 $('.ed-ico', el.edBtn).outerHTML = ICON.remark;
 $('#ovClose').innerHTML = ICON.close;
