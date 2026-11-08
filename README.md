@@ -4,12 +4,16 @@ Clinical guideline website at https://mabatum.github.io/eesg-guidelines/.
 
 ## Clinical source
 
-Edition 2026.11.1 merges the Russian Ministry of Health guideline **Саркомы костей**, 2025, ID 532_5,
-with the EESG evidence revision of September 2026 (primary studies cited by DOI). Every guideline
-statement cites its printed page; drug options outside the guideline are marked ‡, off-label use †.
-Merge decisions: `research/bone-merge-2026-11-06.md`.
-The bone text is edited in Yandex Wiki (`eesg/bone-sarcomas` and its seven child pages).
-Every build pulls these pages with `scripts/pull_wiki_bones.py` into `content-reviewed/bone-sarcomas`,
+Edition 2026.11.2 rests on the Russian Ministry of Health guidelines and the RUSSCO 2025 practice
+guidelines, cited by printed page; EESG additions from primary studies (cited by DOI), ESMO, ASCO and
+UpToDate are labelled «Предлагается», guideline and RUSSCO positions «Рекомендуется». Departures are
+counted from the Ministry guideline of the page: † off-label use (the guideline marks the drug «#»),
+‡ not in the guideline but registered in Russia for the indication, ‡† registered but not for the
+indication, § not registered; ¶ marks any drug outside the ЖНВЛП list. The ‡, ‡† and § footnotes carry
+the phrase about the regional medical commission and the NMIC federal consilium.
+Decisions: `research/edition-2026-11-2.md`; bone merge: `research/bone-merge-2026-11-06.md`.
+All published text is edited in Yandex Wiki. Every build exports it (`scripts/export_wiki_neutral.py`);
+the bone pages also go through `scripts/pull_wiki_bones.py` into `content-reviewed/bone-sarcomas`,
 so the copy in git is a snapshot. The marker sources in `content-src/bone-sarcomas` are the 2026.11.1
 starting point and are not updated after Wiki edits.
 The original PDF is in `docs/_assets/sources/kr532-5-2025.pdf`.
